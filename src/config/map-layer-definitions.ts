@@ -55,7 +55,7 @@ export const LAYER_REGISTRY: Record<keyof MapLayers, LayerDefinition> = {
   gpsJamming:               def('gpsJamming',               '&#128225;', 'gpsJamming',               'GPS Jamming', ['flat', 'globe'], _desktop ? 'locked' : undefined),
   ciiChoropleth:            def('ciiChoropleth',            '&#127758;', 'ciiChoropleth',            'CII Instability', ['flat', 'globe'], _desktop ? 'enhanced' : undefined),
   dayNight:                 def('dayNight',                 '&#127763;', 'dayNight',                 'Day/Night', ['flat']),
-  sanctions:                def('sanctions',                '&#128683;', 'sanctions',                'Sanctions'),
+  sanctions:                def('sanctions',                '&#128683;', 'sanctions',                'Sanctions', []),
   startupHubs:              def('startupHubs',              '&#128640;', 'startupHubs',              'Startup Hubs'),
   techHQs:                  def('techHQs',                  '&#127970;', 'techHQs',                  'Tech HQs'),
   accelerators:             def('accelerators',             '&#9889;',   'accelerators',             'Accelerators'),
@@ -84,7 +84,7 @@ const VARIANT_LAYER_ORDER: Record<MapVariant, Array<keyof MapLayers>> = {
     'ais', 'tradeRoutes', 'flights', 'protests',
     'ucdpEvents', 'displacement', 'climate', 'weather',
     'outages', 'cyberThreats', 'natural', 'fires',
-    'waterways', 'economic', 'minerals', 'sanctions',
+    'waterways', 'economic', 'minerals',
     'gpsJamming', 'ciiChoropleth', 'dayNight',
   ],
   tech: [
@@ -95,7 +95,7 @@ const VARIANT_LAYER_ORDER: Record<MapVariant, Array<keyof MapLayers>> = {
   finance: [
     'stockExchanges', 'financialCenters', 'centralBanks', 'commodityHubs',
     'gulfInvestments', 'tradeRoutes', 'cables', 'pipelines',
-    'sanctions', 'outages', 'weather', 'economic', 'waterways',
+    'outages', 'weather', 'economic', 'waterways',
     'natural', 'cyberThreats', 'dayNight',
   ],
   happy: [
@@ -105,7 +105,7 @@ const VARIANT_LAYER_ORDER: Record<MapVariant, Array<keyof MapLayers>> = {
   commodity: [
     'miningSites', 'processingPlants', 'commodityPorts', 'commodityHubs',
     'minerals', 'pipelines', 'waterways', 'tradeRoutes',
-    'ais', 'sanctions', 'economic', 'fires', 'climate',
+    'ais', 'economic', 'fires', 'climate',
     'natural', 'weather', 'outages', 'dayNight',
   ],
 };
