@@ -1300,6 +1300,8 @@ export class GlobeMap {
 
     const el = document.createElement('div');
     el.className = 'layer-toggles deckgl-layer-toggles';
+    el.style.bottom = 'auto';
+    el.style.top = '10px';
     el.innerHTML = `
       <div class="toggle-header">
         <span>${t('components.deckgl.layersTitle')}</span>

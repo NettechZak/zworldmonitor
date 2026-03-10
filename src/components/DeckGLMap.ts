@@ -4892,7 +4892,10 @@ export class DeckGLMap {
   // UI visibility methods
   public hideLayerToggle(layer: keyof MapLayers): void {
     const toggle = this.container.querySelector(`.layer-toggle[data-layer="${layer}"]`);
-    if (toggle) (toggle as HTMLElement).style.display = 'none';
+    if (toggle) {
+      (toggle as HTMLElement).style.display = 'none';
+      toggle.setAttribute('data-layer-hidden', '');
+    }
   }
 
   public setLayerLoading(layer: keyof MapLayers, loading: boolean): void {

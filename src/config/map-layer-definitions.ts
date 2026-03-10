@@ -230,11 +230,13 @@ export function bindLayerSearch(container: HTMLElement): void {
       }
     }
     container.querySelectorAll('.layer-toggle').forEach(label => {
-      if (!q) { (label as HTMLElement).style.display = ''; return; }
+      const el = label as HTMLElement;
+      if (el.hasAttribute('data-layer-hidden')) return;
+      if (!q) { el.style.display = ''; return; }
       const key = label.getAttribute('data-layer') || '';
       const text = label.textContent?.toLowerCase() || '';
       const match = text.includes(q) || key.toLowerCase().includes(q) || synonymHits.has(key);
-      (label as HTMLElement).style.display = match ? '' : 'none';
+      el.style.display = match ? '' : 'none';
     });
   });
 }
