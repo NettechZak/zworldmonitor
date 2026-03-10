@@ -121,11 +121,11 @@ export class CountryIntelManager implements AppModule {
   async openCountryBrief(lat: number, lon: number): Promise<void> {
     if (!this.ctx.countryBriefPage) return;
     const token = ++this.briefRequestToken;
-    this.ctx.countryBriefPage.showLoading();
-    this.ctx.map?.setRenderPaused(true);
 
     const localGeo = getCountryAtCoordinates(lat, lon);
     if (localGeo) {
+      this.ctx.countryBriefPage.showLoading();
+      this.ctx.map?.setRenderPaused(true);
       if (token !== this.briefRequestToken) return;
       this.openCountryBriefByCode(localGeo.code, localGeo.name);
       return;
@@ -133,12 +133,10 @@ export class CountryIntelManager implements AppModule {
 
     const geo = await reverseGeocode(lat, lon);
     if (token !== this.briefRequestToken) return;
-    if (!geo) {
-      this.ctx.countryBriefPage.hide();
-      this.ctx.map?.setRenderPaused(false);
-      return;
-    }
+    if (!geo) return;
 
+    this.ctx.countryBriefPage.showLoading();
+    this.ctx.map?.setRenderPaused(true);
     this.openCountryBriefByCode(geo.code, geo.country);
   }
 
