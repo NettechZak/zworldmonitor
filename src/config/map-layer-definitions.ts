@@ -33,7 +33,7 @@ export const LAYER_REGISTRY: Record<keyof MapLayers, LayerDefinition> = {
   nuclear:                  def('nuclear',                  '&#9762;',   'nuclearSites',             'Nuclear Sites'),
   irradiators:              def('irradiators',              '&#9888;',   'gammaIrradiators',         'Gamma Irradiators'),
   spaceports:               def('spaceports',               '&#128640;', 'spaceports',               'Spaceports'),
-  satellites:               def('satellites',               '&#128752;', 'satellites',               'Orbital Surveillance', ['flat', 'globe']),
+  satellites:               def('satellites',               '&#128752;', 'satellites',               'Orbital Surveillance', ['globe']),
   notamOverlay:             def('notamOverlay',             '&#9888;',   'notamOverlay',             'NOTAM Closures'),
   cables:                   def('cables',                   '&#128268;', 'underseaCables',           'Undersea Cables'),
   pipelines:                def('pipelines',                '&#128738;', 'pipelines',                'Pipelines'),
