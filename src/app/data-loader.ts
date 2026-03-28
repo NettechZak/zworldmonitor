@@ -279,7 +279,7 @@ export class DataLoaderManager implements AppModule {
         }
       });
     };
-    window.addEventListener('wm-market-watchlist-changed', this.boundMarketWatchlistHandler as EventListener);
+    window.addEventListener('zm-market-watchlist-changed', this.boundMarketWatchlistHandler as EventListener);
 
     this.dailyBriefFrameworkUnsubscribe = subscribeFrameworkChange('daily-market-brief', () => {
       void this.loadDailyMarketBrief(true);
@@ -295,7 +295,7 @@ export class DataLoaderManager implements AppModule {
     this.applyTimeRangeFilterToNewsPanelsDebounced.cancel();
     stopOrefPolling();
     if (this.boundMarketWatchlistHandler) {
-      window.removeEventListener('wm-market-watchlist-changed', this.boundMarketWatchlistHandler as EventListener);
+      window.removeEventListener('zm-market-watchlist-changed', this.boundMarketWatchlistHandler as EventListener);
       this.boundMarketWatchlistHandler = null;
     }
     this.dailyBriefFrameworkUnsubscribe?.();

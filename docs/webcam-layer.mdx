@@ -88,7 +88,7 @@ Three cache layers work together to minimize latency and external API calls:
 | **Redis — viewport responses** | Clustered results per map view | 24 hours | `webcam:resp:{version}:{zoom}:{quantizedBbox}` |
 | **Redis — image lookups** | Per-webcam image/player URLs | 5 minutes | `webcam:image:{webcamId}` |
 | **Client — image cache** | In-memory Map in browser | 9 minutes | webcamId |
-| **Client — pinned store** | localStorage (permanent) | None (user-managed) | `wm-pinned-webcams` |
+| **Client — pinned store** | localStorage (permanent) | None (user-managed) | `zm-pinned-webcams` |
 
 ### Expected latency behavior
 
@@ -130,7 +130,7 @@ Users can pin webcams from map tooltips to a persistent side panel. The panel di
 
 ### Storage
 
-Pinned webcam data is stored in `localStorage` under the key `wm-pinned-webcams`. Each entry contains:
+Pinned webcam data is stored in `localStorage` under the key `zm-pinned-webcams`. Each entry contains:
 
 ```
 webcamId, title, lat, lng, category, country, playerUrl, active (boolean), pinnedAt (timestamp)

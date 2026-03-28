@@ -540,13 +540,13 @@
       "noTraffic": "Chưa ghi nhận lưu lượng.",
       "sidecarUnreachable": "Không thể kết nối sidecar.",
       "logCleared": "Đã xóa log.",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "Một khóa. Bao gồm tất cả.",
         "heroDescription": "Một giấy phép Z-Monitor thay thế mọi khóa API và nhà cung cấp LLM mà bạn phải tự cấu hình. Tóm tắt AI, tình báo thời gian thực, dữ liệu thị trường, theo dõi xung đột, phát hiện cháy, ảnh vệ tinh — tất cả được vận hành, quản lý, không cần cài đặt.",
         "apiKey": {
           "title": "Khóa Giấy phép",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "Dán giấy phép của bạn để mở khóa mọi nguồn dữ liệu và tính năng AI ngay lập tức.",
           "statusValid": "ĐÃ CẤP PHÉP",
           "statusMissing": "CHƯA CÓ GIẤY PHÉP"

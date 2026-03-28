@@ -1,11 +1,11 @@
 export type GlobeRenderScale = 'auto' | '1' | '1.5' | '2' | '3';
 export type GlobeTexture = 'topographic' | 'blue-marble';
 
-const STORAGE_KEY = 'wm-globe-render-scale';
-const EVENT_NAME = 'wm-globe-render-scale-changed';
+const STORAGE_KEY = 'zm-globe-render-scale';
+const EVENT_NAME = 'zm-globe-render-scale-changed';
 
-const TEXTURE_STORAGE_KEY = 'wm-globe-texture';
-const TEXTURE_EVENT_NAME = 'wm-globe-texture-changed';
+const TEXTURE_STORAGE_KEY = 'zm-globe-texture';
+const TEXTURE_EVENT_NAME = 'zm-globe-texture-changed';
 
 export const GLOBE_RENDER_SCALE_OPTIONS: {
   value: GlobeRenderScale;
@@ -110,8 +110,8 @@ export function subscribeGlobeTextureChange(cb: (texture: GlobeTexture) => void)
 
 export type GlobeVisualPreset = 'classic' | 'enhanced';
 
-const PRESET_STORAGE_KEY = 'wm-globe-visual-preset';
-const PRESET_EVENT_NAME = 'wm-globe-visual-preset-changed';
+const PRESET_STORAGE_KEY = 'zm-globe-visual-preset';
+const PRESET_EVENT_NAME = 'zm-globe-visual-preset-changed';
 
 export const GLOBE_VISUAL_PRESET_OPTIONS: { value: GlobeVisualPreset; label: string }[] = [
   { value: 'classic', label: 'Earth' },

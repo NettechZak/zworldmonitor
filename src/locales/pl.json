@@ -641,10 +641,10 @@
       },
       "sidecarUnreachable": "Wózek boczny nieosiągalny.",
       "logCleared": "Log wyczyszczony.",
-      "worldMonitor": {
+      "zMonitor": {
         "apiKey": {
           "description": "Wklej swoją licencję, aby natychmiast odblokować wszystkie źródła danych i funkcje AI.",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "statusMissing": "BRAK LICENCJI",
           "statusValid": "LICENCJONOWANE",
           "title": "Klucz licencyjny"

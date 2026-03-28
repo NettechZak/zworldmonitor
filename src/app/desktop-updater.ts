@@ -88,7 +88,7 @@ export class DesktopUpdater implements AppModule {
         return;
       }
 
-      const dismissKey = `wm-update-dismissed-${remote}`;
+      const dismissKey = `zm-update-dismissed-${remote}`;
       if (getDismissed(dismissKey)) {
         this.logUpdaterOutcome('update_available', { current, remote, dismissed: true });
         return;
@@ -186,7 +186,7 @@ export class DesktopUpdater implements AppModule {
     `;
 
     const dismissToast = () => {
-      setDismissed(`wm-update-dismissed-${version}`);
+      setDismissed(`zm-update-dismissed-${version}`);
       toast.classList.remove('visible');
       setTimeout(() => toast.remove(), 300);
     };

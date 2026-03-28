@@ -22,7 +22,7 @@ The Markets panel supports user-customizable stock and commodity symbol lists, a
 - **Crypto pairs**: `BTC-USD`, `ETH-USD`
 - **Friendly labels**: `TSLA|Tesla Inc` (pipe-separated display name)
 
-Symbols are entered via a modal dialog accessible from the Markets panel settings icon. The input accepts comma-separated, newline-separated, or `SYMBOL|Label` formats. Watchlist state is stored in `localStorage` as `wm-market-watchlist-v1` (max 50 symbols, deduplicated). Changes emit a `wm-market-watchlist-changed` CustomEvent for live synchronization across panels without page reload.
+Symbols are entered via a modal dialog accessible from the Markets panel settings icon. The input accepts comma-separated, newline-separated, or `SYMBOL|Label` formats. Watchlist state is stored in `localStorage` as `zm-market-watchlist-v1` (max 50 symbols, deduplicated). Changes emit a `zm-market-watchlist-changed` CustomEvent for live synchronization across panels without page reload.
 
 ### Macro Signal Analysis (Market Radar)
 

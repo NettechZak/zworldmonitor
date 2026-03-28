@@ -819,12 +819,12 @@ export class App {
       this.state.findingsBadge = new IntelligenceGapBadge();
       this.state.findingsBadge.setOnSignalClick((signal) => {
         if (this.state.countryBriefPage?.isVisible()) return;
-        if (localStorage.getItem('wm-settings-open') === '1') return;
+        if (localStorage.getItem('zm-settings-open') === '1') return;
         this.state.signalModal?.showSignal(signal);
       });
       this.state.findingsBadge.setOnAlertClick((alert) => {
         if (this.state.countryBriefPage?.isVisible()) return;
-        if (localStorage.getItem('wm-settings-open') === '1') return;
+        if (localStorage.getItem('zm-settings-open') === '1') return;
         this.state.signalModal?.showAlert(alert);
       });
     }
@@ -926,7 +926,7 @@ export class App {
     this.desktopUpdater.init();
 
     // Analytics
-    trackEvent('wm_app_loaded', {
+    trackEvent('zm_app_loaded', {
       load_time_ms: Math.round(performance.now() - initStart),
       panel_count: Object.keys(this.state.panels).length,
     });

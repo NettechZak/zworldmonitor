@@ -9,10 +9,10 @@ dependencies: []
 # Custom frameworks not included in settings export/import — user data lost on reset
 
 ## Problem Statement
-`analysis-framework-store.ts` uses its own localStorage keys (`wm-analysis-frameworks` for the library, `wm-panel-frameworks` for per-panel selections). The existing preferences/settings export/import flow does NOT include these keys. When a user exports their settings, migrates to a new device, or clicks "reset settings", all custom imported frameworks and their per-panel assignments are silently lost. This is particularly impactful since importing frameworks from agentskills.io URLs is a new user action.
+`analysis-framework-store.ts` uses its own localStorage keys (`zm-analysis-frameworks` for the library, `zm-panel-frameworks` for per-panel selections). The existing preferences/settings export/import flow does NOT include these keys. When a user exports their settings, migrates to a new device, or clicks "reset settings", all custom imported frameworks and their per-panel assignments are silently lost. This is particularly impactful since importing frameworks from agentskills.io URLs is a new user action.
 
 ## Findings
-- **`src/services/analysis-framework-store.ts:6-7`** — `const LIBRARY_KEY = 'wm-analysis-frameworks'; const PANEL_KEY = 'wm-panel-frameworks';`
+- **`src/services/analysis-framework-store.ts:6-7`** — `const LIBRARY_KEY = 'zm-analysis-frameworks'; const PANEL_KEY = 'zm-panel-frameworks';`
 - **`src/services/preferences-content.ts`** — settings export/import handler does not include these two keys
 - Flagged by: architecture-strategist
 
@@ -23,8 +23,8 @@ In `preferences-content.ts` (or wherever the settings export JSON is constructed
 ```ts
 const exportData = {
   ...existingPreferences,
-  'wm-analysis-frameworks': localStorage.getItem('wm-analysis-frameworks'),
-  'wm-panel-frameworks': localStorage.getItem('wm-panel-frameworks'),
+  'zm-analysis-frameworks': localStorage.getItem('zm-analysis-frameworks'),
+  'zm-panel-frameworks': localStorage.getItem('zm-panel-frameworks'),
 };
 ```
 And on import, write them back.
@@ -39,7 +39,7 @@ Add "Export frameworks" / "Import frameworks" buttons specifically in the Analys
 - PR: NettechZak/zmonitor#2380
 
 ## Acceptance Criteria
-- [ ] Settings export JSON includes `wm-analysis-frameworks` and `wm-panel-frameworks`
+- [ ] Settings export JSON includes `zm-analysis-frameworks` and `zm-panel-frameworks`
 - [ ] Settings import restores custom frameworks and per-panel assignments
 - [ ] Built-in frameworks are not duplicated on import (they're already in the store constant)
 

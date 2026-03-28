@@ -169,9 +169,9 @@ describe('getRelayHeaders — with auth', () => {
   });
 
   it('respects custom RELAY_AUTH_HEADER', () => {
-    withEnv({ RELAY_AUTH_HEADER: 'x-wm-relay' }, () => {
+    withEnv({ RELAY_AUTH_HEADER: 'x-zm-relay' }, () => {
       const h = getRelayHeaders();
-      assert.equal(h['x-wm-relay'], 'test-secret-abc');
+      assert.equal(h['x-zm-relay'], 'test-secret-abc');
       assert.equal(h['x-relay-key'], undefined, 'default header should not be set when custom header used');
     });
   });

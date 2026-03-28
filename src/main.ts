@@ -411,7 +411,7 @@ requestAnimationFrame(() => {
 });
 
 // Clear stale settings-open flag (survives ungraceful shutdown)
-localStorage.removeItem('wm-settings-open');
+localStorage.removeItem('zm-settings-open');
 
 // Standalone windows: ?settings=1 = panel display settings, ?live-channels=1 = channel management
 // Both need i18n initialized so t() does not return undefined.
@@ -476,8 +476,8 @@ if (!('__TAURI_INTERNALS__' in window) && !('__TAURI__' in window) && 'serviceWo
 
   const SW_UPDATE_SUCCESS_INTERVAL_MS = 60 * 60 * 1000;
   const SW_UPDATE_FAILURE_INTERVAL_MS = 5 * 60 * 1000;
-  const SW_UPDATE_LAST_CHECK_KEY = 'wm-sw-last-update-check';
-  const SW_UPDATE_LAST_RESULT_KEY = 'wm-sw-last-update-ok';
+  const SW_UPDATE_LAST_CHECK_KEY = 'zm-sw-last-update-check';
+  const SW_UPDATE_LAST_RESULT_KEY = 'zm-sw-last-update-ok';
 
   const readStorageNum = (key: string): number => {
     try {
@@ -554,7 +554,7 @@ if (!('__TAURI_INTERNALS__' in window) && !('__TAURI__' in window) && 'serviceWo
 // It runs once per user (guarded by a localStorage key), nukes all SWs and caches, then reloads.
 // IMPORTANT: This causes a visible double-load for every new/unkeyed user. Remove once rollout is complete.
 //
-// const nukeKey = 'wm-sw-nuked-v3';
+// const nukeKey = 'zm-sw-nuked-v3';
 // let alreadyNuked = false;
 // try { alreadyNuked = !!localStorage.getItem(nukeKey); } catch {}
 // if (!alreadyNuked) {

@@ -540,13 +540,13 @@
       "noTraffic": "ยังไม่มีทราฟฟิกที่บันทึกไว้",
       "sidecarUnreachable": "ไม่สามารถเชื่อมต่อ Sidecar ได้",
       "logCleared": "ล้างบันทึกแล้ว",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "คีย์เดียว ครบทุกอย่าง",
         "heroDescription": "ใบอนุญาต Z-Monitor ใบเดียวแทนที่คีย์ API และผู้ให้บริการ LLM ทุกรายที่คุณต้องกำหนดค่าเอง สรุป AI ข่าวกรองเรียลไทม์ ข้อมูลตลาด การติดตามความขัดแย้ง การตรวจจับไฟ ภาพดาวเทียม — ทุกอย่างพร้อม จัดการครบ ไม่ต้องตั้งค่า",
         "apiKey": {
           "title": "คีย์ใบอนุญาต",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "วางใบอนุญาตของคุณเพื่อปลดล็อกแหล่งข้อมูลและฟีเจอร์ AI ทั้งหมดทันที",
           "statusValid": "ได้รับอนุญาต",
           "statusMissing": "ไม่มีใบอนุญาต"

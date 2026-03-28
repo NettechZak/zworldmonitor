@@ -540,13 +540,13 @@
       "noTraffic": "Henuz trafik kaydedilmedi.",
       "sidecarUnreachable": "Sidecar'a ulasilamiyor.",
       "logCleared": "Log temizlendi.",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "Tek anahtar. Her şey dahil.",
         "heroDescription": "Tek bir Z-Monitor lisansı, kendiniz yapılandıracağınız tüm API anahtarlarını ve LLM sağlayıcılarını değiştirir. AI özetleri, gerçek zamanlı istihbarat, piyasa verileri, çatışma takibi, yangın tespiti, uydu görüntüleri — hepsi aktif, hepsi yönetilen, sıfır kurulum.",
         "apiKey": {
           "title": "Lisans Anahtarı",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "Tüm veri kaynaklarını ve AI özelliklerini anında açmak için lisansınızı yapıştırın.",
           "statusValid": "LİSANSLI",
           "statusMissing": "LİSANS YOK"

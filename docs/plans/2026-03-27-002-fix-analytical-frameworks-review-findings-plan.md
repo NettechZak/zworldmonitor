@@ -311,15 +311,15 @@ new framework-shaped analysis (currently it doesn't).
 
 `SETTINGS_KEY_PREFIXES` array on line ~20 drives the export whitelist. Add:
 ```ts
-'wm-analysis-frameworks',
-'wm-panel-frameworks',
+'zm-analysis-frameworks',
+'zm-panel-frameworks',
 ```
 
 This ensures `exportSettings()` includes user's custom imported frameworks and per-panel
 selections when they export to JSON. On `importSettings()`, the existing
 `isSettingsKey(key)` prefix check will match them automatically.
 
-**Verification:** Export settings → JSON contains `wm-analysis-frameworks` entry.
+**Verification:** Export settings → JSON contains `zm-analysis-frameworks` entry.
 Import on a fresh profile → custom frameworks are restored.
 
 ---
@@ -424,7 +424,7 @@ In `preferences-content.ts` import handler, replace `id: Date.now().toString()` 
 
 - [ ] `DeductionPanel.handleSubmit()` passes framework via `framework` field only — no geoContext append (todo 046)
 - [ ] Changing framework in InsightsPanel triggers one `updateGeneration` increment and causes re-render (todo 047)
-- [ ] Settings export JSON includes `wm-analysis-frameworks` and `wm-panel-frameworks` keys (todo 048)
+- [ ] Settings export JSON includes `zm-analysis-frameworks` and `zm-panel-frameworks` keys (todo 048)
 - [ ] `getActiveFrameworkForPanel` makes zero localStorage calls on cache hit (todo 049)
 - [ ] Rapid framework changes in country-brief fire only one RPC after 400ms settle (todo 050)
 - [ ] `sha256Hex` calls for context+framework hashes run in parallel (todo 051)

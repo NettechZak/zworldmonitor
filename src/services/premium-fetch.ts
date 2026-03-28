@@ -90,7 +90,7 @@ export async function premiumFetch(
   // 2. Tester / widget keys from localStorage.
   // Must run BEFORE Clerk to prevent a free Clerk session from intercepting the
   // request and returning 403 before the tester key is ever checked.
-  // Try wm-pro-key first, then wm-widget-key. A relay-only pro key can be invalid
+  // Try zm-pro-key first, then zm-widget-key. A relay-only pro key can be invalid
   // for the gateway even when the widget key is valid for premium RPC access.
   const testerKeys = await loadTesterKeys();
   for (const testerKey of testerKeys) {

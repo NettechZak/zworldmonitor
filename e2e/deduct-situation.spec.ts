@@ -23,7 +23,7 @@ test.describe('Deduct Situation Panel Options', () => {
         await page.click('text="Jump to Deduct Situation"');
 
         // Ensure the panel is visible and ready
-        const panel = page.locator('.wm-panel', { hasText: 'DEDUCT SITUATION' });
+        const panel = page.locator('.zm-panel', { hasText: 'DEDUCT SITUATION' });
         await expect(panel).toBeVisible();
 
         // Fill in the text area query

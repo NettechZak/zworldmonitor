@@ -59,8 +59,8 @@ export default async function handler(req: Request): Promise<Response> {
   // ── Auth ──────────────────────────────────────────────────────────────────
   let isPro = false;
 
-  const worldMonitorKey = req.headers.get('X-ZMonitor-Key') ?? '';
-  if (hasValidZMonitorKey(worldMonitorKey)) {
+  const zMonitorKey = req.headers.get('X-ZMonitor-Key') ?? '';
+  if (hasValidZMonitorKey(zMonitorKey)) {
     isPro = true;
   } else {
     const authHeader = req.headers.get('Authorization');
@@ -75,7 +75,7 @@ export default async function handler(req: Request): Promise<Response> {
       }
       isPro = true;
     } else {
-      // Legacy tester key path (wm-widget-key / wm-pro-key)
+      // Legacy tester key path (zm-widget-key / zm-pro-key)
       const widgetKey = req.headers.get('X-Widget-Key') ?? '';
       const proKey = req.headers.get('X-Pro-Key') ?? '';
       const hasWidgetKey = Boolean(WIDGET_AGENT_KEY && widgetKey === WIDGET_AGENT_KEY);

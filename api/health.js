@@ -259,7 +259,7 @@ const CASCADE_GROUPS = {
   militaryFlightsStale: ['militaryFlights', 'militaryFlightsStale'],
 };
 
-const NEG_SENTINEL = '__WM_NEG__';
+const NEG_SENTINEL = '__ZM_NEG__';
 
 async function redisPipeline(commands) {
   const url = process.env.UPSTASH_REDIS_REST_URL;
@@ -303,7 +303,7 @@ export default async function handler(req) {
   const allMetaKeys = Object.values(SEED_META).map(s => s.key);
 
   // STRLEN for data keys avoids loading large blobs into memory (OOM prevention).
-  // NEG_SENTINEL ('__WM_NEG__') is 10 bytes — any real data is >10 bytes.
+  // NEG_SENTINEL ('__ZM_NEG__') is 10 bytes — any real data is >10 bytes.
   const NEG_SENTINEL_LEN = NEG_SENTINEL.length;
   let results;
   try {

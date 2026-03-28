@@ -542,13 +542,13 @@
       "noTraffic": "尚未记录任何流量。",
       "sidecarUnreachable": "Sidecar不可达。",
       "logCleared": "日志已清除。",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "一个密钥，万事俱备。",
         "heroDescription": "一个Z-Monitor许可证即可替代所有需要自行配置的API密钥和LLM提供商。AI摘要、实时情报、市场数据、冲突追踪、火灾检测、卫星图像 — 全部就绪，全部托管，零配置。",
         "apiKey": {
           "title": "许可证密钥",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "粘贴您的许可证，即刻解锁所有数据源和AI功能。",
           "statusValid": "已授权",
           "statusMissing": "未授权"

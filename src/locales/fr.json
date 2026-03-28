@@ -547,13 +547,13 @@
         "status": "Statut",
         "duration": "Durée"
       },
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "Une clé. Tout inclus.",
         "heroDescription": "Une seule licence Z-Monitor remplace chaque clé API et fournisseur LLM que vous auriez à configurer vous-même. Résumés IA, renseignement en temps réel, données de marché, suivi des conflits, détection d'incendies, imagerie satellite — tout est alimenté, tout est géré, zéro configuration.",
         "apiKey": {
           "title": "Clé de licence",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "Collez votre licence pour débloquer instantanément toutes les sources de données et fonctionnalités IA.",
           "statusValid": "SOUS LICENCE",
           "statusMissing": "PAS DE LICENCE"

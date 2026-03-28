@@ -31,7 +31,7 @@ Desktop App                          Cloud (Vercel)
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `ZMONITOR_VALID_KEYS` | Comma-separated list of valid API keys | `wm_abc123def456,wm_xyz789` |
+| `ZMONITOR_VALID_KEYS` | Comma-separated list of valid API keys | `zm_abc123def456,zm_xyz789` |
 | `CONVEX_URL` | Convex deployment URL (from `npx convex deploy`) | `https://xyz-123.convex.cloud` |
 
 ### Generating API keys
@@ -40,8 +40,8 @@ Keys must be at least 16 characters (validated client-side). Recommended format:
 
 ```bash
 # Generate a key
-openssl rand -hex 24 | sed 's/^/wm_/'
-# Example output: wm_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6
+openssl rand -hex 24 | sed 's/^/zm_/'
+# Example output: zm_a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6
 ```
 
 Add to `ZMONITOR_VALID_KEYS` in Vercel dashboard (comma-separated, no spaces).

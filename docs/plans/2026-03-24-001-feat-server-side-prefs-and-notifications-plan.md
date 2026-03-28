@@ -101,25 +101,25 @@ Railway notification-delivery service (new)
 | `zmonitor-variant` | Active variant |
 | `zmonitor-map-mode` | Flat/globe |
 | `zmonitor-runtime-feature-toggles` | Feature flags (non-secret toggles only) |
-| `wm-breaking-alerts-v1` | Alert sensitivity settings |
-| `wm-market-watchlist-v1` | Market watchlist symbols |
+| `zm-breaking-alerts-v1` | Alert sensitivity settings |
+| `zm-market-watchlist-v1` | Market watchlist symbols |
 | `aviation:watchlist:v1` | Aviation watchlist |
-| `wm-pinned-webcams` | Pinned webcam list |
-| `wm-map-provider` | Map tile provider |
-| `wm-font-family` | UI font preference |
-| `wm-globe-visual-preset` | Globe visual settings |
-| `wm-stream-quality` | Video quality preference |
+| `zm-pinned-webcams` | Pinned webcam list |
+| `zm-map-provider` | Map tile provider |
+| `zm-font-family` | UI font preference |
+| `zm-globe-visual-preset` | Globe visual settings |
+| `zm-stream-quality` | Video quality preference |
 
 **Explicitly excluded from cloud sync (secrets / device-local):**
 
 | localStorage Key | Reason |
 |---|---|
-| `wm-mcp-panels` | Contains `customHeaders` with API keys (Authorization: Bearer …) |
-| `wm-pro-html-{id}` | Widget HTML — large, device-generated, not portable |
-| `wm-custom-widgets` | Widget metadata with tool configs |
-| `wm-pro-key` / `wm-widget-key` | API key credentials |
+| `zm-mcp-panels` | Contains `customHeaders` with API keys (Authorization: Bearer …) |
+| `zm-pro-html-{id}` | Widget HTML — large, device-generated, not portable |
+| `zm-custom-widgets` | Widget metadata with tool configs |
+| `zm-pro-key` / `zm-widget-key` | API key credentials |
 | `zmonitor-runtime-feature-toggles` vault entries | 26 `RuntimeSecretKey` API keys (Groq, ACLED, OpenSky, etc.) |
-| `wm-live-channels` / `wm-active-channel` | Device-specific stream session state |
+| `zm-live-channels` / `zm-active-channel` | Device-specific stream session state |
 | `map-height` / `map-pinned` | Device-specific viewport state |
 
 ---
@@ -331,30 +331,30 @@ export const claimPairingToken = mutation({ ... })  // ATOMIC: check used+expiry
 On sign-in (initAuthState resolves with user.id):
   1. Render immediately with localStorage prefs (OPTIMISTIC — do NOT block first paint)
   2. Fetch cloud prefs for (userId, currentVariant) in parallel
-  3. If cloud.syncVersion > localStorage['wm-cloud-sync-version']:
+  3. If cloud.syncVersion > localStorage['zm-cloud-sync-version']:
        Apply schemaVersion migration if needed (MIGRATIONS[cloud.schemaVersion] → CURRENT)
        Apply cloud prefs to localStorage (cloud wins — newer syncVersion)
-  4. If 'wm-cloud-sync-version' is null (first ever sign-in) AND cloud prefs exist:
+  4. If 'zm-cloud-sync-version' is null (first ever sign-in) AND cloud prefs exist:
        Cloud wins silently. Show 5-second undo toast: "We restored your preferences from another device. [Undo]"
        Undo applies the local prefs and uploads them.
-  5. Else: upload local prefs to cloud with expectedSyncVersion = wm-cloud-sync-version
-  5. Store cloud.syncVersion in localStorage['wm-cloud-sync-version']
+  5. Else: upload local prefs to cloud with expectedSyncVersion = zm-cloud-sync-version
+  5. Store cloud.syncVersion in localStorage['zm-cloud-sync-version']
 
 On preference change (any SETTINGS_KEY_PREFIXES write):
   → Debounce 5000ms for layout/display prefs (reduce write amplification)
   → Debounce 2000ms for alert rule changes only
   → Build filtered prefs blob (allowlist only — sync NEVER touches mcp-store or vault keys)
-  → POST /api/user-prefs with { variant, data, expectedSyncVersion: wm-cloud-sync-version }
-  → On success: update localStorage['wm-cloud-sync-version'] = response.syncVersion
+  → POST /api/user-prefs with { variant, data, expectedSyncVersion: zm-cloud-sync-version }
+  → On success: update localStorage['zm-cloud-sync-version'] = response.syncVersion
   → On 409 CONFLICT: re-fetch cloud prefs, merge, retry once
   → On visibility hide (tab switch/close): cancel debounce timer, flush via navigator.sendBeacon() in visibilitychange+pagehide handlers
      NOTE: `beforeunload` is NOT reliable (disabled by bfcache, does not fire on mobile). Use `visibilitychange`+`pagehide` instead.
      Multi-tab: listen to `storage` event; cancel local debounce when another tab writes a newer `localUpdatedAt`.
-  → `wm-last-sync-at` is set from the server-returned timestamp in the response, NOT from `Date.now()` — set ONLY after confirmed server success
+  → `zm-last-sync-at` is set from the server-returned timestamp in the response, NOT from `Date.now()` — set ONLY after confirmed server success
 
 On sign-out:
-  → Clear localStorage['wm-cloud-sync-state'] (sync metadata only, not prefs)
-  → Set localStorage['wm-last-signed-in-as'] = userId
+  → Clear localStorage['zm-cloud-sync-state'] (sync metadata only, not prefs)
+  → Set localStorage['zm-last-signed-in-as'] = userId
 ```
 
 #### schemaVersion migration pattern
@@ -381,16 +381,16 @@ function applyMigrations(data: Record<string, unknown>, fromVersion: number): Re
 
 | Key | Type | Purpose |
 |---|---|---|
-| `wm-cloud-sync-version` | `number` | Last known cloud syncVersion (PRIMARY conflict resolver) |
-| `wm-last-sync-at` | `number` | Server-returned Unix ms of last confirmed sync write (set ONLY after server success — never `Date.now()`) |
-| `wm-cloud-sync-state` | `'synced' \| 'pending' \| 'syncing' \| 'conflict' \| 'offline' \| 'signed-out' \| 'error'` | UI indicator |
+| `zm-cloud-sync-version` | `number` | Last known cloud syncVersion (PRIMARY conflict resolver) |
+| `zm-last-sync-at` | `number` | Server-returned Unix ms of last confirmed sync write (set ONLY after server success — never `Date.now()`) |
+| `zm-cloud-sync-state` | `'synced' \| 'pending' \| 'syncing' \| 'conflict' \| 'offline' \| 'signed-out' \| 'error'` | UI indicator |
 
  [ ] Sign in on Device A → panel layout from Device B (pre-seeded in Convex) loads correctly without blocking first paint
 
 - [ ] Change watchlist on Device A → sign in on Device B → watchlist matches Device A
 - [ ] Tab close with pending debounce → prefs flushed via `sendBeacon`
 - [ ] Sign out → prefs preserved locally (localStorage not cleared)
-- [ ] Sync does not include any `RuntimeSecretKey` values or `wm-mcp-panels`
+- [ ] Sync does not include any `RuntimeSecretKey` values or `zm-mcp-panels`
 - [ ] 409 CONFLICT triggers re-fetch and merge (no silent data loss)
 - [ ] `VITE_CLOUD_PREFS_ENABLED=false` → sync is a complete no-op (no Convex calls)
 - [ ] Cloud sync indicator shows all 7 states in settings UI (including `syncing` and `offline`)
@@ -687,7 +687,7 @@ User signs in
   → auth-state.ts: initAuthState() resolves
     → render panels immediately with localStorage prefs (no blocking)
     → getPreferences query (Convex, parallel)
-      → if cloud.syncVersion > localStorage['wm-cloud-sync-version']:
+      → if cloud.syncVersion > localStorage['zm-cloud-sync-version']:
           apply schemaVersion migrations if needed
           apply cloud prefs to localStorage → App.ts re-renders panels
 ```
@@ -696,10 +696,10 @@ User signs in
 
 | Error | Location | Handling |
 |---|---|---|
-| Convex HTTP action 401 | Frontend sync | Silent — do not retry, do not block UX. Set `wm-cloud-sync-state = 'signed-out'`. |
+| Convex HTTP action 401 | Frontend sync | Silent — do not retry, do not block UX. Set `zm-cloud-sync-state = 'signed-out'`. |
 | Convex HTTP action 409 CONFLICT | Frontend sync | Re-fetch cloud prefs, merge, retry once. |
-| Convex HTTP action 500 | Frontend sync | Retry once after 5s. If still failing, mark `wm-cloud-sync-state = 'error'`. |
-| Convex unreachable (offline) | Frontend sync | Set `wm-cloud-sync-state = 'offline'`. Resume on reconnect. |
+| Convex HTTP action 500 | Frontend sync | Retry once after 5s. If still failing, mark `zm-cloud-sync-state = 'error'`. |
+| Convex unreachable (offline) | Frontend sync | Set `zm-cloud-sync-state = 'offline'`. Resume on reconnect. |
 | Telegram 403 (user blocked bot) | notification-relay | Deactivate channel in Convex. Log event. Stop retrying. |
 | Telegram 429 (rate limit) | notification-relay | Respect `retry_after` header. Single retry. |
 | Slack webhook 404/410 | notification-relay | Deactivate channel in Convex. Do not retry. |
@@ -724,7 +724,7 @@ User signs in
 ### Integration Test Scenarios
 
 1. **Sign-in sync (optimistic):** Mock Clerk sign-in. Verify localStorage is used for initial render. Verify cloud prefs arrive and are applied within one Convex query round-trip.
-2. **Secret exclusion:** Call `syncToCloud()` with `wm-mcp-panels` containing `customHeaders: {"Authorization": "Bearer secret"}`. Assert Convex mutation arg does not contain the string "secret" or "Bearer".
+2. **Secret exclusion:** Call `syncToCloud()` with `zm-mcp-panels` containing `customHeaders: {"Authorization": "Bearer secret"}`. Assert Convex mutation arg does not contain the string "secret" or "Bearer".
 3. **Telegram pairing expiry:** Create a pairing token with `expiresAt = Date.now() - 1`. Assert `claimPairingToken` mutation throws and webhook callback returns HTTP 200 with "Token expired" message.
 4. **Notification dedup (SET NX):** Inject the same breaking event twice into the notification loop. Assert only one Telegram message is sent per user within 30 minutes. Simulate two concurrent relay instances — neither duplicates.
 5. **Slack SSRF:** Attempt to link `https://hooks.slack.com.evil.com/hook`. Assert setChannel rejects. Attempt a URL that DNS-resolves to 10.0.0.1 — assert relay rejects at send time.

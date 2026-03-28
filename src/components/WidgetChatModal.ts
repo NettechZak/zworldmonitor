@@ -442,7 +442,7 @@ function renderPreviewHtml(
 ): void {
   const rendered = isPro
     ? wrapProWidgetHtml(html)
-    : wrapWidgetHtml(html, 'wm-widget-shell-preview');
+    : wrapWidgetHtml(html, 'zm-widget-shell-preview');
 
   container.innerHTML = `
     <div class="widget-chat-preview-frame">

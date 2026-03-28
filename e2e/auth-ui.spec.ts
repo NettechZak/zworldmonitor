@@ -11,7 +11,7 @@ test.describe('auth UI (anonymous state)', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
       // Dismiss the layer performance warning overlay
-      localStorage.setItem('wm-layer-warning-dismissed', 'true');
+      localStorage.setItem('zm-layer-warning-dismissed', 'true');
     });
   });
 

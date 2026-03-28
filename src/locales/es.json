@@ -643,13 +643,13 @@
       },
       "sidecarUnreachable": "Sidecar no accesible.",
       "logCleared": "Registro borrado.",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "Una clave. Todo incluido.",
         "heroDescription": "Una sola licencia de Z-Monitor reemplaza cada clave API y proveedor de LLM que de otro modo configuraría usted mismo. Resúmenes de IA, inteligencia en tiempo real, datos de mercado, seguimiento de conflictos, detección de incendios, imágenes satelitales — todo alimentado, todo gestionado, cero configuración.",
         "apiKey": {
           "title": "Clave de licencia",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "Pegue su licencia para desbloquear todas las fuentes de datos y funciones de IA al instante.",
           "statusValid": "LICENCIADO",
           "statusMissing": "SIN LICENCIA"

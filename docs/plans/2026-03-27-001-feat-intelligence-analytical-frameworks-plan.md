@@ -62,13 +62,13 @@ Modelled on `src/services/mcp-store.ts`. Provides:
 
 - `AnalysisFramework` interface: `id, name, description, systemPromptAppend, isBuiltIn, createdAt`
 - `BUILT_IN_FRAMEWORKS: AnalysisFramework[]` — 5 initial presets (see Acceptance Criteria for list)
-- `loadFrameworkLibrary()` — returns built-in presets + user-imported from localStorage key `wm-analysis-frameworks`
+- `loadFrameworkLibrary()` — returns built-in presets + user-imported from localStorage key `zm-analysis-frameworks`
 - `saveImportedFramework(fw)` — persists to localStorage; max 20 imported frameworks
 - `deleteImportedFramework(id)` — removes by ID; cannot delete built-ins
 - `renameImportedFramework(id, name)` — updates display name
-- `getActiveFrameworkForPanel(panelId: AnalysisPanelId)` — reads from localStorage key `wm-panel-frameworks`
+- `getActiveFrameworkForPanel(panelId: AnalysisPanelId)` — reads from localStorage key `zm-panel-frameworks`
 - `setActiveFrameworkForPanel(panelId, frameworkId | null)` — writes; null = Default (Neutral)
-- `subscribeFrameworkChange(panelId, cb)` — registers a `window` event listener for `wm-framework-changed`; calls `cb` when `event.detail.panelId === panelId`; returns an unsubscribe function. Event dispatched as `window.dispatchEvent(new CustomEvent('wm-framework-changed', { detail: { panelId, frameworkId } }))`, matching the project's `wm-*` event pattern (see `market-watchlist.ts`).
+- `subscribeFrameworkChange(panelId, cb)` — registers a `window` event listener for `zm-framework-changed`; calls `cb` when `event.detail.panelId === panelId`; returns an unsubscribe function. Event dispatched as `window.dispatchEvent(new CustomEvent('zm-framework-changed', { detail: { panelId, frameworkId } }))`, matching the project's `zm-*` event pattern (see `market-watchlist.ts`).
 - Premium gate: `getActiveFrameworkForPanel` returns `null` if `!hasPremiumAccess()`
 
 **New type: `AnalysisPanelId`**
@@ -252,7 +252,7 @@ interface FrameworkSelectorOptions {
 - Populates from `loadFrameworkLibrary()`.
 - Shows current active framework as selected value (from `getActiveFrameworkForPanel()`).
 - On `change`: calls `setActiveFrameworkForPanel()` then `onSelect()`.
-- Locked state: disables select; on click, calls `panel.showGatedCta(PanelGateReason.FREE_TIER, onUpgradeAction)` where `onUpgradeAction` opens the upgrade modal. Do **not** dispatch a `wm-upgrade-prompt` event — that event does not exist. Use the existing `Panel.showGatedCta()` mechanism (`src/components/Panel.ts:793`).
+- Locked state: disables select; on click, calls `panel.showGatedCta(PanelGateReason.FREE_TIER, onUpgradeAction)` where `onUpgradeAction` opens the upgrade modal. Do **not** dispatch a `zm-upgrade-prompt` event — that event does not exist. Use the existing `Panel.showGatedCta()` mechanism (`src/components/Panel.ts:793`).
 - Minimal CSS: 11px font, dark background to match panel header aesthetic.
 
 **Each target panel constructor appends selector to `this.header`:**
@@ -273,7 +273,7 @@ this.header.appendChild(selector.el);
 
 **`src/services/preferences-content.ts`**
 
-Add a new `<details class="wm-pref-group">` section **"Analysis Frameworks"** between the Intelligence and Media groups.
+Add a new `<details class="zm-pref-group">` section **"Analysis Frameworks"** between the Intelligence and Media groups.
 
 Contents:
 
@@ -308,7 +308,7 @@ A simple modal (same pattern as existing modals in the codebase):
 
 ### Interaction Graph
 
-1. User selects framework in `FrameworkSelector` → calls `setActiveFrameworkForPanel()` → dispatches `wm-framework-changed` custom event on `window` with payload `{ detail: { panelId: AnalysisPanelId, frameworkId: string | null } }`
+1. User selects framework in `FrameworkSelector` → calls `setActiveFrameworkForPanel()` → dispatches `zm-framework-changed` custom event on `window` with payload `{ detail: { panelId: AnalysisPanelId, frameworkId: string | null } }`
 2. Target panel's `subscribeFrameworkChange()` listener fires → calls `this.refresh()` / `this.reAnalyze()`
 3. Panel increments its generation counter (`this.updateGeneration++`) to cancel any in-flight async chain; sets loading state. (InsightsPanel and DailyMarketBriefPanel use generation counters — not AbortController. CountryDeepDivePanel uses whatever its existing refresh mechanism provides.)
 4. Panel reads `getActiveFrameworkForPanel(panelId)` → gets `systemPromptAppend` string

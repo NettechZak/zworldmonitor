@@ -540,13 +540,13 @@
       "noTraffic": "Zatím nebyl zaznamenán žádný provoz.",
       "sidecarUnreachable": "Sidecar aplikace není dostupná.",
       "logCleared": "Protokol vymazán.",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "Jeden klíč. Vše v ceně.",
         "heroDescription": "Jediná licence Z-Monitor nahradí všechny API klíče a poskytovatele LLM, které byste jinak museli konfigurovat sami. AI souhrny, zpravodajství v reálném čase, tržní data, sledování konfliktů, detekce požárů, satelitní snímky — vše poháněno, vše spravováno, nulové nastavení.",
         "apiKey": {
           "title": "Licenční klíč",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "Vložte svou licenci a okamžitě odemkněte všechny datové zdroje a AI funkce.",
           "statusValid": "LICENCOVÁNO",
           "statusMissing": "BEZ LICENCE"

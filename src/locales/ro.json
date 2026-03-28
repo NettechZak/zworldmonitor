@@ -540,13 +540,13 @@
       "noTraffic": "Nu s-a înregistrat încă trafic.",
       "sidecarUnreachable": "Sidecar nu este accesibil.",
       "logCleared": "Jurnalul a fost șters.",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "O singură cheie. Totul inclus.",
         "heroDescription": "O o singură licență Z-Monitor înlocuiește toate cheile API. Analize AI, informații în timp real, date de piață, satelit și incendii.",
         "apiKey": {
           "title": "Cheie de licență",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "Lipiți-vă licența pentru a debloca instantaneu fiecare sursă de date și funcția AI.",
           "statusValid": "LICENȚAT",
           "statusMissing": "FĂRĂ LICENȚĂ"

@@ -33,7 +33,7 @@ export function getCacheKey(headlines: string[], mode: string, geoContext: strin
 **Pros:** Consistent, minimal change | **Effort:** Small | **Risk:** Low
 
 ### Option B: Use separate cache namespace for framework-aware requests
-Store framework-aware summaries under a different key prefix (e.g., `wm-sum-fw:v1:...`) to avoid mixing with the standard cache.
+Store framework-aware summaries under a different key prefix (e.g., `zm-sum-fw:v1:...`) to avoid mixing with the standard cache.
 **Pros:** Clean separation, no risk of serving old cache entries after deploy | **Cons:** Two cache namespaces to manage | **Effort:** Small | **Risk:** Low
 
 ## Technical Details

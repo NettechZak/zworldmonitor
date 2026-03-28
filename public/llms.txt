@@ -1,53 +1,41 @@
-# World Monitor
+# Z-Monitor
 
-> Real-time global intelligence dashboard — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface.
+> ADHD-friendly AI-powered real-time global intelligence dashboard — Live news, markets, military tracking, and geopolitical data in a unified situational awareness interface.
 
-World Monitor is an open-source (AGPL-3.0) intelligence platform that aggregates 435+ news feeds, 45+ interactive map layers, and multiple AI models into a single dashboard. Used by 2M+ people across 190+ countries, as featured in WIRED. It runs as a web app, installable PWA, and native desktop application (Tauri) for macOS, Windows, and Linux.
+Z-Monitor is an open-source (AGPL-3.0) intelligence platform that aggregates 435+ news feeds, 45+ interactive map layers, and multiple AI models into a single dashboard. Designed with focus and accessibility in mind, it is used by 2M+ people across 190+ countries. It runs as a web app, installable PWA, and native desktop application (Tauri) for macOS, Windows, and Linux.
 
-A single codebase produces five specialized variants — geopolitical (World Monitor), technology (Tech Monitor), finance (Finance Monitor), commodities (Commodity Monitor), and positive news (Happy Monitor) — each with distinct feeds, panels, map layers, and branding. The multi-variant architecture uses build-time selection via the VITE_VARIANT environment variable, with runtime switching available via the header bar.
+A single codebase produces five specialized variants — geopolitical (Z-Monitor), technology (Tech Monitor), finance (Finance Monitor), commodities (Commodity Monitor), and positive news (Happy Monitor) — each with distinct feeds, panels, map layers, and branding. The multi-variant architecture uses build-time selection via the VITE_VARIANT environment variable, with runtime switching available via the header bar.
 
 The project is built with TypeScript, Vite, MapLibre GL JS, deck.gl, D3.js, and Tauri. All intelligence analysis (clustering, instability scoring, surge detection) runs client-side in the browser — no backend compute dependency for core intelligence. A browser-side ML pipeline (Transformers.js) provides NER and sentiment analysis without server dependency.
 
 ## Live Instances
 
-- [World Monitor](https://worldmonitor.app): Geopolitics, military, conflicts, infrastructure
-- [Tech Monitor](https://tech.worldmonitor.app): Startups, AI/ML, cloud, cybersecurity
-- [Finance Monitor](https://finance.worldmonitor.app): Global markets, trading, central banks, Gulf FDI
-- [Commodity Monitor](https://commodity.worldmonitor.app): Mining, metals, energy, supply chains, commodity markets
-- [Happy Monitor](https://happy.worldmonitor.app): Positive news, breakthroughs, conservation, renewable energy
-- [World Monitor Pro](https://worldmonitor.app/pro): AI-powered equity research, geopolitical analysis, macro intelligence
-- [Blog](https://www.worldmonitor.app/blog/): Analysis, OSINT guides, geopolitics, and market intelligence articles
+- [Z-Monitor](https://github.com/NettechZak/zworldmonitor): Geopolitics, military, conflicts, infrastructure
+- [Tech Monitor](https://tech.z-monitor.app): Startups, AI/ML, cloud, cybersecurity
+- [Finance Monitor](https://finance.z-monitor.app): Global markets, trading, central banks, Gulf FDI
+- [Commodity Monitor](https://commodity.z-monitor.app): Mining, metals, energy, supply chains, commodity markets
+- [Happy Monitor](https://happy.z-monitor.app): Positive news, breakthroughs, conservation, renewable energy
+- [Z-Monitor Pro](https://github.com/NettechZak/zworldmonitor/tree/main/pro-test): AI-powered equity research, geopolitical analysis, macro intelligence
+- [Blog](https://github.com/NettechZak/zworldmonitor/tree/main/blog-site): Analysis, OSINT guides, geopolitics, and market intelligence articles
 
 ## Documentation
 
-- [README](https://github.com/koala73/worldmonitor/blob/main/README.md): Full project documentation with architecture details
-- [Full Documentation](https://github.com/koala73/worldmonitor/blob/main/docs/DOCUMENTATION.md): Detailed feature documentation, data layers, and panel reference
-- [Extended LLM Documentation](https://worldmonitor.app/llms-full.txt): Comprehensive version of this file with all data layers, components, and data sources
+- [README](https://github.com/NettechZak/zworldmonitor/blob/main/README.md): Full project documentation with architecture details
+- [Full Documentation](https://github.com/NettechZak/zworldmonitor/blob/main/docs/DOCUMENTATION.md): Detailed feature documentation, data layers, and panel reference
+- [Extended LLM Documentation](https://github.com/NettechZak/zworldmonitor/blob/main/public/llms-full.txt): Comprehensive version of this file with all data layers, components, and data sources
 
 ## Key Features
 
-- Interactive 3D WebGL globe with deck.gl rendering and 45+ toggleable data layers (conflicts, military bases, nuclear facilities, undersea cables, pipelines, datacenters, protests, disasters, cyber threats, and more)
-- AI-powered intelligence: LLM-synthesized world briefs, hybrid threat classification, focal point detection, country instability index for 22 nations, trending keyword spike detection, and strategic posture assessment
-- 435+ curated RSS feeds across geopolitics, defense, energy, tech, and finance with domain-allowlisted proxy
-- 8 live news video streams (Bloomberg, Sky News, Al Jazeera, Euronews, DW, France24, CNBC, Al Arabiya)
-- 19 live webcams from geopolitical hotspots across 4 regions
-- Multilingual UI supporting 21 languages with RTL support
-- 7-signal macro market radar with composite BUY/CASH verdict, BTC ETF flow tracking, stablecoin peg monitoring, Fear & Greed Index
-- Country brief pages with AI-generated analysis, CII score ring, prediction markets, 7-day timeline, infrastructure exposure, and stock index
-- Geographic convergence detection — identifies when multiple signal types spike in the same area
-- Infrastructure cascade modeling with dependency graphs for cables, pipelines, ports, and chokepoints
-- Native desktop app (Tauri) with OS keychain integration, local API sidecar, and cloud fallback
-- Progressive Web App with offline map support (500 cached tiles)
-- Shareable intelligence stories with multi-platform social export and canvas-based image generation
-- Cmd+K fuzzy search across 20+ result types
-- Dark/light theme, panel drag-and-drop reordering, ultra-wide monitor layout (2000px+)
-
-## Desktop App
-
-- [Windows Installer](https://worldmonitor.app/api/download?platform=windows-exe): Windows .exe installer
-- [macOS Apple Silicon](https://worldmonitor.app/api/download?platform=macos-arm64): macOS ARM64 build
-- [macOS Intel](https://worldmonitor.app/api/download?platform=macos-x64): macOS x64 build
-- [Linux AppImage](https://worldmonitor.app/api/download?platform=linux-appimage): Linux .AppImage
+- **ADHD-Friendly Design**: High-focus modes, reduced motion options, and streamlined layouts to prevent information overload.
+- **Interactive 3D Globe**: WebGL globe with deck.gl rendering and 45+ toggleable data layers (conflicts, military bases, nuclear facilities, undersea cables, pipelines, datacenters, protests, disasters, cyber threats).
+- **AI-Powered Intelligence**: LLM-synthesized world briefs, hybrid threat classification, focal point detection, country instability index (CII), trending keyword spike detection, and strategic posture assessment.
+- **435+ Curated RSS Feeds**: Real-time updates across geopolitics, defense, energy, tech, and finance with domain-allowlisted proxy.
+- **Live Multimedia**: 8 live news video streams and 19 live webcams from geopolitical hotspots across 4 regions.
+- **Multilingual UI**: Supporting 21 languages with full RTL support.
+- **Macro Market Radar**: 7-signal radar with composite BUY/CASH verdict, BTC ETF flow tracking, and stablecoin peg monitoring.
+- **Country Deep Dives**: AI-generated analysis, CII scores, prediction markets, infrastructure exposure, and local stock indices.
+- **Infrastructure Modeling**: Cascade modeling with dependency graphs for cables, pipelines, ports, and chokepoints.
+- **Native Desktop App**: Tauri-based (macOS, Windows, Linux) with OS keychain integration for secrets and local API sidecar.
 
 ## Tech Stack
 
@@ -59,28 +47,9 @@ The project is built with TypeScript, Vite, MapLibre GL JS, deck.gl, D3.js, and 
 - **AI**: Groq (Llama 3.1), OpenRouter, browser-side T5 fallback
 - **Monitoring**: Sentry error tracking, data freshness tracker across 22 sources
 
-## Blog Posts
+## Repository & Community
 
-- [What Is World Monitor?](https://www.worldmonitor.app/blog/posts/what-is-worldmonitor-real-time-global-intelligence/): Overview of the platform, features, and use cases
-- [Five Dashboards, One Platform](https://www.worldmonitor.app/blog/posts/five-dashboards-one-platform-worldmonitor-variants/): Guide to all five dashboard variants
-- [Track Global Conflicts in Real Time](https://www.worldmonitor.app/blog/posts/track-global-conflicts-in-real-time/): Conflict monitoring using ACLED, UCDP, and Telegram OSINT
-- [OSINT for Everyone](https://www.worldmonitor.app/blog/posts/osint-for-everyone-open-source-intelligence-democratized/): How open-source intelligence is democratized
-- [Natural Disaster Monitoring](https://www.worldmonitor.app/blog/posts/natural-disaster-monitoring-earthquakes-fires-volcanoes/): USGS earthquakes, NASA FIRMS fires, volcanic activity
-- [Real-Time Market Intelligence](https://www.worldmonitor.app/blog/posts/real-time-market-intelligence-for-traders-and-analysts/): Financial markets, Fear & Greed, ETF flows
-- [Cyber Threat Intelligence](https://www.worldmonitor.app/blog/posts/cyber-threat-intelligence-for-security-teams/): Feodo Tracker, URLhaus, botnet C2 monitoring
-- [Global Supply Chain Monitoring](https://www.worldmonitor.app/blog/posts/monitor-global-supply-chains-and-commodity-disruptions/): Ports, chokepoints, commodity disruptions
-- [Satellite Imagery and Orbital Surveillance](https://www.worldmonitor.app/blog/posts/satellite-imagery-orbital-surveillance/): SAR, EO, and OSINT satellite data
-- [Live Webcams from Geopolitical Hotspots](https://www.worldmonitor.app/blog/posts/live-webcams-from-geopolitical-hotspots/): Real-time visual feeds from conflict zones
-- [Prediction Markets and AI Forecasting](https://www.worldmonitor.app/blog/posts/prediction-markets-ai-forecasting-geopolitics/): Polymarket integration and geopolitical forecasting
-- [World Monitor in 21 Languages](https://www.worldmonitor.app/blog/posts/worldmonitor-in-21-languages-global-intelligence-for-everyone/): Multilingual global intelligence platform
-- [Command Palette Search](https://www.worldmonitor.app/blog/posts/command-palette-search-everything-instantly/): Cmd+K fuzzy search across all data layers
-- [AI-Powered Intelligence Without the Cloud](https://www.worldmonitor.app/blog/posts/ai-powered-intelligence-without-the-cloud/): Local LLMs, Ollama, offline-first AI analysis
-- [Build on World Monitor](https://www.worldmonitor.app/blog/posts/build-on-worldmonitor-developer-api-open-source/): Developer API, proto definitions, open-source contribution
-- [World Monitor vs Traditional Intelligence Tools](https://www.worldmonitor.app/blog/posts/worldmonitor-vs-traditional-intelligence-tools/): Comparison with Bloomberg, Palantir, Dataminr, Recorded Future
-- [Tracking Global Trade Routes](https://www.worldmonitor.app/blog/posts/tracking-global-trade-routes-chokepoints-freight-costs/): Maritime chokepoints, freight costs, trade flow analysis
-
-## Optional
-
-- [Source Code](https://github.com/koala73/worldmonitor): GitHub repository (AGPL-3.0)
-- [Releases](https://github.com/koala73/worldmonitor/releases): All desktop releases for macOS, Windows, and Linux
-- [Issues](https://github.com/koala73/worldmonitor/issues): Bug reports and feature requests
+- [Source Code](https://github.com/NettechZak/zworldmonitor): GitHub repository (AGPL-3.0)
+- [Releases](https://github.com/NettechZak/zworldmonitor/releases): All desktop releases for macOS, Windows, and Linux
+- [Issues](https://github.com/NettechZak/zworldmonitor/issues): Bug reports and feature requests
+- [Security](https://github.com/NettechZak/zworldmonitor/security/policy): Security policy and vulnerability reporting

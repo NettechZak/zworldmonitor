@@ -6,7 +6,7 @@
 # The Redis REST proxy listens on localhost:8079 by default.
 
 UPSTASH_REDIS_REST_URL="${UPSTASH_REDIS_REST_URL:-http://localhost:8079}"
-UPSTASH_REDIS_REST_TOKEN="${UPSTASH_REDIS_REST_TOKEN:-wm-local-token}"
+UPSTASH_REDIS_REST_TOKEN="${UPSTASH_REDIS_REST_TOKEN:-zm-local-token}"
 export UPSTASH_REDIS_REST_URL UPSTASH_REDIS_REST_TOKEN
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"

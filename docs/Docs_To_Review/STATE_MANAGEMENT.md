@@ -702,7 +702,7 @@ Complete reference of every `localStorage` key used by Z-Monitor:
 | `zmonitor-disabled-feeds` | User-disabled news sources | `string[]` (JSON) | `STORAGE_KEYS.disabledFeeds` |
 | `zmonitor-runtime-feature-toggles` | Desktop feature toggles | `Record<RuntimeFeatureId, boolean>` (JSON) | `src/services/runtime-config.ts` |
 | `zmonitor-persistent-cache:{key}` | Persistent data cache entries | `CacheEnvelope<T>` (JSON) | `src/services/persistent-cache.ts` |
-| `wm-update-dismissed-{version}` | Dismissed update notifications | `'1'` | `App.ts` |
+| `zm-update-dismissed-{version}` | Dismissed update notifications | `'1'` | `App.ts` |
 | `zmonitor-panel-order-v1.9` | Panel order migration flag | `'done'` | `App.ts` (one-time migration) |
 | `zmonitor-tech-insights-top-v1` | Tech variant migration flag | `'done'` | `App.ts` (one-time migration) |
 

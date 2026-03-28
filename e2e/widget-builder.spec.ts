@@ -177,13 +177,13 @@ test.describe('AI widget builder', () => {
         localStorage.clear();
         sessionStorage.clear();
         localStorage.setItem('zmonitor-variant', 'happy');
-        localStorage.setItem('wm-widget-key', key);
+        localStorage.setItem('zm-widget-key', key);
         sessionStorage.setItem('__widget_e2e_init__', '1');
         return;
       }
 
-      if (!localStorage.getItem('wm-widget-key')) {
-        localStorage.setItem('wm-widget-key', key);
+      if (!localStorage.getItem('zm-widget-key')) {
+        localStorage.setItem('zm-widget-key', key);
       }
     }, widgetKey);
   });
@@ -238,8 +238,8 @@ test.describe('AI widget builder', () => {
 
     await expect(preview.locator('.widget-chat-preview-frame')).toBeVisible({ timeout: 30000 });
     await expect(preview).toContainText('Oil vs Gold');
-    await expect(preview.locator('.wm-widget-shell')).toBeVisible();
-    await expect(preview.locator('.wm-widget-generated')).toBeVisible();
+    await expect(preview.locator('.zm-widget-shell')).toBeVisible();
+    await expect(preview.locator('.zm-widget-generated')).toBeVisible();
     await expect(footerAction).toBeEnabled();
 
     const footerBefore = await footer.boundingBox();
@@ -256,10 +256,10 @@ test.describe('AI widget builder', () => {
       has: page.locator('.panel-title', { hasText: 'Oil vs Gold' }),
     });
     await expect(widgetPanel).toBeVisible({ timeout: 20000 });
-    await expect(widgetPanel.locator('.wm-widget-shell')).toBeVisible();
-    await expect(widgetPanel.locator('.wm-widget-generated')).toBeVisible();
+    await expect(widgetPanel.locator('.zm-widget-shell')).toBeVisible();
+    await expect(widgetPanel.locator('.zm-widget-generated')).toBeVisible();
 
-    const containment = await widgetPanel.locator('.wm-widget-generated').evaluate((element) => {
+    const containment = await widgetPanel.locator('.zm-widget-generated').evaluate((element) => {
       const style = getComputedStyle(element);
       return {
         contain: style.contain,
@@ -288,7 +288,7 @@ test.describe('AI widget builder', () => {
     })).toBeVisible({ timeout: 20000 });
 
     const storedWidgets = await page.evaluate(() => {
-      return JSON.parse(localStorage.getItem('wm-custom-widgets') || '[]') as Array<{ title: string }>;
+      return JSON.parse(localStorage.getItem('zm-custom-widgets') || '[]') as Array<{ title: string }>;
     });
     expect(storedWidgets.some((entry) => entry.title === 'Oil vs Gold')).toBe(true);
   });
@@ -371,7 +371,7 @@ test.describe('AI widget builder', () => {
     await expect(updatedPanel).toBeVisible({ timeout: 20000 });
 
     const storedWidgetMeta = await page.evaluate(() => {
-      const widgets = JSON.parse(localStorage.getItem('wm-custom-widgets') || '[]') as Array<{
+      const widgets = JSON.parse(localStorage.getItem('zm-custom-widgets') || '[]') as Array<{
         id: string;
         title: string;
       }>;
@@ -402,7 +402,7 @@ test.describe('AI widget builder', () => {
 
     const cleanedStorage = await page.evaluate(() => {
       return {
-        widgets: localStorage.getItem('wm-custom-widgets'),
+        widgets: localStorage.getItem('zm-custom-widgets'),
         rowSpans: localStorage.getItem('zmonitor-panel-spans'),
         colSpans: localStorage.getItem('zmonitor-panel-col-spans'),
       };
@@ -427,13 +427,13 @@ test.describe('AI widget builder — PRO tier', () => {
           localStorage.clear();
           sessionStorage.clear();
           localStorage.setItem('zmonitor-variant', 'happy');
-          localStorage.setItem('wm-widget-key', wKey);
-          localStorage.setItem('wm-pro-key', pKey);
+          localStorage.setItem('zm-widget-key', wKey);
+          localStorage.setItem('zm-pro-key', pKey);
           sessionStorage.setItem('__widget_pro_e2e_init__', '1');
           return;
         }
-        if (!localStorage.getItem('wm-widget-key')) localStorage.setItem('wm-widget-key', wKey);
-        if (!localStorage.getItem('wm-pro-key')) localStorage.setItem('wm-pro-key', pKey);
+        if (!localStorage.getItem('zm-widget-key')) localStorage.setItem('zm-widget-key', wKey);
+        if (!localStorage.getItem('zm-pro-key')) localStorage.setItem('zm-pro-key', pKey);
       },
       { wKey: widgetKey, pKey: proWidgetKey },
     );
@@ -466,7 +466,7 @@ test.describe('AI widget builder — PRO tier', () => {
     await expect(modal.locator('.widget-chat-action-btn')).toBeEnabled({ timeout: 30000 });
     await expect(modal.locator('.widget-chat-preview')).toContainText('Oil vs Gold Interactive');
 
-    // PRO preview shows iframe (not basic .wm-widget-generated)
+    // PRO preview shows iframe (not basic .zm-widget-generated)
     const previewIframe = modal.locator('.widget-chat-preview iframe');
     await expect(previewIframe).toBeVisible();
     const sandboxAttr = await previewIframe.getAttribute('sandbox');
@@ -487,7 +487,7 @@ test.describe('AI widget builder — PRO tier', () => {
     expect(iframeHeight).toBeGreaterThanOrEqual(390);
   });
 
-  test('PRO widget stores HTML in wm-pro-html-{id} key and tier:pro in main array', async ({
+  test('PRO widget stores HTML in zm-pro-html-{id} key and tier:pro in main array', async ({
     page,
   }) => {
     const proHtml = buildProWidgetBody('Crypto Table', 'pro-crypto');
@@ -515,7 +515,7 @@ test.describe('AI widget builder — PRO tier', () => {
     })).toBeVisible({ timeout: 20000 });
 
     const storage = await page.evaluate(() => {
-      const widgets = JSON.parse(localStorage.getItem('wm-custom-widgets') || '[]') as Array<{
+      const widgets = JSON.parse(localStorage.getItem('zm-custom-widgets') || '[]') as Array<{
         id: string;
         title: string;
         tier?: string;
@@ -523,7 +523,7 @@ test.describe('AI widget builder — PRO tier', () => {
       }>;
       const entry = widgets.find((w) => w.title === 'Crypto Table');
       if (!entry) return null;
-      const proHtmlStored = localStorage.getItem(`wm-pro-html-${entry.id}`);
+      const proHtmlStored = localStorage.getItem(`zm-pro-html-${entry.id}`);
       return { entry, proHtmlStored };
     });
 
@@ -593,7 +593,7 @@ test.describe('AI widget builder — PRO tier', () => {
 
     // Verify stored widget still has tier: 'pro'
     const storedTier = await page.evaluate(() => {
-      const widgets = JSON.parse(localStorage.getItem('wm-custom-widgets') || '[]') as Array<{
+      const widgets = JSON.parse(localStorage.getItem('zm-custom-widgets') || '[]') as Array<{
         title: string;
         tier?: string;
       }>;

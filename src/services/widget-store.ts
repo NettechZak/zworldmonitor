@@ -2,7 +2,7 @@ import { loadFromStorage, saveToStorage } from '@/utils';
 import { sanitizeWidgetHtml } from '@/utils/widget-sanitizer';
 import { getAuthState } from '@/services/auth-state';
 
-const STORAGE_KEY = 'wm-custom-widgets';
+const STORAGE_KEY = 'zm-custom-widgets';
 const PANEL_SPANS_KEY = 'zmonitor-panel-spans';
 const PANEL_COL_SPANS_KEY = 'zmonitor-panel-col-spans';
 const MAX_WIDGETS = 10;
@@ -11,7 +11,7 @@ const MAX_HTML_CHARS = 50_000;
 const MAX_HTML_CHARS_PRO = 80_000;
 
 function proHtmlKey(id: string): string {
-  return `wm-pro-html-${id}`;
+  return `zm-pro-html-${id}`;
 }
 
 export interface CustomWidgetSpec {
@@ -129,21 +129,21 @@ function getKey(name: string): string {
 }
 
 export function setWidgetKey(key: string): void {
-  setDomainCookie('wm-widget-key', key);
-  try { localStorage.setItem('wm-widget-key', key); } catch { /* ignore */ }
+  setDomainCookie('zm-widget-key', key);
+  try { localStorage.setItem('zm-widget-key', key); } catch { /* ignore */ }
 }
 
 export function setProKey(key: string): void {
-  setDomainCookie('wm-pro-key', key);
-  try { localStorage.setItem('wm-pro-key', key); } catch { /* ignore */ }
+  setDomainCookie('zm-pro-key', key);
+  try { localStorage.setItem('zm-pro-key', key); } catch { /* ignore */ }
 }
 
 export function isWidgetFeatureEnabled(): boolean {
-  return !!getKey('wm-widget-key');
+  return !!getKey('zm-widget-key');
 }
 
 export function getWidgetAgentKey(): string {
-  return getKey('wm-widget-key');
+  return getKey('zm-widget-key');
 }
 
 export function getBrowserTesterKeys(): string[] {
@@ -164,7 +164,7 @@ export function getBrowserTesterKey(): string {
 }
 
 export function isProWidgetEnabled(): boolean {
-  return !!getKey('wm-pro-key');
+  return !!getKey('zm-pro-key');
 }
 
 export function isProUser(): boolean {
@@ -172,7 +172,7 @@ export function isProUser(): boolean {
 }
 
 export function getProWidgetKey(): string {
-  return getKey('wm-pro-key');
+  return getKey('zm-pro-key');
 }
 
 function cleanSpanEntry(storageKey: string, panelId: string): void {

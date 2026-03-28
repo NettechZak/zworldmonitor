@@ -32,7 +32,7 @@ Single new edge function `api/mcp.ts` implementing MCP Streamable HTTP. All supp
 MCP Client (Claude Desktop / Cursor / etc.)
   │
   │  POST https://api.zmonitor.app/mcp
-  │  X-Z-Monitor-Key: wm_xxx
+  │  X-Z-Monitor-Key: zm_xxx
   │
   ▼
 api/mcp.ts (Vercel Edge Runtime)

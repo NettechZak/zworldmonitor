@@ -107,7 +107,7 @@
       "sameAs": [
         "https://github.com/NettechZak/zmonitor",
         "https://x.com/zmonitorai",
-        "https://x.com/eliehabib",
+        "https://x.com/NettechZak",
         "https://www.wired.me/story/the-music-streaming-ceo-who-built-a-global-war-map"
       ],
       "keywords": "OSINT dashboard, geopolitical monitoring, real-time intelligence, conflict tracker, threat intelligence, ADS-B tracking, AIS ship tracking, global risk monitoring, situational awareness"
@@ -126,9 +126,9 @@
 
     <!-- Theme: apply stored preference before first paint to prevent FOUC -->
     <script>(function(){try{var h=location.hostname;var v;if(h.startsWith('happy.'))v='happy';else if(h.startsWith('tech.'))v='tech';else if(h.startsWith('finance.'))v='finance';if(!v&&(h==='localhost'||h==='127.0.0.1'||'__TAURI_INTERNALS__' in window))v=localStorage.getItem('zmonitor-variant');if(v)document.documentElement.dataset.variant=v;else document.documentElement.removeAttribute('data-variant');var t=localStorage.getItem('zmonitor-theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}else if(v==='happy'){document.documentElement.dataset.theme='light';}
-    var f=localStorage.getItem('wm-font-family');if(f)document.documentElement.dataset.font=f;
-    var hc=localStorage.getItem('wm-adhd-high-contrast');if(hc==='true')document.documentElement.dataset.adhdHighContrast='true';
-    var rm=localStorage.getItem('wm-adhd-reduced-motion');if(rm==='true')document.documentElement.dataset.adhdReducedMotion='true';
+    var f=localStorage.getItem('zm-font-family');if(f)document.documentElement.dataset.font=f;
+    var hc=localStorage.getItem('zm-adhd-high-contrast');if(hc==='true')document.documentElement.dataset.adhdHighContrast='true';
+    var rm=localStorage.getItem('zm-adhd-reduced-motion');if(rm==='true')document.documentElement.dataset.adhdReducedMotion='true';
     }catch(e){}document.documentElement.classList.add('no-transition');})()</script>
 
     <!-- Critical CSS: inline skeleton visible before JS boots -->
@@ -281,7 +281,7 @@
     <script>
     (function(){
       if(!('serviceWorker' in navigator))return;
-      var key='wm-sw-nuke';
+      var key='zm-sw-nuke';
       if(sessionStorage.getItem(key))return;
       window.addEventListener('error',function(e){
         var u=e.target&&(e.target.src||e.target.href)||'';

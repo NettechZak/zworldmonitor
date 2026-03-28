@@ -549,13 +549,13 @@
         "status": "الحالة",
         "duration": "المدة"
       },
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "مفتاح واحد. كل شيء مشمول.",
         "heroDescription": "ترخيص واحد لـ Z-Monitor يحل محل كل مفتاح API ومزود LLM كنت ستهيئه بنفسك. ملخصات AI، استخبارات فورية، بيانات سوقية، تتبع النزاعات، كشف الحرائق، صور الأقمار الصناعية — الكل مفعّل، الكل مُدار، بدون أي إعداد.",
         "apiKey": {
           "title": "مفتاح الترخيص",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "الصق ترخيصك لفتح جميع مصادر البيانات وميزات AI فوراً.",
           "statusValid": "مُرخَّص",
           "statusMissing": "بدون ترخيص"

@@ -1,9 +1,9 @@
 import { loadFromStorage, saveToStorage } from '@/utils';
 import { hasPremiumAccess } from './panel-gating';
 
-const LIBRARY_KEY = 'wm-analysis-frameworks';
-const PANEL_KEY = 'wm-panel-frameworks';
-const FRAMEWORK_CHANGED_EVENT = 'wm-framework-changed';
+const LIBRARY_KEY = 'zm-analysis-frameworks';
+const PANEL_KEY = 'zm-panel-frameworks';
+const FRAMEWORK_CHANGED_EVENT = 'zm-framework-changed';
 const MAX_IMPORTED = 20;
 const MAX_INSTRUCTIONS_LEN = 2000;
 

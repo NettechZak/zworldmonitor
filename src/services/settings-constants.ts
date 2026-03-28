@@ -34,7 +34,7 @@ export const PLAINTEXT_KEYS = new Set<RuntimeSecretKey>([
   'VITE_OPENSKY_RELAY_URL',
 ]);
 
-export const MASKED_SENTINEL = '__WM_MASKED__';
+export const MASKED_SENTINEL = '__ZM_MASKED__';
 
 export const HUMAN_LABELS: Record<RuntimeSecretKey, string> = {
   GROQ_API_KEY: 'Groq API Key',

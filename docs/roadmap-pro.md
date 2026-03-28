@@ -346,7 +346,7 @@ apiKeys: {
   createdAt: number,
   revokedAt?: number,
 }
-// 256-bit random keys (crypto.getRandomValues), prefixed wm_live_ / wm_test_
+// 256-bit random keys (crypto.getRandomValues), prefixed zm_live_ / zm_test_
 // Constant-time comparison via crypto.timingSafeEqual on hash
 
 usage: {
@@ -428,7 +428,7 @@ Implement Convex mutations and queries for user management.
 
 #### Issue #2.3: API key generation, hashing, and validation
 
-**Title**: `feat(backend): API key generation (wm_live_xxx), hashing, validation`
+**Title**: `feat(backend): API key generation (zm_live_xxx), hashing, validation`
 
 **Labels**: `backend`, `convex`, `P1`
 **Priority**: P1 | **Size**: M | **Dependencies**: #2.1
@@ -438,7 +438,7 @@ Implement secure API key lifecycle management.
 
 **Implementation**:
 
-1. **Generation**: 256-bit random via `crypto.getRandomValues()`, prefixed `wm_live_` or `wm_test_`
+1. **Generation**: 256-bit random via `crypto.getRandomValues()`, prefixed `zm_live_` or `zm_test_`
 2. **Storage**: SHA-256 hash only in Convex. Plaintext returned once on creation — never again.
 3. **Validation**: constant-time comparison via `crypto.timingSafeEqual` on hashed input
 4. **Scopes**: per-key permission list (e.g., `["read:market", "read:conflict", "*"]`)
@@ -455,7 +455,7 @@ Implement secure API key lifecycle management.
 
 **Acceptance criteria**:
 
-- [ ] Key format: `wm_live_<32 hex chars>`
+- [ ] Key format: `zm_live_<32 hex chars>`
 - [ ] Plaintext never stored or logged
 - [ ] Revoked keys return 401
 - [ ] Expired keys return 401

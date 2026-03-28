@@ -367,7 +367,7 @@ function createRuntimeState() {
 }
 
 async function loadRuntimeConfigPanel() {
-  const tempDir = mkdtempSync(join(tmpdir(), 'wm-runtime-config-panel-'));
+  const tempDir = mkdtempSync(join(tmpdir(), 'zm-runtime-config-panel-'));
   const outfile = join(tempDir, 'RuntimeConfigPanel.bundle.mjs');
 
   const stubModules = new Map([

@@ -22,7 +22,7 @@ Set these before enabling strict relay auth.
 | Variable | Required | Example | Notes |
 | --- | --- | --- | --- |
 | `AISSTREAM_API_KEY` | Yes | `ais_...` | Required for AIS upstream WebSocket feed. |
-| `RELAY_SHARED_SECRET` | Yes | `wm_relay_prod_...` | Must exactly match Vercel value. |
+| `RELAY_SHARED_SECRET` | Yes | `zm_relay_prod_...` | Must exactly match Vercel value. |
 | `RELAY_AUTH_HEADER` | Recommended | `x-relay-key` | Must match Vercel if changed from default. |
 
 ### Vercel (proxy + server functions)
@@ -30,7 +30,7 @@ Set these before enabling strict relay auth.
 | Variable | Required | Example | Notes |
 | --- | --- | --- | --- |
 | `WS_RELAY_URL` | Yes | `https://<railway-app>.up.railway.app` | HTTPS relay base URL used by server-side proxy calls. |
-| `RELAY_SHARED_SECRET` | Yes | `wm_relay_prod_...` | Must exactly match Railway value. |
+| `RELAY_SHARED_SECRET` | Yes | `zm_relay_prod_...` | Must exactly match Railway value. |
 | `RELAY_AUTH_HEADER` | Recommended | `x-relay-key` | Header name used to forward relay secret. |
 
 ## 2) Full Parameter Reference

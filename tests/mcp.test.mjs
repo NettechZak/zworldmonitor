@@ -4,7 +4,7 @@ import { strict as assert } from 'node:assert';
 const originalFetch = globalThis.fetch;
 const originalEnv = { ...process.env };
 
-const VALID_KEY = 'wm_test_key_123';
+const VALID_KEY = 'zm_test_key_123';
 const BASE_URL = 'https://api.zmonitor.app/mcp';
 
 function makeReq(method = 'POST', body = null, headers = {}) {

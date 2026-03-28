@@ -603,7 +603,7 @@ async function fetchLocalWithStartupRetry(
 const TOKEN_TTL_MS = 5 * 60 * 1000;
 
 export function installRuntimeFetchPatch(): void {
-  if (!isDesktopRuntime() || typeof window === 'undefined' || (window as unknown as Record<string, unknown>).__wmFetchPatched) {
+  if (!isDesktopRuntime() || typeof window === 'undefined' || (window as unknown as Record<string, unknown>).__zmFetchPatched) {
     return;
   }
 
@@ -614,7 +614,7 @@ export function installRuntimeFetchPatch(): void {
 
   window.fetch = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
     const target = getApiTargetFromRequestInput(input);
-    const debug = localStorage.getItem('wm-debug-log') === '1';
+    const debug = localStorage.getItem('zm-debug-log') === '1';
 
     if (!target?.startsWith('/api/')) {
       if (debug) {
@@ -730,7 +730,7 @@ export function installRuntimeFetchPatch(): void {
     }
   };
 
-  (window as unknown as Record<string, unknown>).__wmFetchPatched = true;
+  (window as unknown as Record<string, unknown>).__zmFetchPatched = true;
 }
 
 import { PREMIUM_RPC_PATHS as WEB_PREMIUM_API_PATHS } from '@/shared/premium-paths';
@@ -748,7 +748,7 @@ function isAllowedRedirectTarget(url: string): boolean {
 
 export function installWebApiRedirect(): void {
   if (isDesktopRuntime() || typeof window === 'undefined') return;
-  if ((window as unknown as Record<string, unknown>).__wmWebRedirectPatched) return;
+  if ((window as unknown as Record<string, unknown>).__zmWebRedirectPatched) return;
 
   const apiBase = getConfiguredWebApiBaseUrl();
   const hasRedirect = !!apiBase && isAllowedRedirectTarget(apiBase);
@@ -764,7 +764,7 @@ export function installWebApiRedirect(): void {
    * existing auth header is present. Priority order:
    *   1. Existing auth headers — left unchanged (API key users keep their flow)
    *   2. ZMONITOR_API_KEY from runtime config → X-ZMonitor-Key
-   *   3. Tester key (wm-pro-key / wm-widget-key) → X-ZMonitor-Key
+   *   3. Tester key (zm-pro-key / zm-widget-key) → X-ZMonitor-Key
    *   4. Clerk Pro session → Authorization: Bearer <token>
    * Runs on every web deployment (with or without API base redirect).
    * Returns the original init unchanged for non-premium paths (zero overhead).
@@ -784,7 +784,7 @@ export function installWebApiRedirect(): void {
         return { ...init, headers };
       }
     } catch { /* runtime-config unavailable — fall through */ }
-    // Tester key (wm-pro-key / wm-widget-key): forward as API key header.
+    // Tester key (zm-pro-key / zm-widget-key): forward as API key header.
     // Must run BEFORE Clerk to prevent a free Clerk session from intercepting
     // the request and returning 403 before the tester key is ever tried.
     const { getBrowserTesterKey } = await import('@/services/widget-store');
@@ -906,5 +906,5 @@ export function installWebApiRedirect(): void {
     };
   }
 
-  (window as unknown as Record<string, unknown>).__wmWebRedirectPatched = true;
+  (window as unknown as Record<string, unknown>).__zmWebRedirectOfPatched = true;
 }

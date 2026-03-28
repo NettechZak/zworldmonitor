@@ -218,29 +218,29 @@ function renderOverview(area: HTMLElement): void {
     </div>
 
     <div class="settings-ov-license">
-      <section class="wm-section">
-        <h2 class="wm-section-title">${t('modals.settingsWindow.worldMonitor.apiKey.title')}</h2>
-        <p class="wm-section-desc">${t('modals.settingsWindow.worldMonitor.apiKey.description')}</p>
-        <div class="wm-key-row">
-          <div class="wm-input-wrap">
-            <input type="password" class="wm-input" data-wm-key-input
-              placeholder="${t('modals.settingsWindow.worldMonitor.apiKey.placeholder')}"
+      <section class="zm-section">
+        <h2 class="zm-section-title">${t('modals.settingsWindow.zMonitor.apiKey.title')}</h2>
+        <p class="zm-section-desc">${t('modals.settingsWindow.zMonitor.apiKey.description')}</p>
+        <div class="zm-key-row">
+          <div class="zm-input-wrap">
+            <input type="password" class="zm-input" data-zm-key-input
+              placeholder="${t('modals.settingsWindow.zMonitor.apiKey.placeholder')}"
               autocomplete="off" spellcheck="false"
               ${wmState.present ? `value="${MASKED_SENTINEL}"` : ''} />
-            <button type="button" class="wm-toggle-vis" data-wm-toggle title="Show/hide">&#x1f441;</button>
+            <button type="button" class="zm-toggle-vis" data-zm-toggle title="Show/hide">&#x1f441;</button>
           </div>
-          <span class="wm-badge ${wmStatusClass}">${wmStatusText}</span>
+          <span class="zm-badge ${wmStatusClass}">${wmStatusText}</span>
         </div>
       </section>
 
-      <div class="wm-divider"><span>${t('modals.settingsWindow.worldMonitor.dividerOr')}</span></div>
+      <div class="zm-divider"><span>${t('modals.settingsWindow.zMonitor.dividerOr')}</span></div>
 
-      <section class="wm-section">
-        <h2 class="wm-section-title">${t('modals.settingsWindow.worldMonitor.register.title')}</h2>
-        <p class="wm-section-desc">${t('modals.settingsWindow.worldMonitor.register.description')}</p>
-        <div class="wm-register-row">
-          <button type="button" class="wm-submit-btn" data-wm-open-pro>
-            ${t('modals.settingsWindow.worldMonitor.register.submitBtn')}
+      <section class="zm-section">
+        <h2 class="zm-section-title">${t('modals.settingsWindow.zMonitor.register.title')}</h2>
+        <p class="zm-section-desc">${t('modals.settingsWindow.zMonitor.register.description')}</p>
+        <div class="zm-register-row">
+          <button type="button" class="zm-submit-btn" data-zm-open-pro>
+            ${t('modals.settingsWindow.zMonitor.register.submitBtn')}
           </button>
         </div>
       </section>
@@ -251,19 +251,19 @@ function renderOverview(area: HTMLElement): void {
 }
 
 function initOverviewListeners(area: HTMLElement): void {
-  area.querySelector('[data-wm-toggle]')?.addEventListener('click', () => {
-    const input = area.querySelector<HTMLInputElement>('[data-wm-key-input]');
+  area.querySelector('[data-zm-toggle]')?.addEventListener('click', () => {
+    const input = area.querySelector<HTMLInputElement>('[data-zm-key-input]');
     if (input) input.type = input.type === 'password' ? 'text' : 'password';
   });
 
-  area.querySelector<HTMLInputElement>('[data-wm-key-input]')?.addEventListener('input', (e) => {
+  area.querySelector<HTMLInputElement>('[data-zm-key-input]')?.addEventListener('input', (e) => {
     const input = e.target as HTMLInputElement;
     if (input.value.startsWith(MASKED_SENTINEL)) {
       input.value = input.value.slice(MASKED_SENTINEL.length);
     }
   });
 
-  area.querySelector('[data-wm-open-pro]')?.addEventListener('click', () => {
+  area.querySelector('[data-zm-open-pro]')?.addEventListener('click', () => {
     const url = 'https://zmonitor.app/pro';
     void invokeTauri<void>('open_url', { url }).catch(() => window.open(url, '_blank'));
   });
@@ -671,9 +671,9 @@ function initDiagnostics(): void {
   const trafficCount = document.getElementById('trafficCount');
 
   if (fetchDebugToggle) {
-    fetchDebugToggle.checked = localStorage.getItem('wm-debug-log') === '1';
+    fetchDebugToggle.checked = localStorage.getItem('zm-debug-log') === '1';
     fetchDebugToggle.addEventListener('change', () => {
-      localStorage.setItem('wm-debug-log', fetchDebugToggle.checked ? '1' : '0');
+      localStorage.setItem('zm-debug-log', fetchDebugToggle.checked ? '1' : '0');
     });
   }
 
@@ -881,7 +881,7 @@ async function initSettingsWindow(): Promise<void> {
   document.getElementById('okBtn')?.addEventListener('click', () => {
     void (async () => {
       try {
-        const wmKeyInput = document.querySelector<HTMLInputElement>('[data-wm-key-input]');
+        const wmKeyInput = document.querySelector<HTMLInputElement>('[data-zm-key-input]');
         const wmKeyValue = wmKeyInput?.value.trim();
         const hasWmKeyChange = !!(wmKeyValue && wmKeyValue !== MASKED_SENTINEL && wmKeyValue.length > 0);
 
@@ -931,7 +931,7 @@ async function initSettingsWindow(): Promise<void> {
   });
 }
 
-localStorage.setItem('wm-settings-open', '1');
-window.addEventListener('beforeunload', () => localStorage.removeItem('wm-settings-open'));
+localStorage.setItem('zm-settings-open', '1');
+window.addEventListener('beforeunload', () => localStorage.removeItem('zm-settings-open'));
 
 void initSettingsWindow();

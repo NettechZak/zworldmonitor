@@ -116,7 +116,7 @@ test.describe('desktop runtime routing guardrails', () => {
       delete globalWindow.__wmFetchPatched;
 
       // Set a valid WM API key so cloud fallback is allowed
-      await runtimeConfig.setSecretValue('ZMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, 'wm_test_key_1234567890abcdef');
+      await runtimeConfig.setSecretValue('ZMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, 'zm_test_key_1234567890abcdef');
 
       try {
         runtime.installRuntimeFetchPatch();
@@ -842,7 +842,7 @@ test.describe('desktop runtime routing guardrails', () => {
       globalWindow.__TAURI__ = { core: { invoke: () => Promise.resolve(null) } };
       delete globalWindow.__wmFetchPatched;
 
-      const testKey = 'wm_test_key_1234567890abcdef';
+      const testKey = 'zm_test_key_1234567890abcdef';
       await runtimeConfig.setSecretValue('ZMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, testKey);
 
       try {
@@ -872,7 +872,7 @@ test.describe('desktop runtime routing guardrails', () => {
     expect(result.status).toBe(200);
     expect(result.hasQuotes).toBe(true);
     expect(result.cloudCalls).toBe(1);
-    expect(result.wmKeyHeader).toBe('wm_test_key_1234567890abcdef');
+    expect(result.wmKeyHeader).toBe('zm_test_key_1234567890abcdef');
   });
 
   test('country-instability HAPI fallback ignores eventsCivilianTargeting in score', async ({ page }) => {

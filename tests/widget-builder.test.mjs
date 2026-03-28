@@ -233,17 +233,17 @@ describe('widget-agent relay — security', () => {
 describe('widget-store — constants and logic', () => {
   const store = src('src/services/widget-store.ts');
 
-  it('storage key is wm-custom-widgets', () => {
+  it('storage key is zm-custom-widgets', () => {
     assert.ok(
-      store.includes("'wm-custom-widgets'"),
-      "Storage key must be 'wm-custom-widgets'",
+      store.includes("'zm-custom-widgets'"),
+      "Storage key must be 'zm-custom-widgets'",
     );
   });
 
-  it('auth gate checks wm-widget-key localStorage entry', () => {
+  it('auth gate checks zm-widget-key localStorage entry', () => {
     assert.ok(
-      store.includes("'wm-widget-key'"),
-      "Feature gate must check localStorage key 'wm-widget-key'",
+      store.includes("'zm-widget-key'"),
+      "Feature gate must check localStorage key 'zm-widget-key'",
     );
   });
 
@@ -858,7 +858,7 @@ describe('CustomWidgetPanel — header buttons and events', () => {
       'wrapWidgetHtml() must sanitize HTML internally',
     );
     assert.ok(
-      sanitizer.includes('wm-widget-generated'),
+      sanitizer.includes('zm-widget-generated'),
       'wrapWidgetHtml() must provide a contained generated-widget wrapper',
     );
   });
@@ -1017,10 +1017,10 @@ describe('PRO widget — store and sanitizer', () => {
     assert.equal(val, 80000, 'MAX_HTML_CHARS_PRO must be 80,000');
   });
 
-  it('isProWidgetEnabled checks wm-pro-key localStorage key', () => {
+  it('isProWidgetEnabled checks zm-pro-key localStorage key', () => {
     assert.ok(
-      store.includes("'wm-pro-key'"),
-      "isProWidgetEnabled must check localStorage key 'wm-pro-key'",
+      store.includes("'zm-pro-key'"),
+      "isProWidgetEnabled must check localStorage key 'zm-pro-key'",
     );
     assert.ok(
       store.includes('isProWidgetEnabled'),
@@ -1028,10 +1028,10 @@ describe('PRO widget — store and sanitizer', () => {
     );
   });
 
-  it('PRO HTML stored in separate wm-pro-html-{id} key', () => {
+  it('PRO HTML stored in separate zm-pro-html-{id} key', () => {
     assert.ok(
-      store.includes('wm-pro-html-'),
-      "PRO HTML must be stored in 'wm-pro-html-{id}' separate localStorage key",
+      store.includes('zm-pro-html-'),
+      "PRO HTML must be stored in 'zm-pro-html-{id}' separate localStorage key",
     );
   });
 
@@ -1040,12 +1040,12 @@ describe('PRO widget — store and sanitizer', () => {
     assert.ok(loadIdx !== -1, 'loadWidgets not found');
     const loadBody = store.slice(loadIdx, loadIdx + 600);
     assert.ok(
-      loadBody.includes('proHtml') || loadBody.includes('wm-pro-html'),
+      loadBody.includes('proHtml') || loadBody.includes('zm-pro-html'),
       'loadWidgets must read PRO HTML from separate key',
     );
   });
 
-  it("loadWidgets drops PRO entry when wm-pro-html-{id} is missing", () => {
+  it("loadWidgets drops PRO entry when zm-pro-html-{id} is missing", () => {
     const loadIdx = store.indexOf('function loadWidgets');
     const loadBody = store.slice(loadIdx, loadIdx + 600);
     assert.ok(
@@ -1073,13 +1073,13 @@ describe('PRO widget — store and sanitizer', () => {
     );
   });
 
-  it('deleteWidget removes wm-pro-html-{id} key', () => {
+  it('deleteWidget removes zm-pro-html-{id} key', () => {
     const deleteIdx = store.indexOf('function deleteWidget');
     assert.ok(deleteIdx !== -1, 'deleteWidget not found');
     const deleteBody = store.slice(deleteIdx, deleteIdx + 400);
     assert.ok(
-      deleteBody.includes('wm-pro-html') || deleteBody.includes('proHtmlKey'),
-      'deleteWidget must also remove the wm-pro-html-{id} key',
+      deleteBody.includes('zm-pro-html') || deleteBody.includes('proHtmlKey'),
+      'deleteWidget must also remove the zm-pro-html-{id} key',
     );
   });
 
@@ -1127,7 +1127,7 @@ describe('PRO widget — store and sanitizer', () => {
     const fnIdx = san.indexOf('wrapProWidgetHtml');
     const fnBody = san.slice(fnIdx, fnIdx + 500);
     assert.ok(
-      fnBody.includes('wm-widget-sandbox.html'),
+      fnBody.includes('zm-widget-sandbox.html'),
       'wrapProWidgetHtml must load the dedicated sandbox page (not srcdoc) to get its own CSP',
     );
     assert.ok(
@@ -1283,12 +1283,12 @@ describe('PRO widget — i18n keys and CSS', () => {
     );
   });
 
-  it('.wm-widget-pro iframe CSS sets 400px height', () => {
+  it('.zm-widget-pro iframe CSS sets 400px height', () => {
     assert.ok(
-      css.includes('.wm-widget-pro'),
-      'CSS must target .wm-widget-pro for PRO iframe container',
+      css.includes('.zm-widget-pro'),
+      'CSS must target .zm-widget-pro for PRO iframe container',
     );
-    const proIdx = css.indexOf('.wm-widget-pro');
+    const proIdx = css.indexOf('.zm-widget-pro');
     const proRegion = css.slice(proIdx, proIdx + 300);
     assert.ok(
       proRegion.includes('400px') || css.includes('400px'),

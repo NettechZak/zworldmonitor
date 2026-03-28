@@ -30,10 +30,10 @@ Real-time global intelligence dashboard. TypeScript SPA (Vite + Preact) with 86 
 │   ├── _shared/            # Redis, rate-limit, LLM, caching, response headers
 │   ├── gateway.ts          # Domain gateway factory (CORS, auth, cache tiers)
 │   ├── router.ts           # Route matching
-│   └── zzmonitor/       # Domain handlers (mirrors proto service structure)
+│   └── zworldmonitor/       # Domain handlers (mirrors proto service structure)
 ├── proto/                  # Protobuf definitions (sebuf framework)
 │   ├── buf.yaml            # Buf configuration
-│   └── zzmonitor/       # Service definitions with HTTP annotations
+│   └── zworldmonitor/       # Service definitions with HTTP annotations
 ├── shared/                 # Cross-platform data (JSON configs for markets, RSS domains)
 ├── scripts/                # Seed scripts, build helpers, data fetchers
 ├── src-tauri/              # Tauri desktop shell (Rust + Node.js sidecar)

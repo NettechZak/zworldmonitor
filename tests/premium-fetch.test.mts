@@ -5,11 +5,11 @@
  *  - Passthrough when caller already sets auth header
  *  - Tester key: valid key → returns response immediately (no second fetch)
  *  - Tester key: 401 → falls through to Clerk JWT
- *  - wm-pro-key 401 → retries with wm-widget-key before Clerk
+ *  - zm-pro-key 401 → retries with zm-widget-key before Clerk
  *  - Tester key: non-401 returned immediately (no fallback)
  *  - Tester key: network error / AbortError propagates to caller (not swallowed)
  *  - No keys, no Clerk → unauthenticated request forwarded
- *  - wm-pro-key / wm-widget-key order is deterministic and deduped
+ *  - zm-pro-key / zm-widget-key order is deterministic and deduped
  */
 
 import assert from 'node:assert/strict';
@@ -102,7 +102,7 @@ describe('premiumFetch', () => {
     assert.equal(sentHeaders(1).get('X-Z-Monitor-Key'), null);
   });
 
-  it('wm-pro-key 401 retries with wm-widget-key before Clerk', async () => {
+  it('zm-pro-key 401 retries with zm-widget-key before Clerk', async () => {
     let n = 0;
     setup({
       testerKeys: ['relay-only-pro-key', 'valid-widget-key'],

@@ -82,9 +82,9 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   let html = '';
 
   // ── Display group ──
-  html += `<details class="wm-pref-group" open>`;
+  html += `<details class="zm-pref-group" open>`;
   html += `<summary>${t('preferences.display')}</summary>`;
-  html += `<div class="wm-pref-group-content">`;
+  html += `<div class="zm-pref-group-content">`;
 
   // Appearance
   const currentThemePref = getThemePreference();
@@ -185,9 +185,9 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   html += `</div></details>`;
 
   // ── Intelligence group ──
-  html += `<details class="wm-pref-group">`;
+  html += `<details class="zm-pref-group">`;
   html += `<summary>${t('preferences.intelligence')}</summary>`;
-  html += `<div class="wm-pref-group-content">`;
+  html += `<div class="zm-pref-group-content">`;
 
   if (!host.isDesktopApp) {
     html += toggleRowHtml('us-cloud', t('components.insights.aiFlowCloudLabel'), t('components.insights.aiFlowCloudDesc'), settings.cloudLlm);
@@ -207,9 +207,9 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   html += `</div></details>`;
 
   // ── Analysis Frameworks group ──
-  html += `<details class="wm-pref-group">`;
+  html += `<details class="zm-pref-group">`;
   html += `<summary>${t('components.insights.analysisFrameworksLabel')}</summary>`;
-  html += `<div class="wm-pref-group-content">`;
+  html += `<div class="zm-pref-group-content">`;
 
   // Per-panel active framework display
   const panelIds: Array<{ id: AnalysisPanelId; label: string }> = [
@@ -278,9 +278,9 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   html += `</div></details>`;
 
   // ── Media group ──
-  html += `<details class="wm-pref-group">`;
+  html += `<details class="zm-pref-group">`;
   html += `<summary>${t('preferences.media')}</summary>`;
-  html += `<div class="wm-pref-group-content">`;
+  html += `<div class="zm-pref-group-content">`;
 
   const currentQuality = getStreamQuality();
   html += `<div class="ai-flow-toggle-row">
@@ -310,9 +310,9 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   const isReducedMotion = document.documentElement.dataset.adhdReducedMotion === 'true';
   const currentFontFamily = getFontFamily();
 
-  html += `<details class="wm-pref-group">`;
+  html += `<details class="zm-pref-group">`;
   html += `<summary>\u267f ADHD Accessibility</summary>`;
-  html += `<div class="wm-pref-group-content">`;
+  html += `<div class="zm-pref-group-content">`;
   
   html += `<div class="ai-flow-toggle-row">
     <div class="ai-flow-toggle-label-wrap">
@@ -331,16 +331,16 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
   html += `</div></details>`;
 
   // ── Panels group ──
-  html += `<details class="wm-pref-group">`;
+  html += `<details class="zm-pref-group">`;
   html += `<summary>${t('preferences.panels')}</summary>`;
-  html += `<div class="wm-pref-group-content">`;
+  html += `<div class="zm-pref-group-content">`;
   html += toggleRowHtml('us-badge-anim', t('components.insights.badgeAnimLabel'), t('components.insights.badgeAnimDesc'), settings.badgeAnimation);
   html += `</div></details>`;
 
   // ── Data & Community group ──
-  html += `<details class="wm-pref-group">`;
+  html += `<details class="zm-pref-group">`;
   html += `<summary>${t('preferences.dataAndCommunity')}</summary>`;
-  html += `<div class="wm-pref-group-content">`;
+  html += `<div class="zm-pref-group-content">`;
   html += `
     <div class="us-data-mgmt">
       <button type="button" class="settings-btn settings-btn-secondary" id="usExportBtn">${t('components.settings.exportSettings')}</button>
@@ -436,10 +436,10 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
           setFontFamily(target.checked ? 'dyslexic' : 'mono');
         } else if (target.id === 'us-adhd-high-contrast') {
           document.documentElement.dataset.adhdHighContrast = String(target.checked);
-          localStorage.setItem('wm-adhd-high-contrast', String(target.checked));
+          localStorage.setItem('zm-adhd-high-contrast', String(target.checked));
         } else if (target.id === 'us-adhd-reduced-motion') {
           document.documentElement.dataset.adhdReducedMotion = String(target.checked);
-          localStorage.setItem('wm-adhd-reduced-motion', String(target.checked));
+          localStorage.setItem('zm-adhd-reduced-motion', String(target.checked));
         } else if (target.id === 'us-badge-anim') {
           setAiFlowSetting('badgeAnimation', target.checked);
         }

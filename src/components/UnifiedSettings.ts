@@ -173,7 +173,7 @@ export class UnifiedSettings {
     this.resetPanelDraft();
     this.render();
     this.overlay.classList.add('active');
-    localStorage.setItem('wm-settings-open', '1');
+    localStorage.setItem('zm-settings-open', '1');
     document.addEventListener('keydown', this.escapeHandler);
     track('settings-open', { tab: tab ?? 'default' });
   }
@@ -182,7 +182,7 @@ export class UnifiedSettings {
     if (this.hasPendingPanelChanges() && !confirm(t('header.unsavedChanges'))) return;
     this.overlay.classList.remove('active');
     this.resetPanelDraft();
-    localStorage.removeItem('wm-settings-open');
+    localStorage.removeItem('zm-settings-open');
     document.removeEventListener('keydown', this.escapeHandler);
   }
 

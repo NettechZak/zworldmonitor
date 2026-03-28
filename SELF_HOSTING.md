@@ -94,7 +94,7 @@ To automate, add a cron job:
 
 ```bash
 # Re-seed every 30 minutes
-*/30 * * * * cd /path/to/zmonitor && ./scripts/run-seeders.sh >> /tmp/wm-seeders.log 2>&1
+*/30 * * * * cd /path/to/zmonitor && ./scripts/run-seeders.sh >> /tmp/zm-seeders.log 2>&1
 ```
 
 ### 🔧 Manual seeder invocation
@@ -103,7 +103,7 @@ If you prefer to run seeders individually:
 
 ```bash
 export UPSTASH_REDIS_REST_URL=http://localhost:8079
-export UPSTASH_REDIS_REST_TOKEN=wm-local-token
+export UPSTASH_REDIS_REST_TOKEN=zm-local-token
 node scripts/seed-earthquakes.mjs
 node scripts/seed-military-flights.mjs
 # ... etc

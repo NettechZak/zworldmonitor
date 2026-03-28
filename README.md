@@ -2,13 +2,13 @@
 
 **ADHD-optimized real-time global intelligence dashboard** — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified, focus-driven situational awareness interface.
 
-[![GitHub stars](https://img.shields.io/github/stars/NettechZak/zzmonitor?style=social)](https://github.com/NettechZak/zzmonitor/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/NettechZak/zzmonitor?style=social)](https://github.com/NettechZak/zzmonitor/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/NettechZak/zworldmonitor?style=social)](https://github.com/NettechZak/zworldmonitor/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/NettechZak/zworldmonitor?style=social)](https://github.com/NettechZak/zworldmonitor/network/members)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat&logo=discord&logoColor=white)](https://discord.gg/re63kWKxaz)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Last commit](https://img.shields.io/github/last-commit/NettechZak/zzmonitor)](https://github.com/NettechZak/zzmonitor/commits/main)
-[![Latest release](https://img.shields.io/github/v/release/NettechZak/zzmonitor?style=flat)](https://github.com/NettechZak/zzmonitor/releases/latest)
+[![Last commit](https://img.shields.io/github/last-commit/NettechZak/zworldmonitor)](https://github.com/NettechZak/zworldmonitor/commits/main)
+[![Latest release](https://img.shields.io/github/v/release/NettechZak/zworldmonitor?style=flat)](https://github.com/NettechZak/zworldmonitor/releases/latest)
 
 <p align="center">
   <a href="https://zmonitor.app"><img src="https://img.shields.io/badge/Web_App-zmonitor.app-blue?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Web App"></a>&nbsp;
@@ -27,7 +27,7 @@
 
 <p align="center">
   <a href="https://docs.zmonitor.app"><strong>Documentation</strong></a> &nbsp;·&nbsp;
-  <a href="https://github.com/NettechZak/zzmonitor/releases/latest"><strong>Releases</strong></a> &nbsp;·&nbsp;
+  <a href="https://github.com/NettechZak/zworldmonitor/releases/latest"><strong>Releases</strong></a> &nbsp;·&nbsp;
   <a href="https://docs.zmonitor.app/contributing"><strong>Contributing</strong></a>
 </p>
 
@@ -57,8 +57,8 @@ For the full feature list, architecture, data sources, and algorithms, see the *
 ## Quick Start
 
 ```bash
-git clone https://github.com/NettechZak/zzmonitor.git
-cd zzmonitor
+git clone https://github.com/NettechZak/zworldmonitor.git
+cd zworldmonitor
 npm install
 npm run dev
 ```
@@ -139,8 +139,8 @@ Copyright (C) 2024-2026 NettechZak. All rights reserved.
 
 ## Contributors
 
-<a href="https://github.com/NettechZak/zzmonitor/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=NettechZak/zzmonitor" />
+<a href="https://github.com/NettechZak/zworldmonitor/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NettechZak/zworldmonitor" />
 </a>
 
 ## Security Acknowledgments
@@ -162,9 +162,9 @@ See our [Security Policy](./SECURITY.md) for responsible disclosure guidelines.
 
 ## Star History
 
-<a href="https://api.star-history.com/svg?repos=NettechZak/zzmonitor&type=Date">
+<a href="https://api.star-history.com/svg?repos=NettechZak/zworldmonitor&type=Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=NettechZak/zzmonitor&type=Date&type=Date&theme=dark" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=NettechZak/zzmonitor&type=Date&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=NettechZak/zworldmonitor&type=Date&type=Date&theme=dark" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=NettechZak/zworldmonitor&type=Date&type=Date" />
  </picture>
 </a>

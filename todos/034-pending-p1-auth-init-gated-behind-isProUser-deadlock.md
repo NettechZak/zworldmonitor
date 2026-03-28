@@ -8,7 +8,7 @@ dependencies: []
 
 ## Problem Statement
 
-`initAuthState()` and `setupAuthWidget()` in `src/App.ts` are both wrapped in `if (isProUser())` guards. `isProUser()` checks `getAuthState().user?.role === 'pro'` as its third condition — but `getAuthState()` starts as `{ user: null, isPending: true }` until `initAuthState()` runs. On any fresh browser session with no `wm-pro-key` or `wm-widget-key` in localStorage, `isProUser()` returns `false`, Clerk never loads, the sign-in button never appears, and new users can never sign in. The guard is using the very thing it is trying to initialize as its precondition.
+`initAuthState()` and `setupAuthWidget()` in `src/App.ts` are both wrapped in `if (isProUser())` guards. `isProUser()` checks `getAuthState().user?.role === 'pro'` as its third condition — but `getAuthState()` starts as `{ user: null, isPending: true }` until `initAuthState()` runs. On any fresh browser session with no `zm-pro-key` or `zm-widget-key` in localStorage, `isProUser()` returns `false`, Clerk never loads, the sign-in button never appears, and new users can never sign in. The guard is using the very thing it is trying to initialize as its precondition.
 
 ## Findings
 

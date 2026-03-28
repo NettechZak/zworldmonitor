@@ -437,13 +437,13 @@
       },
       "sidecarUnreachable": "Zijspan niet bereikbaar.",
       "logCleared": "Logboek gewist.",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "Eén sleutel. Alles inbegrepen.",
         "heroDescription": "Een enkele Z-Monitor-licentie vervangt elke API-sleutel en LLM-provider die u anders zelf zou moeten configureren. AI-samenvattingen, realtime inlichtingen, marktgegevens, conflictmonitoring, branddetectie, satellietbeelden — alles wordt gevoed, alles wordt beheerd, geen configuratie nodig.",
         "apiKey": {
           "title": "Licentiesleutel",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "Plak uw licentie om direct elke gegevensbron en AI-functie te ontgrendelen.",
           "statusValid": "GELICENTIEERD",
           "statusMissing": "GEEN LICENTIE"

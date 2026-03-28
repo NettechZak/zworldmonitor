@@ -27,8 +27,8 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
 const isoDate = pubDate.toISOString();
 const isoModifiedDate = modifiedDate ? modifiedDate.toISOString() : isoDate;
 const DEFAULT_AUTHOR = 'NettechZak';
-const DEFAULT_AUTHOR_URL = 'https://x.com/eliehabib';
-const DEFAULT_AUTHOR_BIO = 'Founder of Z-Monitor. Previously co-founder &amp; CEO of Anghami (NASDAQ: ANGH). Building open-source global intelligence infrastructure.';
+const DEFAULT_AUTHOR_URL = 'https://x.com/NettechZak';
+const DEFAULT_AUTHOR_BIO = 'Founder of Z-Monitor.  Building open-source global intelligence infrastructure.';
 const DEFAULT_AUTHOR_GITHUB = 'NettechZak';
 const authorName = author || DEFAULT_AUTHOR;
 const resolvedAuthorUrl = authorUrl || (authorName === DEFAULT_AUTHOR ? DEFAULT_AUTHOR_URL : undefined);

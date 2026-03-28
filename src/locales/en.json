@@ -22,7 +22,7 @@
     "generatedWidget": "Generated widget: {{title}}",
     "checkingConnection": "Checking widget access…",
     "preflightConnected": "Connected to the widget agent",
-    "preflightInvalidKey": "Widget key rejected. Update wm-widget-key and reload.",
+    "preflightInvalidKey": "Widget key rejected. Update zm-widget-key and reload.",
     "preflightUnavailable": "Widget agent is temporarily unavailable.",
     "preflightAiUnavailable": "AI backend is unavailable. Try again later.",
     "readyToGenerate": "Ready to generate. Pick an example or describe your widget.",
@@ -50,7 +50,7 @@
     "createInteractive": "Create Interactive Widget",
     "proBadge": "PRO",
     "preflightProUnavailable": "PRO widget agent unavailable. Check PRO_WIDGET_KEY on the server.",
-    "preflightInvalidProKey": "PRO key rejected. Update wm-pro-key and reload.",
+    "preflightInvalidProKey": "PRO key rejected. Update zm-pro-key and reload.",
     "examples": {
       "oilGold": "Show me today's crude oil price versus gold",
       "cryptoMovers": "Create a widget for the top crypto movers in the last 24 hours",
@@ -645,13 +645,13 @@
       "noTraffic": "No traffic recorded yet.",
       "sidecarUnreachable": "Sidecar not reachable.",
       "logCleared": "Log cleared.",
-      "worldMonitor": {
+      "zMonitor": {
         "tabLabel": "Z-Monitor",
         "heroTitle": "One key. Everything included.",
         "heroDescription": "A single Z-Monitor license replaces every API key and LLM provider you'd otherwise configure yourself. AI summaries, real-time intelligence, market data, conflict tracking, fire detection, satellite imagery — all powered, all managed, zero setup.",
         "apiKey": {
           "title": "License Key",
-          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "placeholder": "zm_xxxxxxxxxxxxxxxxxxxxxxxx",
           "description": "Paste your license to unlock every data source and AI feature instantly.",
           "statusValid": "LICENSED",
           "statusMissing": "NO LICENSE"

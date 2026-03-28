@@ -1,7 +1,7 @@
 export type FontFamily = 'mono' | 'system' | 'dyslexic';
 
-const STORAGE_KEY = 'wm-font-family';
-const EVENT_NAME = 'wm-font-changed';
+const STORAGE_KEY = 'zm-font-family';
+const EVENT_NAME = 'zm-font-changed';
 
 const ALLOWED: FontFamily[] = ['mono', 'system', 'dyslexic'];
 

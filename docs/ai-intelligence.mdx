@@ -129,7 +129,7 @@ RSS Feed Parse → isHeadlineMemoryEnabled()? → ML Worker (Web Worker)
 
 **Search**: Queries are embedded using the same model, then a full cursor scan computes cosine similarity against all stored vectors. Results are ranked by score, capped at `topK` (1–20), and filtered by `minScore` (0–1). Multiple query strings can be searched simultaneously (up to 5), with the max score per record across all queries used for ranking.
 
-**Opt-in mechanism**: The setting defaults to `false` (stored as `wm-headline-memory` in localStorage). Enabling it triggers `mlWorker.init()` → `loadModel('embeddings')`. Disabling it unloads the model and optionally terminates the entire worker if no other ML features are active. The `ai-flow-changed` CustomEvent propagates toggle changes to all interested components.
+**Opt-in mechanism**: The setting defaults to `false` (stored as `zm-headline-memory` in localStorage). Enabling it triggers `mlWorker.init()` → `loadModel('embeddings')`. Disabling it unloads the model and optionally terminates the entire worker if no other ML features are active. The `ai-flow-changed` CustomEvent propagates toggle changes to all interested components.
 
 ### Threat Classification Pipeline
 
