@@ -139,10 +139,6 @@ Copyright (C) 2024-2026 NettechZak. All rights reserved.
 
 ## Contributors
 
-#<a href="https://github.com/NettechZak/zworldmonitor/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=NettechZak/zworldmonitor" />
-</a>
-
 ## Security Acknowledgments
 
 We thank the following researchers for responsibly disclosing security issues:
