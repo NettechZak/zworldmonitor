@@ -7,7 +7,7 @@ import type {
   ServerContext,
   GetEnergyPricesRequest,
   GetEnergyPricesResponse,
-} from '../../../../src/generated/server/worldmonitor/economic/v1/service_server';
+} from '../../../../src/generated/server/zmonitor/economic/v1/service_server';
 
 import { getCachedJson } from '../../../_shared/redis';
 

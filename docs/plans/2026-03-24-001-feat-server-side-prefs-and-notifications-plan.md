@@ -9,7 +9,7 @@ date: 2026-03-24
 
 ## Overview
 
-Today, WorldMonitor stores all user configuration in localStorage — panel layout, enabled sources, market watchlist, map layers, monitors, and every other personalisation — meaning it is browser-local, lost on a new device, and inaccessible server-side. This makes login feel ornamental: signing in does not recover your setup, and the server cannot notify you of anything.
+Today, Z-Monitor stores all user configuration in localStorage — panel layout, enabled sources, market watchlist, map layers, monitors, and every other personalisation — meaning it is browser-local, lost on a new device, and inaccessible server-side. This makes login feel ornamental: signing in does not recover your setup, and the server cannot notify you of anything.
 
 This plan migrates user preferences to Convex-backed server storage for signed-in users and adds first-class notification delivery via Telegram, Slack, and email. It makes login feel immediately valuable: your settings follow you everywhere, and the world can reach you.
 
@@ -90,17 +90,17 @@ Railway notification-delivery service (new)
 
 | localStorage Key | Purpose |
 |---|---|
-| `worldmonitor-panels` | Panel enabled/priority map |
-| `worldmonitor-monitors` | Keyword monitor configs (no secrets) |
-| `worldmonitor-layers` | Map layer toggles |
-| `worldmonitor-disabled-feeds` | Disabled news sources |
-| `worldmonitor-panel-spans` | Panel row heights |
-| `worldmonitor-panel-col-spans` | Panel column widths |
-| `worldmonitor-panel-order` | User reorder sequence |
-| `worldmonitor-theme` | Light/dark/system |
-| `worldmonitor-variant` | Active variant |
-| `worldmonitor-map-mode` | Flat/globe |
-| `worldmonitor-runtime-feature-toggles` | Feature flags (non-secret toggles only) |
+| `zmonitor-panels` | Panel enabled/priority map |
+| `zmonitor-monitors` | Keyword monitor configs (no secrets) |
+| `zmonitor-layers` | Map layer toggles |
+| `zmonitor-disabled-feeds` | Disabled news sources |
+| `zmonitor-panel-spans` | Panel row heights |
+| `zmonitor-panel-col-spans` | Panel column widths |
+| `zmonitor-panel-order` | User reorder sequence |
+| `zmonitor-theme` | Light/dark/system |
+| `zmonitor-variant` | Active variant |
+| `zmonitor-map-mode` | Flat/globe |
+| `zmonitor-runtime-feature-toggles` | Feature flags (non-secret toggles only) |
 | `wm-breaking-alerts-v1` | Alert sensitivity settings |
 | `wm-market-watchlist-v1` | Market watchlist symbols |
 | `aviation:watchlist:v1` | Aviation watchlist |
@@ -118,7 +118,7 @@ Railway notification-delivery service (new)
 | `wm-pro-html-{id}` | Widget HTML — large, device-generated, not portable |
 | `wm-custom-widgets` | Widget metadata with tool configs |
 | `wm-pro-key` / `wm-widget-key` | API key credentials |
-| `worldmonitor-runtime-feature-toggles` vault entries | 26 `RuntimeSecretKey` API keys (Groq, ACLED, OpenSky, etc.) |
+| `zmonitor-runtime-feature-toggles` vault entries | 26 `RuntimeSecretKey` API keys (Groq, ACLED, OpenSky, etc.) |
 | `wm-live-channels` / `wm-active-channel` | Device-specific stream session state |
 | `map-height` / `map-pinned` | Device-specific viewport state |
 
@@ -416,17 +416,17 @@ function applyMigrations(data: Record<string, unknown>, fromVersion: number): Re
 1. User clicks "Connect Telegram"
 2. Frontend calls POST /api/user-prefs → createPairingToken → returns {token, deepLink}
    token: base64url (43 chars) — NOT hex (hex = exactly 64 chars, at Telegram's hard limit)
-   deepLink = `https://t.me/WorldMonitorBot?start=<token>`
+   deepLink = `https://t.me/Z-MonitorBot?start=<token>`
 3. UI shows: "Open Telegram" button + deepLink (optionally QR via canvas)
    Token expires after 15 minutes — show countdown timer in UI
-4. User taps deepLink → opens Telegram → sends /start <token> to @WorldMonitorBot
+4. User taps deepLink → opens Telegram → sends /start <token> to @Z-MonitorBot
 5. Bot webhook:
    a. Verifies X-Telegram-Bot-Api-Secret-Token header with timingSafeEqual() [REQUIRED — P0]
    b. Verifies message.chat.type === 'private' (reject group chats)
    c. Verifies message.date within 900 seconds (defense-in-depth on top of Convex expiry)
    d. Extracts token from /start <token> using regex: /^\/start(?:@\w+)?\s+([A-Za-z0-9_-]{1,64})$/
    e. Calls claimPairingToken mutation (atomic: sets chatId + verified=true + used=true)
-   f. Sends confirmation message: "WorldMonitor connected. You will receive alerts here."
+   f. Sends confirmation message: "Z-Monitor connected. You will receive alerts here."
    g. Returns HTTP 200 always (non-200 triggers Telegram retry storm)
 6. Frontend: useQuery(api.notifications.getPairingStatus) auto-updates via WebSocket push
    (NO setInterval polling — Convex is already push-based over WebSockets)
@@ -459,7 +459,7 @@ await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/setWebhook`, {
    b. Resolve domain and verify not RFC-1918 / link-local address [P0-SSRF prevention]
    c. Encrypt with AES-256-GCM: "v1:<base64(iv+tag+ciphertext)>" envelope
    d. Store webhookEnvelope in notificationChannels (NEVER store plaintext)
-   e. Send test message: "WorldMonitor connected ✓" (verifies webhook is live)
+   e. Send test message: "Z-Monitor connected ✓" (verifies webhook is live)
    f. If test message returns 200/ok: set verified=true
 
 
@@ -632,7 +632,7 @@ async function sendSlack(webhookEnvelope, text) {
 }
 ```
 
- `TELEGRAM_BOT_TOKEN` — @WorldMonitorBot token (Railway + Convex env)
+ `TELEGRAM_BOT_TOKEN` — @Z-MonitorBot token (Railway + Convex env)
 
 - `TELEGRAM_WEBHOOK_SECRET` — secret for `X-Telegram-Bot-Api-Secret-Token` (Convex env, separate from token)
 - `ENCRYPTION_KEY_V1` — 32-byte base64 for AES-256-GCM (Railway env; NEVER in Convex)
@@ -719,7 +719,7 @@ User signs in
 
 - `convex/http.ts` gains `POST /api/user-prefs` — joins existing `POST /api/register-interest` and `POST /api/contact` patterns
 - `POST /api/telegram-pair-callback` is unauthenticated (called by Telegram, verified by secret token + content token)
-- The gateway (`server/gateway.ts`) does not need changes — user-pref calls go direct to Convex, not through the WorldMonitor gateway
+- The gateway (`server/gateway.ts`) does not need changes — user-pref calls go direct to Convex, not through the Z-Monitor gateway
 
 ### Integration Test Scenarios
 
@@ -773,10 +773,10 @@ User signs in
 |---|---|---|
 | Clerk auth (PR #1812) | In review — P0/P1 blockers posted | Must merge and deploy before Phase 1 ships (Phase 0 and schema can start now) |
 | `VITE_CLOUD_PREFS_ENABLED` feature flag | New | Gates Phase 2 shipping; decouples from Clerk PR timeline |
-| Telegram bot registration (@WorldMonitorBot) | Not started | Requires BotFather registration; `setWebhook` with `secret_token` to Convex HTTP action URL |
+| Telegram bot registration (@Z-MonitorBot) | Not started | Requires BotFather registration; `setWebhook` with `secret_token` to Convex HTTP action URL |
 | `TELEGRAM_WEBHOOK_SECRET` env var | Not set | Random 256-char string; separate from `TELEGRAM_BOT_TOKEN` |
 | `ENCRYPTION_KEY_V1` env var | Not set | `openssl rand -base64 32`. Railway env ONLY (not Convex). |
-| Resend sender domain verification | Already done | `noreply@worldmonitor.app` is verified; verify rate tier covers expected volume |
+| Resend sender domain verification | Already done | `noreply@zmonitor.app` is verified; verify rate tier covers expected volume |
 | Convex production deploy key | Already set | Per `convex.md` memory entry |
 | Privacy policy update | Not done | Required before Phase 1 ships to EU users |
 | @upstash/ratelimit | Add to relay deps | Sliding window rate limiting for notification delivery |

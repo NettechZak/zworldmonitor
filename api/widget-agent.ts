@@ -4,8 +4,8 @@
  * Auth paths:
  *   1. Clerk JWT (Authorization: Bearer <token>) — validates plan === 'pro',
  *      then injects real server keys and proxies to the Railway relay.
- *   2. Browser tester key (X-WorldMonitor-Key) — validated against
- *      WORLDMONITOR_VALID_KEYS so one browser-held key can unlock premium
+ *   2. Browser tester key (X-Z-Monitor-Key) — validated against
+ *      Z-MONITOR_VALID_KEYS so one browser-held key can unlock premium
  *      testing paths across the app.
  *   3. Legacy tester keys (X-Widget-Key / X-Pro-Key) — validated directly here
  *      so the relay's WIDGET_AGENT_KEY / PRO_WIDGET_KEY are never exposed
@@ -21,18 +21,18 @@ export const config = { runtime: 'edge' };
 import { getCorsHeaders } from './_cors.js';
 import { validateBearerToken } from '../server/auth-session';
 
-const RELAY_BASE = 'https://proxy.worldmonitor.app';
+const RELAY_BASE = 'https://proxy.zmonitor.app';
 const WIDGET_AGENT_KEY = process.env.WIDGET_AGENT_KEY ?? '';
 const PRO_WIDGET_KEY = process.env.PRO_WIDGET_KEY ?? '';
-const WORLDMONITOR_VALID_KEY_SET = new Set(
-  (process.env.WORLDMONITOR_VALID_KEYS ?? '')
+const Z-MONITOR_VALID_KEY_SET = new Set(
+  (process.env.Z-MONITOR_VALID_KEYS ?? '')
     .split(',')
     .map((v) => v.trim())
     .filter(Boolean),
 );
 
-function hasValidWorldMonitorKey(key: string): boolean {
-  return Boolean(key) && WORLDMONITOR_VALID_KEY_SET.has(key);
+function hasValidZ-MonitorKey(key: string): boolean {
+  return Boolean(key) && Z-MONITOR_VALID_KEY_SET.has(key);
 }
 
 function json(body: unknown, status: number, cors: Record<string, string>): Response {
@@ -51,7 +51,7 @@ export default async function handler(req: Request): Promise<Response> {
       headers: {
         ...corsHeaders,
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-WorldMonitor-Key, X-Widget-Key, X-Pro-Key',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Z-Monitor-Key, X-Widget-Key, X-Pro-Key',
       },
     });
   }
@@ -59,8 +59,8 @@ export default async function handler(req: Request): Promise<Response> {
   // ── Auth ──────────────────────────────────────────────────────────────────
   let isPro = false;
 
-  const worldMonitorKey = req.headers.get('X-WorldMonitor-Key') ?? '';
-  if (hasValidWorldMonitorKey(worldMonitorKey)) {
+  const worldMonitorKey = req.headers.get('X-Z-Monitor-Key') ?? '';
+  if (hasValidZ-MonitorKey(worldMonitorKey)) {
     isPro = true;
   } else {
     const authHeader = req.headers.get('Authorization');
@@ -95,7 +95,7 @@ export default async function handler(req: Request): Promise<Response> {
   // ── Build relay headers (server-side keys, never exposed to browser) ──────
   const relayHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
-    'User-Agent': 'worldmonitor-widget-edge/1.0',
+    'User-Agent': 'zmonitor-widget-edge/1.0',
     ...(WIDGET_AGENT_KEY ? { 'X-Widget-Key': WIDGET_AGENT_KEY } : {}),
   };
   if (isPro && PRO_WIDGET_KEY) {

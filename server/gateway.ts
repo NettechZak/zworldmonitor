@@ -16,7 +16,7 @@ import { validateApiKey } from '../api/_api-key.js';
 import { mapErrorToResponse } from './error-mapper';
 import { checkRateLimit, checkEndpointRateLimit, hasEndpointRatePolicy } from './_shared/rate-limit';
 import { drainResponseHeaders } from './_shared/response-headers';
-import type { ServerOptions } from '../src/generated/server/worldmonitor/seismology/v1/service_server';
+import type { ServerOptions } from '../src/generated/server/zmonitor/seismology/v1/service_server';
 
 export const serverOptions: ServerOptions = { onError: mapErrorToResponse };
 
@@ -27,8 +27,8 @@ export const serverOptions: ServerOptions = { onError: mapErrorToResponse };
 type CacheTier = 'fast' | 'medium' | 'slow' | 'slow-browser' | 'static' | 'daily' | 'no-store';
 
 // Browser-only cache: no `public` or `s-maxage` so Cloudflare (which ignores
-// Vary: Origin) does NOT cache these responses. CF sits in front of api.worldmonitor.app
-// and would otherwise pin ACAO: worldmonitor.app on the cached response, breaking CORS
+// Vary: Origin) does NOT cache these responses. CF sits in front of api.zmonitor.app
+// and would otherwise pin ACAO: zmonitor.app on the cached response, breaking CORS
 // for preview deployments. Vercel CDN caching is handled separately by CDN-Cache-Control.
 const TIER_HEADERS: Record<CacheTier, string> = {
   fast: 'max-age=60, stale-while-revalidate=60, stale-if-error=600',

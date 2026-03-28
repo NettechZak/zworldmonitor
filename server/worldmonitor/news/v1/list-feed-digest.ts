@@ -5,7 +5,7 @@ import type {
   CategoryBucket,
   NewsItem as ProtoNewsItem,
   ThreatLevel as ProtoThreatLevel,
-} from '../../../../src/generated/server/worldmonitor/news/v1/service_server';
+} from '../../../../src/generated/server/zmonitor/news/v1/service_server';
 import { cachedFetchJson, getCachedJsonBatch } from '../../../_shared/redis';
 import { markNoCacheResponse } from '../../../_shared/response-headers';
 import { sha256Hex } from '../../../_shared/hash';

@@ -159,7 +159,7 @@ describe('security header guardrails', () => {
     const csp = getHeaderValue('Content-Security-Policy');
     const scriptSrc = csp.match(/script-src\s+([^;]+)/)?.[1] ?? '';
     assert.ok(
-      scriptSrc.includes('clerk.accounts.dev') || scriptSrc.includes('clerk.worldmonitor.app'),
+      scriptSrc.includes('clerk.accounts.dev') || scriptSrc.includes('clerk.zmonitor.app'),
       'CSP script-src must include Clerk origin for auth UI to load'
     );
   });
@@ -168,7 +168,7 @@ describe('security header guardrails', () => {
     const csp = getHeaderValue('Content-Security-Policy');
     const frameSrc = csp.match(/frame-src\s+([^;]+)/)?.[1] ?? '';
     assert.ok(
-      frameSrc.includes('clerk.accounts.dev') || frameSrc.includes('clerk.worldmonitor.app'),
+      frameSrc.includes('clerk.accounts.dev') || frameSrc.includes('clerk.zmonitor.app'),
       'CSP frame-src must include Clerk origin for sign-in modal'
     );
   });

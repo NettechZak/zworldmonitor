@@ -1,30 +1,30 @@
 syntax = "proto3";
 
-package worldmonitor.economic.v1;
+package zmonitor.economic.v1;
 
 import "sebuf/http/annotations.proto";
-import "worldmonitor/economic/v1/get_fred_series.proto";
-import "worldmonitor/economic/v1/list_world_bank_indicators.proto";
-import "worldmonitor/economic/v1/get_energy_prices.proto";
-import "worldmonitor/economic/v1/get_macro_signals.proto";
-import "worldmonitor/economic/v1/get_energy_capacity.proto";
-import "worldmonitor/economic/v1/get_bis_policy_rates.proto";
-import "worldmonitor/economic/v1/get_bis_exchange_rates.proto";
-import "worldmonitor/economic/v1/get_bis_credit.proto";
-import "worldmonitor/economic/v1/get_fred_series_batch.proto";
-import "worldmonitor/economic/v1/list_grocery_basket_prices.proto";
-import "worldmonitor/economic/v1/list_bigmac_prices.proto";
-import "worldmonitor/economic/v1/get_national_debt.proto";
-import "worldmonitor/economic/v1/list_fuel_prices.proto";
-import "worldmonitor/economic/v1/get_bls_series.proto";
-import "worldmonitor/economic/v1/get_economic_calendar.proto";
-import "worldmonitor/economic/v1/get_crude_inventories.proto";
-import "worldmonitor/economic/v1/get_nat_gas_storage.proto";
-import "worldmonitor/economic/v1/get_ecb_fx_rates.proto";
-import "worldmonitor/economic/v1/get_eurostat_country_data.proto";
-import "worldmonitor/economic/v1/get_eu_gas_storage.proto";
-import "worldmonitor/economic/v1/get_eu_yield_curve.proto";
-import "worldmonitor/economic/v1/get_eu_fsi.proto";
+import "zmonitor/economic/v1/get_fred_series.proto";
+import "zmonitor/economic/v1/list_world_bank_indicators.proto";
+import "zmonitor/economic/v1/get_energy_prices.proto";
+import "zmonitor/economic/v1/get_macro_signals.proto";
+import "zmonitor/economic/v1/get_energy_capacity.proto";
+import "zmonitor/economic/v1/get_bis_policy_rates.proto";
+import "zmonitor/economic/v1/get_bis_exchange_rates.proto";
+import "zmonitor/economic/v1/get_bis_credit.proto";
+import "zmonitor/economic/v1/get_fred_series_batch.proto";
+import "zmonitor/economic/v1/list_grocery_basket_prices.proto";
+import "zmonitor/economic/v1/list_bigmac_prices.proto";
+import "zmonitor/economic/v1/get_national_debt.proto";
+import "zmonitor/economic/v1/list_fuel_prices.proto";
+import "zmonitor/economic/v1/get_bls_series.proto";
+import "zmonitor/economic/v1/get_economic_calendar.proto";
+import "zmonitor/economic/v1/get_crude_inventories.proto";
+import "zmonitor/economic/v1/get_nat_gas_storage.proto";
+import "zmonitor/economic/v1/get_ecb_fx_rates.proto";
+import "zmonitor/economic/v1/get_eurostat_country_data.proto";
+import "zmonitor/economic/v1/get_eu_gas_storage.proto";
+import "zmonitor/economic/v1/get_eu_yield_curve.proto";
+import "zmonitor/economic/v1/get_eu_fsi.proto";
 
 // EconomicService provides APIs for macroeconomic data from FRED, World Bank, and EIA.
 service EconomicService {

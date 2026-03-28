@@ -3,8 +3,8 @@ import { sanitizeWidgetHtml } from '@/utils/widget-sanitizer';
 import { getAuthState } from '@/services/auth-state';
 
 const STORAGE_KEY = 'wm-custom-widgets';
-const PANEL_SPANS_KEY = 'worldmonitor-panel-spans';
-const PANEL_COL_SPANS_KEY = 'worldmonitor-panel-col-spans';
+const PANEL_SPANS_KEY = 'zmonitor-panel-spans';
+const PANEL_COL_SPANS_KEY = 'zmonitor-panel-col-spans';
 const MAX_WIDGETS = 10;
 const MAX_HISTORY = 10;
 const MAX_HTML_CHARS = 50_000;
@@ -97,15 +97,15 @@ export function getWidget(id: string): CustomWidgetSpec | null {
 }
 
 // ── Cross-domain key helpers ──────────────────────────────────────────────
-// Cookies with domain=.worldmonitor.app are shared across all subdomains
-// (worldmonitor.app, tech., finance., commodity., happy., etc.).
+// Cookies with domain=.zmonitor.app are shared across all subdomains
+// (zmonitor.app, tech., finance., commodity., happy., etc.).
 // We read cookie first and fall back to localStorage for migration compat.
 
-const COOKIE_DOMAIN = '.worldmonitor.app';
+const COOKIE_DOMAIN = '.zmonitor.app';
 const KEY_MAX_AGE = 365 * 24 * 60 * 60;
 
 function usesCookies(): boolean {
-  return location.hostname.endsWith('worldmonitor.app');
+  return location.hostname.endsWith('zmonitor.app');
 }
 
 function getCookieValue(name: string): string {

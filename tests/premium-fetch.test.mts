@@ -31,7 +31,7 @@ function sentHeaders(callIndex = 0): Headers {
   return new Headers((call.arguments[1] as RequestInit | undefined)?.headers);
 }
 
-const TARGET = 'https://api.worldmonitor.app/api/some-premium-rpc';
+const TARGET = 'https://api.zmonitor.app/api/some-premium-rpc';
 
 // ---------------------------------------------------------------------------
 // Suite
@@ -65,14 +65,14 @@ describe('premiumFetch', () => {
     await premiumFetch(TARGET, { headers: { Authorization: 'Bearer existing-token' } });
     assert.equal(fetchMock.mock.calls.length, 1);
     assert.equal(sentHeaders().get('Authorization'), 'Bearer existing-token');
-    assert.equal(sentHeaders().get('X-WorldMonitor-Key'), null);
+    assert.equal(sentHeaders().get('X-Z-Monitor-Key'), null);
   });
 
-  it('passthrough when X-WorldMonitor-Key header already set', async () => {
+  it('passthrough when X-Z-Monitor-Key header already set', async () => {
     setup();
-    await premiumFetch(TARGET, { headers: { 'X-WorldMonitor-Key': 'caller-key' } });
+    await premiumFetch(TARGET, { headers: { 'X-Z-Monitor-Key': 'caller-key' } });
     assert.equal(fetchMock.mock.calls.length, 1);
-    assert.equal(sentHeaders().get('X-WorldMonitor-Key'), 'caller-key');
+    assert.equal(sentHeaders().get('X-Z-Monitor-Key'), 'caller-key');
   });
 
   it('tester key: valid key accepted — exactly one fetch, key forwarded', async () => {
@@ -80,7 +80,7 @@ describe('premiumFetch', () => {
     const res = await premiumFetch(TARGET);
     assert.equal(res.status, 200);
     assert.equal(fetchMock.mock.calls.length, 1, 'No Clerk retry expected');
-    assert.equal(sentHeaders().get('X-WorldMonitor-Key'), 'valid-gateway-key');
+    assert.equal(sentHeaders().get('X-Z-Monitor-Key'), 'valid-gateway-key');
   });
 
   it('tester key: 401 falls through to Clerk JWT (two fetches)', async () => {
@@ -95,11 +95,11 @@ describe('premiumFetch', () => {
     assert.equal(res.status, 200);
     assert.equal(fetchMock.mock.calls.length, 2, 'Expected tester-key attempt + Clerk retry');
     // First call: tester key sent
-    assert.equal(sentHeaders(0).get('X-WorldMonitor-Key'), 'widget-only-key');
+    assert.equal(sentHeaders(0).get('X-Z-Monitor-Key'), 'widget-only-key');
     assert.equal(sentHeaders(0).get('Authorization'), null);
     // Second call: Clerk Bearer sent, no tester key
     assert.equal(sentHeaders(1).get('Authorization'), 'Bearer clerk-jwt-abc');
-    assert.equal(sentHeaders(1).get('X-WorldMonitor-Key'), null);
+    assert.equal(sentHeaders(1).get('X-Z-Monitor-Key'), null);
   });
 
   it('wm-pro-key 401 retries with wm-widget-key before Clerk', async () => {
@@ -113,9 +113,9 @@ describe('premiumFetch', () => {
     const res = await premiumFetch(TARGET);
     assert.equal(res.status, 200);
     assert.equal(fetchMock.mock.calls.length, 2, 'Expected pro-key attempt then widget-key retry');
-    assert.equal(sentHeaders(0).get('X-WorldMonitor-Key'), 'relay-only-pro-key');
+    assert.equal(sentHeaders(0).get('X-Z-Monitor-Key'), 'relay-only-pro-key');
     assert.equal(sentHeaders(0).get('Authorization'), null);
-    assert.equal(sentHeaders(1).get('X-WorldMonitor-Key'), 'valid-widget-key');
+    assert.equal(sentHeaders(1).get('X-Z-Monitor-Key'), 'valid-widget-key');
     assert.equal(sentHeaders(1).get('Authorization'), null);
   });
 
@@ -151,7 +151,7 @@ describe('premiumFetch', () => {
     assert.equal(res.status, 200);
     assert.equal(fetchMock.mock.calls.length, 1);
     assert.equal(sentHeaders().get('Authorization'), null);
-    assert.equal(sentHeaders().get('X-WorldMonitor-Key'), null);
+    assert.equal(sentHeaders().get('X-Z-Monitor-Key'), null);
   });
 
   it('Clerk JWT used when no tester key', async () => {
@@ -160,6 +160,6 @@ describe('premiumFetch', () => {
     assert.equal(res.status, 200);
     assert.equal(fetchMock.mock.calls.length, 1);
     assert.equal(sentHeaders().get('Authorization'), 'Bearer clerk-only-token');
-    assert.equal(sentHeaders().get('X-WorldMonitor-Key'), null);
+    assert.equal(sentHeaders().get('X-Z-Monitor-Key'), null);
   });
 });

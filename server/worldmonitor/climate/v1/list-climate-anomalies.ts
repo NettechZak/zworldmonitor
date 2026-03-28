@@ -8,7 +8,7 @@ import type {
   ServerContext,
   ListClimateAnomaliesRequest,
   ListClimateAnomaliesResponse,
-} from '../../../../src/generated/server/worldmonitor/climate/v1/service_server';
+} from '../../../../src/generated/server/zmonitor/climate/v1/service_server';
 
 import { getCachedJson } from '../../../_shared/redis';
 

@@ -1,22 +1,22 @@
 ---
-title: "feat: PRO MCP Server — WorldMonitor data via Model Context Protocol"
+title: "feat: PRO MCP Server — Z-Monitor data via Model Context Protocol"
 type: feat
 status: active
 date: 2026-03-27
 origin: docs/brainstorms/2026-03-27-pro-mcp-server-requirements.md
 ---
 
-# PRO MCP Server — WorldMonitor Data via Model Context Protocol
+# PRO MCP Server — Z-Monitor Data via Model Context Protocol
 
 ## Overview
 
-Add a Vercel edge function at `api/mcp.ts` that implements the MCP Streamable HTTP transport (protocol `2025-03-26`). PRO API key holders point any MCP client (Claude Desktop, Cursor, Windsurf, etc.) at `https://api.worldmonitor.app/mcp` and WorldMonitor's cached intelligence becomes natively queryable from their AI workflows — no install, no separate service.
+Add a Vercel edge function at `api/mcp.ts` that implements the MCP Streamable HTTP transport (protocol `2025-03-26`). PRO API key holders point any MCP client (Claude Desktop, Cursor, Windsurf, etc.) at `https://api.zmonitor.app/mcp` and Z-Monitor's cached intelligence becomes natively queryable from their AI workflows — no install, no separate service.
 
 The server exposes 17 tools covering all major data domains. Every tool reads from the existing Redis bootstrap cache (Upstash). No upstream API calls happen during tool execution. Auth reuses `validateApiKey()`. Rate limiting uses a new per-key Upstash sliding window.
 
 ## Problem Statement
 
-WorldMonitor accumulates, curates, and caches real-time intelligence across 25+ domains. PRO users access this data only through the web UI or desktop app. There is no programmatic interface for AI agents. This adds a PRO MCP server that turns WorldMonitor from "a dashboard to look at" into "a data source AI agents query directly."
+Z-Monitor accumulates, curates, and caches real-time intelligence across 25+ domains. PRO users access this data only through the web UI or desktop app. There is no programmatic interface for AI agents. This adds a PRO MCP server that turns Z-Monitor from "a dashboard to look at" into "a data source AI agents query directly."
 
 (see origin: docs/brainstorms/2026-03-27-pro-mcp-server-requirements.md)
 
@@ -31,8 +31,8 @@ Single new edge function `api/mcp.ts` implementing MCP Streamable HTTP. All supp
 ```
 MCP Client (Claude Desktop / Cursor / etc.)
   │
-  │  POST https://api.worldmonitor.app/mcp
-  │  X-WorldMonitor-Key: wm_xxx
+  │  POST https://api.zmonitor.app/mcp
+  │  X-Z-Monitor-Key: wm_xxx
   │
   ▼
 api/mcp.ts (Vercel Edge Runtime)
@@ -55,7 +55,7 @@ The protocol is already implemented client-side in `api/mcp-proxy.js`. The serve
 
 | Method | Server behavior |
 |--------|----------------|
-| `initialize` | Return `{ protocolVersion, capabilities: { tools: {} }, serverInfo: { name: 'worldmonitor', version: '1.0' } }`. Set `Mcp-Session-Id` response header (random UUID). |
+| `initialize` | Return `{ protocolVersion, capabilities: { tools: {} }, serverInfo: { name: 'zmonitor', version: '1.0' } }`. Set `Mcp-Session-Id` response header (random UUID). |
 | `notifications/initialized` | Return 202 with empty body. |
 | `tools/list` | Return `TOOL_REGISTRY` — in-memory module-level constant, never calls Redis. |
 | `tools/call` | Execute the named tool: read from Redis, shape response, return `{ content: [{ type: 'text', text: JSON.stringify(data) }] }`. |
@@ -128,7 +128,7 @@ The `_`-prefixed fields are internal to the server — not exposed in `tools/lis
 | `get_infrastructure_status` | `infra:outages:v1`, `infra:service-statuses:v1` | 30 |
 | `get_supply_chain_data` | `comtrade:flows:v1`, `trade:customs-revenue:v1` | 2880 |
 | `get_positive_events` | `positive_events:geo-bootstrap:v1` | 60 |
-| `get_webcams` | `webcam:` _(check server/worldmonitor/webcam/ for correct key)_ | 120 |
+| `get_webcams` | `webcam:` _(check server/zmonitor/webcam/ for correct key)_ | 120 |
 
 **Note:** `get_maritime_status` and `get_displacement_data` have no pre-seeded bootstrap key in `health.js`. These tools return `{ stale: true, data: [] }` in v1. Planner should verify by searching for `maritime` and `displacement` in `api/bootstrap.js`.
 
@@ -194,7 +194,7 @@ The `text` field is JSON-stringified. This is the standard MCP tool response pat
 - Malformed body: return JSON-RPC `-32600`
 - OPTIONS preflight: 204 with CORS headers
 
-**Acceptance:** `curl -X POST https://localhost:3000/api/mcp -H 'X-WorldMonitor-Key: <key>' -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}' returns 200 with valid JSON-RPC result.`
+**Acceptance:** `curl -X POST https://localhost:3000/api/mcp -H 'X-Z-Monitor-Key: <key>' -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}' returns 200 with valid JSON-RPC result.`
 
 ### Phase 2: Tool Registry + Implementations
 
@@ -275,7 +275,7 @@ Exception: if `jsonResponse()` itself throws (should not happen), Vercel edge ru
 
 ### Functional
 
-- [ ] PRO user adds `https://api.worldmonitor.app/mcp` as MCP server in Claude Desktop config with `X-WorldMonitor-Key` header — discovers 17 tools without any install.
+- [ ] PRO user adds `https://api.zmonitor.app/mcp` as MCP server in Claude Desktop config with `X-Z-Monitor-Key` header — discovers 17 tools without any install.
 - [ ] All 17 `tools/call` calls return valid JSON-RPC results (not errors) even when Redis cache is empty for that tool.
 - [ ] Each tool response includes `cached_at` (ISO string or null) and `stale` (boolean).
 - [ ] Unauthenticated request returns JSON-RPC error `-32001`, not HTTP 401.
@@ -298,7 +298,7 @@ Exception: if `jsonResponse()` itself throws (should not happen), Vercel edge ru
 
 ## Success Metrics
 
-- WorldMonitor appears as a usable MCP server in Claude Desktop with 0 install steps for PRO users.
+- Z-Monitor appears as a usable MCP server in Claude Desktop with 0 install steps for PRO users.
 - All 17 tools return non-error responses (tool calls may return `stale: true` for domains with no active seed, but never return JSON-RPC errors for missing cache).
 - No new Sentry errors from `api/mcp.ts` in the 48h post-deploy window.
 

@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package worldmonitor.health.v1;
+package zmonitor.health.v1;
 
 import "sebuf/http/annotations.proto";
-import "worldmonitor/health/v1/list_disease_outbreaks.proto";
+import "zmonitor/health/v1/list_disease_outbreaks.proto";
 
 service HealthService {
   option (sebuf.http.service_config) = {base_path: "/api/health/v1"};

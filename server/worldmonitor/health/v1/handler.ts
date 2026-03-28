@@ -1,4 +1,4 @@
-import type { HealthServiceHandler } from '../../../../src/generated/server/worldmonitor/health/v1/service_server';
+import type { HealthServiceHandler } from '../../../../src/generated/server/zmonitor/health/v1/service_server';
 
 import { listDiseaseOutbreaks } from './list-disease-outbreaks';
 

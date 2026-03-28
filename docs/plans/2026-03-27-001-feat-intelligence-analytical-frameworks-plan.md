@@ -18,7 +18,7 @@ See origin: `docs/brainstorms/2026-03-27-intelligence-analytical-frameworks-requ
 
 ## Problem Statement
 
-WorldMonitor's AI intelligence panels (InsightsPanel/WorldBrief, CountryDeepDivePanel, DailyMarketBriefPanel, DeductionPanel) generate analysis through a fixed neutral LLM system prompt. There is no mechanism for users to apply structured analytical lenses — e.g. Ray Dalio's macroeconomic cycle model, Buffett's risk framework, adversarial geopolitical equilibrium models. Every user gets identical neutral framing regardless of their decision-making context.
+Z-Monitor's AI intelligence panels (InsightsPanel/WorldBrief, CountryDeepDivePanel, DailyMarketBriefPanel, DeductionPanel) generate analysis through a fixed neutral LLM system prompt. There is no mechanism for users to apply structured analytical lenses — e.g. Ray Dalio's macroeconomic cycle model, Buffett's risk framework, adversarial geopolitical equilibrium models. Every user gets identical neutral framing regardless of their decision-making context.
 
 This is a premium differentiation gap. Analytical frameworks are a high-value, low-carrying-cost feature that increases time-on-site for sophisticated users and justifies Pro upgrade.
 
@@ -96,7 +96,7 @@ Add `systemAppend?: string` to `LlmCallOptions`. In `callLlm()`, if `systemAppen
 Add `framework` field to the proto definition, then regenerate:
 
 ```proto
-// proto/worldmonitor/intelligence/v1/get_country_intel_brief.proto
+// proto/zmonitor/intelligence/v1/get_country_intel_brief.proto
 message GetCountryIntelBriefRequest {
   string country_code = 1 [
     (buf.validate.field).required = true,
@@ -110,9 +110,9 @@ message GetCountryIntelBriefRequest {
 }
 ```
 
-Then run `make generate` to regenerate `src/generated/`. The handler in `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts` gains the typed field automatically.
+Then run `make generate` to regenerate `src/generated/`. The handler in `server/zmonitor/intelligence/v1/get-country-intel-brief.ts` gains the typed field automatically.
 
-**File: `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts`**
+**File: `server/zmonitor/intelligence/v1/get-country-intel-brief.ts`**
 
 - Read `req.framework` (empty string = default).
 - Pass as `systemAppend` to `callLlm()`.
@@ -133,7 +133,7 @@ const cacheKey = `ci-sebuf:v2:${countryCode}:${lang}:${contextHash}:${frameworkH
 **Proto workflow for `DeductSituationRequest`**
 
 ```proto
-// proto/worldmonitor/intelligence/v1/deduct_situation.proto
+// proto/zmonitor/intelligence/v1/deduct_situation.proto
 message DeductSituationRequest {
   string query = 1;
   string geo_context = 2;
@@ -144,12 +144,12 @@ message DeductSituationRequest {
 
 Run `make generate`. The handler in `deduct-situation.ts` reads `req.framework` and passes it as `systemAppend` to `callLlm()`. No cache key change needed (DeductionPanel results are not cached).
 
-**File: `server/worldmonitor/news/v1/_shared.ts` (`buildArticlePrompts`)**
+**File: `server/zmonitor/news/v1/_shared.ts` (`buildArticlePrompts`)**
 
 - Add `frameworkAppend?: string` to the opts object.
 - Pass through to the `callLlm` call in `summarize-article.ts` via a new `systemAppend` field on the RPC request.
 
-**File: `server/worldmonitor/news/v1/summarize-article.ts`**
+**File: `server/zmonitor/news/v1/summarize-article.ts`**
 
 - Thread `systemAppend` from RPC request down to `callLlm()`.
 
@@ -496,11 +496,11 @@ Close with: a one-sentence devil's advocate verdict — what is the most importa
 - Premium gate: `src/services/panel-gating.ts` — `hasPremiumAccess()`
 - isProUser: `src/services/widget-store.ts:153`
 - LLM call: `server/_shared/llm.ts` — `callLlm(LlmCallOptions)`
-- Country brief system prompt: `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:42`
-- Country brief cache key: `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:~29`
-- Deduction prompts: `server/worldmonitor/intelligence/v1/deduction-prompt.ts:101-143`
-- World brief / market brief system prompt: `server/worldmonitor/news/v1/_shared.ts:50`
-- Summarize RPC handler: `server/worldmonitor/news/v1/summarize-article.ts`
+- Country brief system prompt: `server/zmonitor/intelligence/v1/get-country-intel-brief.ts:42`
+- Country brief cache key: `server/zmonitor/intelligence/v1/get-country-intel-brief.ts:~29`
+- Deduction prompts: `server/zmonitor/intelligence/v1/deduction-prompt.ts:101-143`
+- World brief / market brief system prompt: `server/zmonitor/news/v1/_shared.ts:50`
+- Summarize RPC handler: `server/zmonitor/news/v1/summarize-article.ts`
 - Panel base class: `src/components/Panel.ts`
 - InsightsPanel (WorldBrief): `src/components/InsightsPanel.ts:340` (client path)
 - CountryDeepDivePanel: `src/components/CountryDeepDivePanel.ts`
@@ -510,6 +510,6 @@ Close with: a one-sentence devil's advocate verdict — what is the most importa
 
 ### Related Work
 
-- Issue: koala73/worldmonitor#2291 (user request — skills repository for structured analysis)
+- Issue: NettechZak/zmonitor#2291 (user request — skills repository for structured analysis)
 - External: apifyforge.com/actors/intelligence/adversarial-geopolitical-equilibrium-mcp (Geopolitical Equilibrium framework reference)
 - agentskills.io specification (framework definition format)

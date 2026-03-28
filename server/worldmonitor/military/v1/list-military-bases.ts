@@ -4,7 +4,7 @@ import type {
   ListMilitaryBasesResponse,
   MilitaryBaseEntry,
   MilitaryBaseCluster,
-} from '../../../../src/generated/server/worldmonitor/military/v1/service_server';
+} from '../../../../src/generated/server/zmonitor/military/v1/service_server';
 
 import { cachedFetchJson, getCachedJson, geoSearchByBox, getHashFieldsBatch } from '../../../_shared/redis';
 import { markNoCacheResponse, setResponseHeader } from '../../../_shared/response-headers';

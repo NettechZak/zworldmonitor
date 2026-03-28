@@ -6,15 +6,15 @@
  * Usage:
  *   node scripts/validate-seed-migration.mjs [--base-url URL]
  *
- * Requires: Referer header from trusted origin OR X-WorldMonitor-Key header.
- * Uses api.worldmonitor.app by default.
+ * Requires: Referer header from trusted origin OR X-Z-Monitor-Key header.
+ * Uses api.zmonitor.app by default.
  */
 
 const BASE_URL = process.argv.includes('--base-url')
   ? process.argv[process.argv.indexOf('--base-url') + 1]
-  : 'https://api.worldmonitor.app';
+  : 'https://api.zmonitor.app';
 
-const ORIGIN = 'https://worldmonitor.app';
+const ORIGIN = 'https://zmonitor.app';
 
 // ========================================================================
 // Test definitions — one per migrated handler
@@ -156,7 +156,7 @@ async function fetchEndpoint(endpoint) {
       Origin: ORIGIN,
       Referer: `${ORIGIN}/`,
       'User-Agent': 'validate-seed-migration/1.0',
-      ...(API_KEY ? { 'X-WorldMonitor-Key': API_KEY } : {}),
+      ...(API_KEY ? { 'X-Z-Monitor-Key': API_KEY } : {}),
     },
     signal: AbortSignal.timeout(15_000),
   });

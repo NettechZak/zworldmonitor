@@ -47,13 +47,13 @@ describe('widget-agent unified tester key auth', () => {
     else process.env.WORLDMONITOR_VALID_KEYS = originalValidKeys;
   });
 
-  it('accepts X-WorldMonitor-Key and upgrades relay request to pro', async () => {
-    const res = await handler(new Request('https://www.worldmonitor.app/api/widget-agent', {
+  it('accepts X-Z-Monitor-Key and upgrades relay request to pro', async () => {
+    const res = await handler(new Request('https://www.zmonitor.app/api/widget-agent', {
       method: 'POST',
       headers: {
-        Origin: 'https://www.worldmonitor.app',
+        Origin: 'https://www.zmonitor.app',
         'Content-Type': 'application/json',
-        'X-WorldMonitor-Key': 'browser-test-key',
+        'X-Z-Monitor-Key': 'browser-test-key',
       },
       body: JSON.stringify({ prompt: 'Build a widget', mode: 'create', tier: 'basic' }),
     }));
@@ -62,13 +62,13 @@ describe('widget-agent unified tester key auth', () => {
     assert.equal(fetchMock.mock.calls.length, 1);
 
     const call = fetchMock.mock.calls[0];
-    assert.equal(call.arguments[0], 'https://proxy.worldmonitor.app/widget-agent');
+    assert.equal(call.arguments[0], 'https://proxy.zmonitor.app/widget-agent');
 
     const init = call.arguments[1] as RequestInit;
     const headers = new Headers(init.headers);
     assert.equal(headers.get('X-Widget-Key'), 'server-widget-key');
     assert.equal(headers.get('X-Pro-Key'), 'server-pro-key');
-    assert.equal(headers.get('X-WorldMonitor-Key'), null);
+    assert.equal(headers.get('X-Z-Monitor-Key'), null);
 
     assert.deepEqual(JSON.parse(String(init.body)), {
       prompt: 'Build a widget',
@@ -77,13 +77,13 @@ describe('widget-agent unified tester key auth', () => {
     });
   });
 
-  it('falls back to legacy tester keys when X-WorldMonitor-Key is invalid', async () => {
-    const res = await handler(new Request('https://www.worldmonitor.app/api/widget-agent', {
+  it('falls back to legacy tester keys when X-Z-Monitor-Key is invalid', async () => {
+    const res = await handler(new Request('https://www.zmonitor.app/api/widget-agent', {
       method: 'POST',
       headers: {
-        Origin: 'https://www.worldmonitor.app',
+        Origin: 'https://www.zmonitor.app',
         'Content-Type': 'application/json',
-        'X-WorldMonitor-Key': 'wrong-key',
+        'X-Z-Monitor-Key': 'wrong-key',
         'X-Pro-Key': 'server-pro-key',
       },
       body: JSON.stringify({ prompt: 'Build a widget', mode: 'create', tier: 'basic' }),
@@ -105,13 +105,13 @@ describe('widget-agent unified tester key auth', () => {
     });
   });
 
-  it('rejects invalid X-WorldMonitor-Key before relay fetch', async () => {
-    const res = await handler(new Request('https://www.worldmonitor.app/api/widget-agent', {
+  it('rejects invalid X-Z-Monitor-Key before relay fetch', async () => {
+    const res = await handler(new Request('https://www.zmonitor.app/api/widget-agent', {
       method: 'POST',
       headers: {
-        Origin: 'https://www.worldmonitor.app',
+        Origin: 'https://www.zmonitor.app',
         'Content-Type': 'application/json',
-        'X-WorldMonitor-Key': 'wrong-key',
+        'X-Z-Monitor-Key': 'wrong-key',
       },
       body: JSON.stringify({ prompt: 'Build a widget', mode: 'create', tier: 'pro' }),
     }));

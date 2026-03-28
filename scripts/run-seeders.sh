@@ -2,7 +2,7 @@
 # Run all seed scripts against the local Redis REST proxy.
 # Usage: ./scripts/run-seeders.sh
 #
-# Requires the worldmonitor stack to be running (uvx podman-compose up -d).
+# Requires the zmonitor stack to be running (uvx podman-compose up -d).
 # The Redis REST proxy listens on localhost:8079 by default.
 
 UPSTASH_REDIS_REST_URL="${UPSTASH_REDIS_REST_URL:-http://localhost:8079}"

@@ -3,11 +3,11 @@ import type {
   ServerContext,
   ReverseGeocodeRequest,
   ReverseGeocodeResponse,
-} from '../../../../src/generated/server/worldmonitor/infrastructure/v1/service_server';
+} from '../../../../src/generated/server/zmonitor/infrastructure/v1/service_server';
 import { getCachedJson, setCachedJson } from '../../../_shared/redis';
 
 const NOMINATIM_BASE = 'https://nominatim.openstreetmap.org/reverse';
-const CHROME_UA = 'WorldMonitor/2.0 (https://worldmonitor.app)';
+const CHROME_UA = 'Z-Monitor/2.0 (https://zmonitor.app)';
 
 interface ReverseCacheEntry {
   country?: string;

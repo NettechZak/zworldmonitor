@@ -13,9 +13,9 @@ test.describe('theme toggle (happy variant)', () => {
     // (addInitScript runs on every navigation, so we use a flag)
     await page.addInitScript(() => {
       if (!sessionStorage.getItem('__test_init_done')) {
-        localStorage.removeItem('worldmonitor-theme');
-        localStorage.removeItem('worldmonitor-variant');
-        localStorage.setItem('worldmonitor-variant', 'happy');
+        localStorage.removeItem('zmonitor-theme');
+        localStorage.removeItem('zmonitor-variant');
+        localStorage.setItem('zmonitor-variant', 'happy');
         sessionStorage.setItem('__test_init_done', '1');
       }
     });
@@ -95,7 +95,7 @@ test.describe('theme toggle (happy variant)', () => {
     expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe('dark');
 
     // Verify localStorage has 'dark'
-    const stored = await page.evaluate(() => localStorage.getItem('worldmonitor-theme'));
+    const stored = await page.evaluate(() => localStorage.getItem('zmonitor-theme'));
     expect(stored).toBe('dark');
 
     // Reload the page
@@ -155,8 +155,8 @@ test.describe('theme toggle (happy variant)', () => {
   test('no FOUC: data-theme is set before main CSS loads', async ({ page }) => {
     // Set dark preference before navigation
     await page.addInitScript(() => {
-      localStorage.setItem('worldmonitor-theme', 'dark');
-      localStorage.setItem('worldmonitor-variant', 'happy');
+      localStorage.setItem('zmonitor-theme', 'dark');
+      localStorage.setItem('zmonitor-variant', 'happy');
     });
 
     await page.goto('/');

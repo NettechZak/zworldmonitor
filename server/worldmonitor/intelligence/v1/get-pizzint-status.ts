@@ -7,7 +7,7 @@ import type {
   GdeltTensionPair,
   TrendDirection,
   DataFreshness,
-} from '../../../../src/generated/server/worldmonitor/intelligence/v1/service_server';
+} from '../../../../src/generated/server/zmonitor/intelligence/v1/service_server';
 
 import { UPSTREAM_TIMEOUT_MS } from './_shared';
 import { CHROME_UA } from '../../../_shared/constants';

@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
-import { worldmonitorRoutes } from './routes/worldmonitor.js';
+import { zmonitorRoutes } from './routes/zmonitor.js';
 import { healthRoutes } from './routes/health.js';
 
 const server = Fastify({ logger: { level: process.env.LOG_LEVEL ?? 'info' } });
@@ -24,7 +24,7 @@ server.addHook('onRequest', async (request, reply) => {
   }
 });
 
-await server.register(worldmonitorRoutes, { prefix: '/wm/consumer-prices/v1' });
+await server.register(zmonitorRoutes, { prefix: '/wm/consumer-prices/v1' });
 await server.register(healthRoutes, { prefix: '/health' });
 
 const port = parseInt(process.env.PORT ?? '3400', 10);

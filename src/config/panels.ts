@@ -1113,8 +1113,8 @@ export const MONITOR_COLORS = [
 ];
 
 export const STORAGE_KEYS = {
-  panels: 'worldmonitor-panels',
-  monitors: 'worldmonitor-monitors',
-  mapLayers: 'worldmonitor-layers',
-  disabledFeeds: 'worldmonitor-disabled-feeds',
+  panels: 'zmonitor-panels',
+  monitors: 'zmonitor-monitors',
+  mapLayers: 'zmonitor-layers',
+  disabledFeeds: 'zmonitor-disabled-feeds',
 } as const;

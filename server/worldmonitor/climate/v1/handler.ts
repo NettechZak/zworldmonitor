@@ -1,4 +1,4 @@
-import type { ClimateServiceHandler } from '../../../../src/generated/server/worldmonitor/climate/v1/service_server';
+import type { ClimateServiceHandler } from '../../../../src/generated/server/zmonitor/climate/v1/service_server';
 
 import { listClimateAnomalies } from './list-climate-anomalies';
 

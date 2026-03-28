@@ -1,4 +1,4 @@
-import type { IntelligenceServiceHandler } from '../../../../src/generated/server/worldmonitor/intelligence/v1/service_server';
+import type { IntelligenceServiceHandler } from '../../../../src/generated/server/zmonitor/intelligence/v1/service_server';
 
 import { getRiskScores } from './get-risk-scores';
 import { getPizzintStatus } from './get-pizzint-status';

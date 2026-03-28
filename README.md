@@ -2,36 +2,36 @@
 
 **ADHD-optimized real-time global intelligence dashboard** — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified, focus-driven situational awareness interface.
 
-[![GitHub stars](https://img.shields.io/github/stars/NettechZak/zworldmonitor?style=social)](https://github.com/NettechZak/zworldmonitor/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/NettechZak/zworldmonitor?style=social)](https://github.com/NettechZak/zworldmonitor/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/NettechZak/zzmonitor?style=social)](https://github.com/NettechZak/zzmonitor/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/NettechZak/zzmonitor?style=social)](https://github.com/NettechZak/zzmonitor/network/members)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat&logo=discord&logoColor=white)](https://discord.gg/re63kWKxaz)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Last commit](https://img.shields.io/github/last-commit/NettechZak/zworldmonitor)](https://github.com/NettechZak/zworldmonitor/commits/main)
-[![Latest release](https://img.shields.io/github/v/release/NettechZak/zworldmonitor?style=flat)](https://github.com/NettechZak/zworldmonitor/releases/latest)
+[![Last commit](https://img.shields.io/github/last-commit/NettechZak/zzmonitor)](https://github.com/NettechZak/zzmonitor/commits/main)
+[![Latest release](https://img.shields.io/github/v/release/NettechZak/zzmonitor?style=flat)](https://github.com/NettechZak/zzmonitor/releases/latest)
 
 <p align="center">
-  <a href="https://worldmonitor.app"><img src="https://img.shields.io/badge/Web_App-worldmonitor.app-blue?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Web App"></a>&nbsp;
-  <a href="https://tech.worldmonitor.app"><img src="https://img.shields.io/badge/Tech_Variant-tech.worldmonitor.app-0891b2?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Tech Variant"></a>&nbsp;
-  <a href="https://finance.worldmonitor.app"><img src="https://img.shields.io/badge/Finance_Variant-finance.worldmonitor.app-059669?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Finance Variant"></a>&nbsp;
-  <a href="https://commodity.worldmonitor.app"><img src="https://img.shields.io/badge/Commodity_Variant-commodity.worldmonitor.app-b45309?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Commodity Variant"></a>&nbsp;
-  <a href="https://happy.worldmonitor.app"><img src="https://img.shields.io/badge/Happy_Variant-happy.worldmonitor.app-f59e0b?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Happy Variant"></a>
+  <a href="https://zmonitor.app"><img src="https://img.shields.io/badge/Web_App-zmonitor.app-blue?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Web App"></a>&nbsp;
+  <a href="https://tech.zmonitor.app"><img src="https://img.shields.io/badge/Tech_Variant-tech.zmonitor.app-0891b2?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Tech Variant"></a>&nbsp;
+  <a href="https://finance.zmonitor.app"><img src="https://img.shields.io/badge/Finance_Variant-finance.zmonitor.app-059669?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Finance Variant"></a>&nbsp;
+  <a href="https://commodity.zmonitor.app"><img src="https://img.shields.io/badge/Commodity_Variant-commodity.zmonitor.app-b45309?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Commodity Variant"></a>&nbsp;
+  <a href="https://happy.zmonitor.app"><img src="https://img.shields.io/badge/Happy_Variant-happy.zmonitor.app-f59e0b?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Happy Variant"></a>
 </p>
 
 <p align="center">
-  <a href="https://worldmonitor.app/api/download?platform=windows-exe"><img src="https://img.shields.io/badge/Download-Windows_(.exe)-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows"></a>&nbsp;
-  <a href="https://worldmonitor.app/api/download?platform=macos-arm64"><img src="https://img.shields.io/badge/Download-macOS_Apple_Silicon-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS ARM"></a>&nbsp;
-  <a href="https://worldmonitor.app/api/download?platform=macos-x64"><img src="https://img.shields.io/badge/Download-macOS_Intel-555555?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Intel"></a>&nbsp;
-  <a href="https://worldmonitor.app/api/download?platform=linux-appimage"><img src="https://img.shields.io/badge/Download-Linux_(.AppImage)-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Download Linux"></a>
+  <a href="https://zmonitor.app/api/download?platform=windows-exe"><img src="https://img.shields.io/badge/Download-Windows_(.exe)-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows"></a>&nbsp;
+  <a href="https://zmonitor.app/api/download?platform=macos-arm64"><img src="https://img.shields.io/badge/Download-macOS_Apple_Silicon-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS ARM"></a>&nbsp;
+  <a href="https://zmonitor.app/api/download?platform=macos-x64"><img src="https://img.shields.io/badge/Download-macOS_Intel-555555?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Intel"></a>&nbsp;
+  <a href="https://zmonitor.app/api/download?platform=linux-appimage"><img src="https://img.shields.io/badge/Download-Linux_(.AppImage)-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Download Linux"></a>
 </p>
 
 <p align="center">
-  <a href="https://docs.worldmonitor.app"><strong>Documentation</strong></a> &nbsp;·&nbsp;
-  <a href="https://github.com/NettechZak/zworldmonitor/releases/latest"><strong>Releases</strong></a> &nbsp;·&nbsp;
-  <a href="https://docs.worldmonitor.app/contributing"><strong>Contributing</strong></a>
+  <a href="https://docs.zmonitor.app"><strong>Documentation</strong></a> &nbsp;·&nbsp;
+  <a href="https://github.com/NettechZak/zzmonitor/releases/latest"><strong>Releases</strong></a> &nbsp;·&nbsp;
+  <a href="https://docs.zmonitor.app/contributing"><strong>Contributing</strong></a>
 </p>
 
-![World Monitor Dashboard](docs/images/worldmonitor-7-mar-2026.jpg)
+![Z-Monitor Dashboard](docs/images/zmonitor-7-mar-2026.jpg)
 
 ---
 
@@ -50,15 +50,15 @@
 - **Native desktop app** (Tauri 2) for macOS, Windows, and Linux
 - **21 languages** with native-language feeds and RTL support
 
-For the full feature list, architecture, data sources, and algorithms, see the **[documentation](https://docs.worldmonitor.app)**.
+For the full feature list, architecture, data sources, and algorithms, see the **[documentation](https://docs.zmonitor.app)**.
 
 ---
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/NettechZak/zworldmonitor.git
-cd zworldmonitor
+git clone https://github.com/NettechZak/zzmonitor.git
+cd zzmonitor
 npm install
 npm run dev
 ```
@@ -68,13 +68,13 @@ Open [localhost:5173](http://localhost:5173). No environment variables required 
 For variant-specific development:
 
 ```bash
-npm run dev:tech       # tech.worldmonitor.app
-npm run dev:finance    # finance.worldmonitor.app
-npm run dev:commodity  # commodity.worldmonitor.app
-npm run dev:happy      # happy.worldmonitor.app
+npm run dev:tech       # tech.zmonitor.app
+npm run dev:finance    # finance.zmonitor.app
+npm run dev:commodity  # commodity.zmonitor.app
+npm run dev:happy      # happy.zmonitor.app
 ```
 
-See the **[self-hosting guide](https://docs.worldmonitor.app/getting-started)** for deployment options (Vercel, Docker, static).
+See the **[self-hosting guide](https://docs.zmonitor.app/getting-started)** for deployment options (Vercel, Docker, static).
 
 ---
 
@@ -89,19 +89,19 @@ See the **[self-hosting guide](https://docs.worldmonitor.app/getting-started)** 
 | **Deployment** | Vercel Edge Functions (60+), Railway relay, Tauri, PWA |
 | **Caching** | Redis (Upstash), 3-tier cache, CDN, service worker |
 
-Full stack details in the **[architecture docs](https://docs.worldmonitor.app/architecture)**.
+Full stack details in the **[architecture docs](https://docs.zmonitor.app/architecture)**.
 
 ---
 
 ## Flight Data
 
-Flight data provided gracefully by [Wingbits](https://wingbits.com?utm_source=worldmonitor&utm_medium=referral&utm_campaign=worldmonitor), the most advanced ADS-B flight data solution.
+Flight data provided gracefully by [Wingbits](https://wingbits.com?utm_source=zmonitor&utm_medium=referral&utm_campaign=zmonitor), the most advanced ADS-B flight data solution.
 
 ---
 
 ## Data Sources
 
-WorldMonitor aggregates 30+ external data sources across geopolitics, finance, energy, climate, aviation, and cyber. See the full [data sources catalog](https://docs.worldmonitor.app/data-sources) for providers, feed tiers, and collection methods.
+Z-Monitor aggregates 30+ external data sources across geopolitics, finance, energy, climate, aviation, and cyber. See the full [data sources catalog](https://docs.zmonitor.app/data-sources) for providers, feed tiers, and collection methods.
 
 ---
 
@@ -139,8 +139,8 @@ Copyright (C) 2024-2026 NettechZak. All rights reserved.
 
 ## Contributors
 
-<a href="https://github.com/NettechZak/zworldmonitor/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=NettechZak/zworldmonitor" />
+<a href="https://github.com/NettechZak/zzmonitor/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NettechZak/zzmonitor" />
 </a>
 
 ## Security Acknowledgments
@@ -154,17 +154,17 @@ See our [Security Policy](./SECURITY.md) for responsible disclosure guidelines.
 ---
 
 <p align="center">
-  <a href="https://worldmonitor.app">worldmonitor.app</a> &nbsp;·&nbsp;
-  <a href="https://docs.worldmonitor.app">docs.worldmonitor.app</a> &nbsp;·&nbsp;
-  <a href="https://finance.worldmonitor.app">finance.worldmonitor.app</a> &nbsp;·&nbsp;
-  <a href="https://commodity.worldmonitor.app">commodity.worldmonitor.app</a>
+  <a href="https://zmonitor.app">zmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://docs.zmonitor.app">docs.zmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://finance.zmonitor.app">finance.zmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://commodity.zmonitor.app">commodity.zmonitor.app</a>
 </p>
 
 ## Star History
 
-<a href="https://api.star-history.com/svg?repos=NettechZak/zworldmonitor&type=Date">
+<a href="https://api.star-history.com/svg?repos=NettechZak/zzmonitor&type=Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=NettechZak/zworldmonitor&type=Date&type=Date&theme=dark" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=NettechZak/zworldmonitor&type=Date&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=NettechZak/zzmonitor&type=Date&type=Date&theme=dark" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=NettechZak/zzmonitor&type=Date&type=Date" />
  </picture>
 </a>

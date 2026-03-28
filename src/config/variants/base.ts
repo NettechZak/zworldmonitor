@@ -76,14 +76,14 @@ export const MONITOR_COLORS = [
 
 // Storage keys - shared
 export const STORAGE_KEYS = {
-  panels: 'worldmonitor-panels',
-  monitors: 'worldmonitor-monitors',
-  mapLayers: 'worldmonitor-layers',
-  disabledFeeds: 'worldmonitor-disabled-feeds',
-  liveChannels: 'worldmonitor-live-channels',
-  mapMode: 'worldmonitor-map-mode',          // 'flat' | 'globe'
-  activeChannel: 'worldmonitor-active-channel',
-  webcamPrefs: 'worldmonitor-webcam-prefs',
+  panels: 'zmonitor-panels',
+  monitors: 'zmonitor-monitors',
+  mapLayers: 'zmonitor-layers',
+  disabledFeeds: 'zmonitor-disabled-feeds',
+  liveChannels: 'zmonitor-live-channels',
+  mapMode: 'zmonitor-map-mode',          // 'flat' | 'globe'
+  activeChannel: 'zmonitor-active-channel',
+  webcamPrefs: 'zmonitor-webcam-prefs',
 } as const;
 
 // Type definitions for variant configs

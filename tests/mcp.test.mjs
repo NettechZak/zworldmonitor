@@ -5,14 +5,14 @@ const originalFetch = globalThis.fetch;
 const originalEnv = { ...process.env };
 
 const VALID_KEY = 'wm_test_key_123';
-const BASE_URL = 'https://api.worldmonitor.app/mcp';
+const BASE_URL = 'https://api.zmonitor.app/mcp';
 
 function makeReq(method = 'POST', body = null, headers = {}) {
   return new Request(BASE_URL, {
     method,
     headers: {
       'Content-Type': 'application/json',
-      'X-WorldMonitor-Key': VALID_KEY,
+      'X-Z-Monitor-Key': VALID_KEY,
       ...headers,
     },
     body: body ? JSON.stringify(body) : undefined,
@@ -63,7 +63,7 @@ describe('api/mcp.ts — PRO MCP Server', () => {
   });
 
   it('returns JSON-RPC -32001 when invalid API key provided', async () => {
-    const req = makeReq('POST', initBody(), { 'X-WorldMonitor-Key': 'wrong_key' });
+    const req = makeReq('POST', initBody(), { 'X-Z-Monitor-Key': 'wrong_key' });
     const res = await handler(req);
     assert.equal(res.status, 200);
     const body = await res.json();
@@ -73,7 +73,7 @@ describe('api/mcp.ts — PRO MCP Server', () => {
   // --- Protocol ---
 
   it('OPTIONS returns 204 with CORS headers', async () => {
-    const req = new Request(BASE_URL, { method: 'OPTIONS', headers: { origin: 'https://worldmonitor.app' } });
+    const req = new Request(BASE_URL, { method: 'OPTIONS', headers: { origin: 'https://zmonitor.app' } });
     const res = await handler(req);
     assert.equal(res.status, 204);
     assert.ok(res.headers.get('access-control-allow-methods'));
@@ -86,7 +86,7 @@ describe('api/mcp.ts — PRO MCP Server', () => {
     assert.equal(body.jsonrpc, '2.0');
     assert.equal(body.id, 1);
     assert.equal(body.result?.protocolVersion, '2025-03-26');
-    assert.equal(body.result?.serverInfo?.name, 'worldmonitor');
+    assert.equal(body.result?.serverInfo?.name, 'zmonitor');
     assert.ok(res.headers.get('mcp-session-id'), 'Mcp-Session-Id header must be present');
   });
 
@@ -105,7 +105,7 @@ describe('api/mcp.ts — PRO MCP Server', () => {
   it('malformed body returns JSON-RPC -32600', async () => {
     const req = new Request(BASE_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-WorldMonitor-Key': VALID_KEY },
+      headers: { 'Content-Type': 'application/json', 'X-Z-Monitor-Key': VALID_KEY },
       body: '{bad json',
     });
     const res = await handler(req);

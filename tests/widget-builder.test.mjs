@@ -108,11 +108,11 @@ describe('widget-agent relay — security', () => {
   it('SSRF guard — allowlist is checked before any fetch call in tool loop', () => {
     const allowlistCheck = relay.indexOf('isWidgetEndpointAllowed(endpoint)');
     assert.ok(allowlistCheck !== -1, 'isWidgetEndpointAllowed() check missing in tool loop');
-    // The fetch call to api.worldmonitor.app must come AFTER the check
-    const fetchCallIdx = relay.indexOf("'https://api.worldmonitor.app'", allowlistCheck);
+    // The fetch call to api.zmonitor.app must come AFTER the check
+    const fetchCallIdx = relay.indexOf("'https://api.zmonitor.app'", allowlistCheck);
     assert.ok(
       fetchCallIdx > allowlistCheck,
-      'fetch() to api.worldmonitor.app must appear after allowlist check',
+      'fetch() to api.zmonitor.app must appear after allowlist check',
     );
   });
 
@@ -187,7 +187,7 @@ describe('widget-agent relay — security', () => {
     const corsBlock = relay.slice(widgetCorsIdx, widgetCorsIdx + 600);
     // Must NOT define a hardcoded origins array for this specific route
     assert.ok(
-      !corsBlock.includes("['https://worldmonitor.app'"),
+      !corsBlock.includes("['https://zmonitor.app'"),
       'Do NOT hardcode origins for /widget-agent — reuse getCorsOrigin()',
     );
     // Must reference corsOrigin variable (set by getCorsOrigin earlier)
@@ -280,17 +280,17 @@ describe('widget-store — constants and logic', () => {
     );
   });
 
-  it('deleteWidget cleans worldmonitor-panel-spans (aggregate map)', () => {
+  it('deleteWidget cleans zmonitor-panel-spans (aggregate map)', () => {
     assert.ok(
-      store.includes("'worldmonitor-panel-spans'"),
-      "deleteWidget must clean 'worldmonitor-panel-spans'",
+      store.includes("'zmonitor-panel-spans'"),
+      "deleteWidget must clean 'zmonitor-panel-spans'",
     );
   });
 
-  it('deleteWidget cleans worldmonitor-panel-col-spans (aggregate map)', () => {
+  it('deleteWidget cleans zmonitor-panel-col-spans (aggregate map)', () => {
     assert.ok(
-      store.includes("'worldmonitor-panel-col-spans'"),
-      "deleteWidget must clean 'worldmonitor-panel-col-spans'",
+      store.includes("'zmonitor-panel-col-spans'"),
+      "deleteWidget must clean 'zmonitor-panel-col-spans'",
     );
   });
 
@@ -702,11 +702,11 @@ describe('proxy routing — widgetAgentUrl', () => {
     );
   });
 
-  it('widgetAgentUrl targets proxy.worldmonitor.app (not toRuntimeUrl)', () => {
+  it('widgetAgentUrl targets proxy.zmonitor.app (not toRuntimeUrl)', () => {
     // The URL may be in a constant above the function; search the whole file
     assert.ok(
-      proxy.includes('proxy.worldmonitor.app'),
-      'Must target proxy.worldmonitor.app directly (sidecar destroys SSE via arrayBuffer)',
+      proxy.includes('proxy.zmonitor.app'),
+      'Must target proxy.zmonitor.app directly (sidecar destroys SSE via arrayBuffer)',
     );
     // Verify the function itself does not use toRuntimeUrl
     const fnIdx = proxy.indexOf('function widgetAgentUrl');
@@ -718,14 +718,14 @@ describe('proxy routing — widgetAgentUrl', () => {
     );
   });
 
-  it('vite.config.ts proxies /widget-agent to proxy.worldmonitor.app', () => {
+  it('vite.config.ts proxies /widget-agent to proxy.zmonitor.app', () => {
     assert.ok(
       vite.includes('/widget-agent'),
       'vite.config.ts must have proxy entry for /widget-agent',
     );
     assert.ok(
-      vite.includes('proxy.worldmonitor.app'),
-      'Vite proxy target must be proxy.worldmonitor.app',
+      vite.includes('proxy.zmonitor.app'),
+      'Vite proxy target must be proxy.zmonitor.app',
     );
   });
 

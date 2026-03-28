@@ -1,6 +1,6 @@
 import type {
   AircraftDetails,
-} from '../../../../src/generated/server/worldmonitor/military/v1/service_server';
+} from '../../../../src/generated/server/zmonitor/military/v1/service_server';
 
 // ========================================================================
 // Military identification

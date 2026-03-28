@@ -6,7 +6,7 @@ import type {
   StrategicRisk,
   TrendDirection,
   SeverityLevel,
-} from '../../../../src/generated/server/worldmonitor/intelligence/v1/service_server';
+} from '../../../../src/generated/server/zmonitor/intelligence/v1/service_server';
 
 import { getCachedJson, setCachedJson, cachedFetchJsonWithMeta } from '../../../_shared/redis';
 import { TIER1_COUNTRIES } from './_shared';

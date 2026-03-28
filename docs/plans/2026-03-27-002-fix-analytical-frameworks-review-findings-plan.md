@@ -24,11 +24,11 @@ in DeductionPanel, and missing debounce on country-brief re-fetch.
 
 ### Unit 1 — Cache key fixes (todos 041, 045) `[P1]`
 
-**Files:** `server/worldmonitor/intelligence/v1/deduct-situation.ts`,
-`server/worldmonitor/news/v1/summarize-article.ts`,
-`server/worldmonitor/news/v1/_shared.ts` (via `src/utils/summary-cache-key.ts`)
+**Files:** `server/zmonitor/intelligence/v1/deduct-situation.ts`,
+`server/zmonitor/news/v1/summarize-article.ts`,
+`server/zmonitor/news/v1/_shared.ts` (via `src/utils/summary-cache-key.ts`)
 
-**Patterns to follow:** `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:37-40`
+**Patterns to follow:** `server/zmonitor/intelligence/v1/get-country-intel-brief.ts:37-40`
 (the reference implementation that already does this correctly).
 
 **deduct-situation.ts fix:**
@@ -63,9 +63,9 @@ produce different Redis keys.
 
 ### Unit 2 — Server-side premium gate (todo 042) `[P1]`
 
-**Files:** `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts`,
-`server/worldmonitor/intelligence/v1/deduct-situation.ts`,
-`server/worldmonitor/news/v1/summarize-article.ts`
+**Files:** `server/zmonitor/intelligence/v1/get-country-intel-brief.ts`,
+`server/zmonitor/intelligence/v1/deduct-situation.ts`,
+`server/zmonitor/news/v1/summarize-article.ts`
 
 **Gateway architecture context:** `src/shared/premium-paths.ts` gates entire routes.
 The intelligence/news routes are NOT in `PREMIUM_RPC_PATHS` (they're semi-public).
@@ -221,7 +221,7 @@ analysis instructions) passes through unchanged.
 
 ### Unit 5 — Parallelize sha256 calls (todo 051) `[P2]`
 
-**File:** `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:38-39`
+**File:** `server/zmonitor/intelligence/v1/get-country-intel-brief.ts:38-39`
 
 **Current (sequential):**
 ```ts
@@ -461,9 +461,9 @@ In `preferences-content.ts` import handler, replace `id: Date.now().toString()` 
 
 ## Sources & References
 
-- Origin PR: koala73/worldmonitor#2380
+- Origin PR: NettechZak/zmonitor#2380
 - Review todos: `todos/041` through `todos/057`
-- Reference cache key pattern: `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:37-40`
+- Reference cache key pattern: `server/zmonitor/intelligence/v1/get-country-intel-brief.ts:37-40`
 - Premium gate infrastructure: `server/auth-session.ts`, `src/shared/premium-paths.ts`, `server/gateway.ts:243-263`
 - Settings persistence: `src/utils/settings-persistence.ts:20-42`
 - sanitizeForPrompt: `server/_shared/llm-sanitize.ts`

@@ -1,7 +1,7 @@
 /**
- * Builds compact WorldMonitor-ready snapshot payloads from computed indices.
+ * Builds compact Z-Monitor-ready snapshot payloads from computed indices.
  * All types are shaped to match the proto-generated TypeScript interfaces so
- * snapshots can be written to Redis and read directly by WorldMonitor handlers.
+ * snapshots can be written to Redis and read directly by Z-Monitor handlers.
  */
 import { query } from '../db/client.js';
 

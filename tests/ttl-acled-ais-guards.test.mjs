@@ -23,7 +23,7 @@ const readSrc = (relPath) => readFileSync(resolve(root, relPath), 'utf-8');
 
 describe('cache-only handlers read from seed keys', () => {
   it('climate anomalies is pure cache read (seed controls TTL)', () => {
-    const src = readSrc('server/worldmonitor/climate/v1/list-climate-anomalies.ts');
+    const src = readSrc('server/zmonitor/climate/v1/list-climate-anomalies.ts');
     assert.match(src, /getCachedJson/,
       'Climate handler should use getCachedJson (seed-only)');
     assert.doesNotMatch(src, /cachedFetchJson/,
@@ -31,7 +31,7 @@ describe('cache-only handlers read from seed keys', () => {
   });
 
   it('fire detections is pure cache read (seed controls TTL)', () => {
-    const src = readSrc('server/worldmonitor/wildfire/v1/list-fire-detections.ts');
+    const src = readSrc('server/zmonitor/wildfire/v1/list-fire-detections.ts');
     assert.match(src, /getCachedJson/,
       'Fire handler should use getCachedJson (seed-only)');
     assert.doesNotMatch(src, /cachedFetchJson/,
@@ -86,13 +86,13 @@ describe('ACLED shared cache layer', () => {
 
 describe('ACLED consumers use shared cache layer', () => {
   it('conflict handler imports fetchAcledCached', () => {
-    const src = readSrc('server/worldmonitor/conflict/v1/list-acled-events.ts');
+    const src = readSrc('server/zmonitor/conflict/v1/list-acled-events.ts');
     assert.match(src, /fetchAcledCached/,
       'Conflict handler should use shared ACLED fetch');
   });
 
   it('unrest handler is pure cache read (seed-only, no ACLED calls)', () => {
-    const src = readSrc('server/worldmonitor/unrest/v1/list-unrest-events.ts');
+    const src = readSrc('server/zmonitor/unrest/v1/list-unrest-events.ts');
     assert.match(src, /getCachedJson/,
       'Unrest handler should use getCachedJson (seed-only)');
     assert.doesNotMatch(src, /cachedFetchJson/,
@@ -100,14 +100,14 @@ describe('ACLED consumers use shared cache layer', () => {
   });
 
   it('risk scores handler imports fetchAcledCached', () => {
-    const src = readSrc('server/worldmonitor/intelligence/v1/get-risk-scores.ts');
+    const src = readSrc('server/zmonitor/intelligence/v1/get-risk-scores.ts');
     assert.match(src, /fetchAcledCached/,
       'Risk scores handler should use shared ACLED fetch');
   });
 
   it('no handler has its own ACLED_API_URL constant', () => {
-    const conflict = readSrc('server/worldmonitor/conflict/v1/list-acled-events.ts');
-    const riskScores = readSrc('server/worldmonitor/intelligence/v1/get-risk-scores.ts');
+    const conflict = readSrc('server/zmonitor/conflict/v1/list-acled-events.ts');
+    const riskScores = readSrc('server/zmonitor/intelligence/v1/get-risk-scores.ts');
     for (const [name, src] of [['conflict', conflict], ['risk-scores', riskScores]]) {
       assert.doesNotMatch(src, /ACLED_API_URL/,
         `${name} handler should not define its own ACLED_API_URL`);

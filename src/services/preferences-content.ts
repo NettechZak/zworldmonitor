@@ -18,7 +18,7 @@ import {
   type AnalysisPanelId,
 } from '@/services/analysis-framework-store';
 
-const DESKTOP_RELEASES_URL = 'https://github.com/koala73/worldmonitor/releases';
+const DESKTOP_RELEASES_URL = 'https://github.com/NettechZak/zmonitor/releases';
 
 export interface PreferencesHost {
   isDesktopApp: boolean;
