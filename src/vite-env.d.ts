@@ -9,6 +9,7 @@ interface Window {
 
 declare const __APP_VERSION__: string;
 
+// Z-Monitor environment variable augmentation
 interface ImportMetaEnv {
   readonly VITE_BRAND_NAME?: string;
   readonly VITE_SENTRY_DSN?: string;
@@ -19,8 +20,4 @@ interface ImportMetaEnv {
   readonly VITE_DESKTOP_RUNTIME?: string;
   readonly VITE_TAURI_API_BASE_URL?: string;
   readonly VITE_TAURI_REMOTE_API_BASE_URL?: string;
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
 }
