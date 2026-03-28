@@ -11,7 +11,7 @@ await server.register(cors, {
   methods: ['GET'],
 });
 
-const API_KEY = process.env.WORLDMONITOR_SNAPSHOT_API_KEY;
+const API_KEY = process.env.ZMONITOR_SNAPSHOT_API_KEY;
 
 server.addHook('onRequest', async (request, reply) => {
   if (request.url === '/health') return;

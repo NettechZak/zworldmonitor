@@ -188,7 +188,7 @@ function renderOverview(area: HTMLElement): void {
   const dashOffset = circumference - (pct / 100) * circumference;
   const ringColor = ready === total ? 'var(--settings-green)' : ready > 0 ? 'var(--settings-blue)' : 'var(--settings-yellow)';
 
-  const wmState = getSecretState('WORLDMONITOR_API_KEY');
+  const wmState = getSecretState('ZMONITOR_API_KEY');
   const wmStatusText = wmState.present ? 'Active' : 'Not set';
   const wmStatusClass = wmState.present ? 'ok' : 'warn';
   const catCards = SETTINGS_CATEGORIES.map(cat => {
@@ -895,7 +895,7 @@ async function initSettingsWindow(): Promise<void> {
         }
 
         if (hasWmKeyChange && wmKeyValue) {
-          await setSecretValue('WORLDMONITOR_API_KEY', wmKeyValue);
+          await setSecretValue('ZMONITOR_API_KEY', wmKeyValue);
         }
 
         if (hasPending) {

@@ -171,7 +171,7 @@ describe('createRelayHandler', () => {
   });
 
   it('responds 401 when requireApiKey and no valid key', async () => {
-    process.env.WORLDMONITOR_VALID_KEYS = 'real-key-123';
+    process.env.ZMONITOR_VALID_KEYS = 'real-key-123';
     const handler = createRelayHandler({ relayPath: '/test', requireApiKey: true });
     const res = await handler(makeRequest('https://zmonitor.app/api/test', {
       headers: { Origin: 'https://tauri.localhost', 'X-Z-Monitor-Key': 'wrong-key' },
@@ -182,7 +182,7 @@ describe('createRelayHandler', () => {
   });
 
   it('allows request when requireApiKey and key is valid', async () => {
-    process.env.WORLDMONITOR_VALID_KEYS = 'real-key-123';
+    process.env.ZMONITOR_VALID_KEYS = 'real-key-123';
     mockFetchOk();
     const handler = createRelayHandler({ relayPath: '/test', requireApiKey: true });
     const res = await handler(makeRequest('https://zmonitor.app/api/test', {

@@ -66,7 +66,7 @@ export const getYoutubeLiveStreamInfo: AviationServiceHandler['getYoutubeLiveStr
   if (relayBaseUrl) {
     try {
       const relayResponse = await fetch(`${relayBaseUrl}/youtube-live?${params.toString()}`, {
-        headers: getRelayHeaders({ 'User-Agent': 'Z-Monitor-Server/1.0' }),
+        headers: getRelayHeaders({ 'User-Agent': 'ZMonitor-Server/1.0' }),
         signal: AbortSignal.timeout(8_000),
       });
       if (relayResponse.ok) {

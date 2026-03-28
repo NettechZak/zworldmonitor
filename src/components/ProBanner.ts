@@ -38,7 +38,7 @@ export function showProBanner(container: HTMLElement): void {
   banner.innerHTML = `
     <span class="pro-banner-badge">PRO</span>
     <span class="pro-banner-text">
-      <strong>Z-Monitor Pro is coming</strong> — More Signal, Less Noise. More AI Briefings. A Geopolitical &amp; Equity Researcher just for you.
+      <strong>ZMonitor Pro is coming</strong> — More Signal, Less Noise. More AI Briefings. A Geopolitical &amp; Equity Researcher just for you.
     </span>
     <a class="pro-banner-cta" href="/pro">Reserve your spot →</a>
   `;

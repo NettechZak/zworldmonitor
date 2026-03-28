@@ -130,7 +130,7 @@ const TESTS = [
 // Seed Health check
 // ========================================================================
 
-const API_KEY = process.env.WORLDMONITOR_KEY || '';
+const API_KEY = process.env.ZMONITOR_KEY || '';
 
 const SEED_HEALTH_TEST = {
   name: 'Seed Health',

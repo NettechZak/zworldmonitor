@@ -116,7 +116,7 @@ test.describe('desktop runtime routing guardrails', () => {
       delete globalWindow.__wmFetchPatched;
 
       // Set a valid WM API key so cloud fallback is allowed
-      await runtimeConfig.setSecretValue('WORLDMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, 'wm_test_key_1234567890abcdef');
+      await runtimeConfig.setSecretValue('ZMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, 'wm_test_key_1234567890abcdef');
 
       try {
         runtime.installRuntimeFetchPatch();
@@ -142,7 +142,7 @@ test.describe('desktop runtime routing guardrails', () => {
         } else {
           globalWindow.__TAURI__ = previousTauri;
         }
-        await runtimeConfig.setSecretValue('WORLDMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, '');
+        await runtimeConfig.setSecretValue('ZMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, '');
       }
     });
 
@@ -843,7 +843,7 @@ test.describe('desktop runtime routing guardrails', () => {
       delete globalWindow.__wmFetchPatched;
 
       const testKey = 'wm_test_key_1234567890abcdef';
-      await runtimeConfig.setSecretValue('WORLDMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, testKey);
+      await runtimeConfig.setSecretValue('ZMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, testKey);
 
       try {
         runtime.installRuntimeFetchPatch();
@@ -865,7 +865,7 @@ test.describe('desktop runtime routing guardrails', () => {
         } else {
           globalWindow.__TAURI__ = previousTauri;
         }
-        await runtimeConfig.setSecretValue('WORLDMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, '');
+        await runtimeConfig.setSecretValue('ZMONITOR_API_KEY' as import('/src/services/runtime-config.ts').RuntimeSecretKey, '');
       }
     });
 

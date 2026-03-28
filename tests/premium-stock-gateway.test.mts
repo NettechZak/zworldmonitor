@@ -5,11 +5,11 @@ import { generateKeyPair, exportJWK, SignJWT } from 'jose';
 
 import { createDomainGateway } from '../server/gateway.ts';
 
-const originalKeys = process.env.WORLDMONITOR_VALID_KEYS;
+const originalKeys = process.env.ZMONITOR_VALID_KEYS;
 
 afterEach(() => {
-  if (originalKeys == null) delete process.env.WORLDMONITOR_VALID_KEYS;
-  else process.env.WORLDMONITOR_VALID_KEYS = originalKeys;
+  if (originalKeys == null) delete process.env.ZMONITOR_VALID_KEYS;
+  else process.env.ZMONITOR_VALID_KEYS = originalKeys;
 });
 
 describe('premium stock gateway enforcement', () => {
@@ -27,7 +27,7 @@ describe('premium stock gateway enforcement', () => {
       },
     ]);
 
-    process.env.WORLDMONITOR_VALID_KEYS = 'real-key-123';
+    process.env.ZMONITOR_VALID_KEYS = 'real-key-123';
 
     // Trusted browser origin without credentials — 401 (Origin is spoofable, not a security boundary)
     const browserNoKey = await handler(new Request('https://zmonitor.app/api/market/v1/analyze-stock?symbol=AAPL', {
@@ -99,7 +99,7 @@ describe('premium stock gateway bearer token auth', () => {
     jwksPort = typeof addr === 'object' && addr ? addr.port : 0;
 
     process.env.CLERK_JWT_ISSUER_DOMAIN = `http://127.0.0.1:${jwksPort}`;
-    process.env.WORLDMONITOR_VALID_KEYS = 'real-key-123';
+    process.env.ZMONITOR_VALID_KEYS = 'real-key-123';
 
     handler = createDomainGateway([
       {

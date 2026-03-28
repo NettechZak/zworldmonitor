@@ -46,7 +46,7 @@ function buildHeaders(customHeaders) {
   const h = {
     'Content-Type': 'application/json',
     'Accept': 'application/json, text/event-stream',
-    'User-Agent': 'Z-Monitor-MCP-Proxy/1.0',
+    'User-Agent': 'ZMonitor-MCP-Proxy/1.0',
   };
   if (customHeaders && typeof customHeaders === 'object') {
     for (const [k, v] of Object.entries(customHeaders)) {

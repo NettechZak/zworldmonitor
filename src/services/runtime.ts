@@ -120,7 +120,7 @@ export function getApiBaseUrl(): string {
   return `http://127.0.0.1:${getLocalApiPort()}`;
 }
 
-function isZ-MonitorWebHost(hostname: string): boolean {
+function isZMonitorWebHost(hostname: string): boolean {
   return hostname === 'zmonitor.app'
     || hostname === 'www.zmonitor.app'
     || hostname.endsWith('.zmonitor.app');
@@ -140,7 +140,7 @@ export function getConfiguredWebApiBaseUrl(): string {
   }
 
   const hostname = window.location?.hostname ?? '';
-  if (!isZ-MonitorWebHost(hostname)) {
+  if (!isZMonitorWebHost(hostname)) {
     return '';
   }
 
@@ -655,7 +655,7 @@ export function installRuntimeFetchPatch(): void {
       try {
         const { getSecretState, secretsReady } = await import('@/services/runtime-config');
         await Promise.race([secretsReady, new Promise<void>(r => setTimeout(r, 2000))]);
-        const wmKeyState = getSecretState('WORLDMONITOR_API_KEY');
+        const wmKeyState = getSecretState('ZMONITOR_API_KEY');
         if (!wmKeyState.present || !wmKeyState.valid) {
           allowCloudFallback = false;
         }
@@ -673,9 +673,9 @@ export function installRuntimeFetchPatch(): void {
       const cloudHeaders = new Headers(init?.headers);
       if (KEYED_CLOUD_API_PATTERN.test(target)) {
         const { getRuntimeConfigSnapshot } = await import('@/services/runtime-config');
-        const wmKeyValue = getRuntimeConfigSnapshot().secrets['WORLDMONITOR_API_KEY']?.value;
+        const wmKeyValue = getRuntimeConfigSnapshot().secrets['ZMONITOR_API_KEY']?.value;
         if (wmKeyValue) {
-          cloudHeaders.set('X-Z-Monitor-Key', wmKeyValue);
+          cloudHeaders.set('X-ZMonitor-Key', wmKeyValue);
         }
       }
       return nativeFetch(cloudUrl, { ...init, headers: cloudHeaders });
@@ -763,8 +763,8 @@ export function installWebApiRedirect(): void {
    * For premium API paths, inject auth when the user has premium access but no
    * existing auth header is present. Priority order:
    *   1. Existing auth headers — left unchanged (API key users keep their flow)
-   *   2. WORLDMONITOR_API_KEY from runtime config → X-Z-Monitor-Key
-   *   3. Tester key (wm-pro-key / wm-widget-key) → X-Z-Monitor-Key
+   *   2. ZMONITOR_API_KEY from runtime config → X-ZMonitor-Key
+   *   3. Tester key (wm-pro-key / wm-widget-key) → X-ZMonitor-Key
    *   4. Clerk Pro session → Authorization: Bearer <token>
    * Runs on every web deployment (with or without API base redirect).
    * Returns the original init unchanged for non-premium paths (zero overhead).
@@ -774,13 +774,13 @@ export function installWebApiRedirect(): void {
     if (!WEB_PREMIUM_API_PATHS.has(path)) return init;
     const headers = new Headers(init?.headers);
     // Don't overwrite existing auth headers
-    if (headers.has('Authorization') || headers.has('X-Z-Monitor-Key')) return init;
-    // WORLDMONITOR_API_KEY from env or runtime config
+    if (headers.has('Authorization') || headers.has('X-ZMonitor-Key')) return init;
+    // ZMONITOR_API_KEY from env or runtime config
     try {
       const { getRuntimeConfigSnapshot } = await import('@/services/runtime-config');
-      const wmKey = getRuntimeConfigSnapshot().secrets['WORLDMONITOR_API_KEY']?.value;
+      const wmKey = getRuntimeConfigSnapshot().secrets['ZMONITOR_API_KEY']?.value;
       if (wmKey) {
-        headers.set('X-Z-Monitor-Key', wmKey);
+        headers.set('X-ZMonitor-Key', wmKey);
         return { ...init, headers };
       }
     } catch { /* runtime-config unavailable — fall through */ }
@@ -790,7 +790,7 @@ export function installWebApiRedirect(): void {
     const { getBrowserTesterKey } = await import('@/services/widget-store');
     const testerKey = getBrowserTesterKey();
     if (testerKey) {
-      headers.set('X-Z-Monitor-Key', testerKey);
+      headers.set('X-ZMonitor-Key', testerKey);
       return { ...init, headers };
     }
     // Clerk Pro: inject Bearer token (fallback for users without a tester key)

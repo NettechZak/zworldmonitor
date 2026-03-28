@@ -79,7 +79,7 @@ export function getProviderCredentials(
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'HTTP-Referer': 'https://zmonitor.app',
-        'X-Title': 'Z-Monitor',
+        'X-Title': 'ZMonitor',
       },
     };
   }

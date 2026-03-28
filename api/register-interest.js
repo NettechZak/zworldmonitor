@@ -17,12 +17,12 @@ const rateLimiter = createIpRateLimiter({ limit: RATE_LIMIT, windowMs: RATE_WIND
 
 async function sendConfirmationEmail(email, referralCode) {
   const referralLink = `https://zmonitor.app/pro?ref=${referralCode}`;
-  const shareText = encodeURIComponent('I just joined the Z-Monitor Pro waitlist \u2014 real-time global intelligence powered by AI. Join me:');
+  const shareText = encodeURIComponent('I just joined the ZMonitor Pro waitlist \u2014 real-time global intelligence powered by AI. Join me:');
   const shareUrl = encodeURIComponent(referralLink);
   const twitterShare = `https://x.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
   const linkedinShare = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
   const whatsappShare = `https://wa.me/?text=${shareText}%20${shareUrl}`;
-  const telegramShare = `https://t.me/share/url?url=${shareUrl}&text=${encodeURIComponent('Join the Z-Monitor Pro waitlist:')}`;
+  const telegramShare = `https://t.me/share/url?url=${shareUrl}&text=${encodeURIComponent('Join the ZMonitor Pro waitlist:')}`;
 
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) {
@@ -37,9 +37,9 @@ async function sendConfirmationEmail(email, referralCode) {
         'Authorization': `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
-        from: 'Z-Monitor <noreply@zmonitor.app>',
+        from: 'ZMonitor <noreply@zmonitor.app>',
         to: [email],
-        subject: 'You\u2019re on the Z-Monitor Pro waitlist',
+        subject: 'You\u2019re on the ZMonitor Pro waitlist',
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #e0e0e0;">
             <div style="background: #4ade80; height: 4px;"></div>
@@ -150,7 +150,7 @@ async function sendConfirmationEmail(email, referralCode) {
                 <a href="https://zmonitor.app/pro" style="color: #666; text-decoration: none; font-size: 12px; margin: 0 12px;">Pro Waitlist</a>
               </div>
               <p style="font-size: 11px; color: #444; margin: 0; line-height: 1.6;">
-                Z-Monitor \u2014 Real-time intelligence for a connected world.<br />
+                ZMonitor \u2014 Real-time intelligence for a connected world.<br />
                 <a href="https://zmonitor.app" style="color: #4ade80; text-decoration: none;">zmonitor.app</a>
               </p>
             </div>

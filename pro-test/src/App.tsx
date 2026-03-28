@@ -17,7 +17,7 @@ import wiredLogo from './assets/wired-logo.svg';
 
 const API_BASE = 'https://api.z-monitor.app/api';
 const TURNSTILE_SITE_KEY = '0x4AAAAAACnaYgHIyxclu8Tj';
-const PRO_URL = 'https://z-monitor.app/pro';
+const PRO_URL = 'https://github.com/NettechZak/zworldmonitor/pro';
 
 declare global {
   interface Window {
@@ -154,7 +154,7 @@ const SlackIcon = () => (
 );
 
 const Logo = () => (
-  <a href="https://z-monitor.app" className="flex items-center gap-2 hover:opacity-80 transition-opacity" aria-label="Z-Monitor — Home">
+  <a href="https://github.com/NettechZak/zworldmonitor" className="flex items-center gap-2 hover:opacity-80 transition-opacity" aria-label="Z-Monitor — Home">
     <div className="relative w-8 h-8 rounded-full bg-wm-card border border-wm-border flex items-center justify-center overflow-hidden">
       <Globe className="w-5 h-5 text-wm-blue opacity-50 absolute" aria-hidden="true" />
       <Activity className="w-6 h-6 text-wm-green absolute z-10" aria-hidden="true" />
@@ -296,7 +296,7 @@ const Hero = () => (
         <div className="flex items-center justify-center gap-4 mt-4">
           <p className="text-xs text-wm-muted font-mono">{t('hero.launchingDate')}</p>
           <span className="text-wm-border">|</span>
-          <a href="https://z-monitor.app" className="text-xs text-wm-green font-mono hover:text-green-300 transition-colors flex items-center gap-1">
+          <a href="https://github.com/NettechZak/zworldmonitor" className="text-xs text-wm-green font-mono hover:text-green-300 transition-colors flex items-center gap-1">
             {t('hero.tryFreeDashboard')} <ArrowRight className="w-3 h-3" aria-hidden="true" />
           </a>
         </div>
@@ -420,7 +420,7 @@ const LivePreview = () => (
           </div>
           <span className="font-mono text-xs text-wm-muted ml-2">{t('livePreview.windowTitle')}</span>
           <a
-            href="https://z-monitor.app"
+            href="https://github.com/NettechZak/zworldmonitor"
             target="_blank"
             rel="noreferrer"
             className="ml-auto text-xs text-wm-green font-mono hover:text-green-300 transition-colors flex items-center gap-1"
@@ -435,7 +435,7 @@ const LivePreview = () => (
             className="absolute inset-0 w-full h-full object-cover"
           />
           <iframe
-            src="https://z-monitor.app?alert=false"
+            src="https://github.com/NettechZak/zworldmonitor?alert=false"
             title={t('livePreview.iframeTitle')}
             className="relative w-full h-full border-0"
             loading="lazy"
@@ -444,7 +444,7 @@ const LivePreview = () => (
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-wm-bg/80 via-transparent to-transparent" />
           <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-auto">
             <a
-              href="https://z-monitor.app"
+              href="https://github.com/NettechZak/zworldmonitor"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 bg-wm-green text-wm-bg px-6 py-3 rounded-sm font-mono text-sm uppercase tracking-wider font-bold hover:bg-green-400 transition-colors"
@@ -932,8 +932,8 @@ const Footer = () => (
       </div>
       <div className="flex items-center gap-6">
         <a href="/" className="hover:text-wm-text transition-colors">Dashboard</a>
-        <a href="https://www.z-monitor.app/blog/" className="hover:text-wm-text transition-colors">Blog</a>
-        <a href="https://www.z-monitor.app/docs" className="hover:text-wm-text transition-colors">Docs</a>
+        <a href="https://github.com/NettechZak/zworldmonitor/blog/" className="hover:text-wm-text transition-colors">Blog</a>
+        <a href="https://github.com/NettechZak/zworldmonitor/docs" className="hover:text-wm-text transition-colors">Docs</a>
         <a href="https://status.z-monitor.app/" target="_blank" rel="noreferrer" className="hover:text-wm-text transition-colors">Status</a>
         <a href="https://github.com/NettechZak/zmonitor" target="_blank" rel="noreferrer" className="hover:text-wm-text transition-colors">GitHub</a>
         <a href="https://discord.gg/re63kWKxaz" target="_blank" rel="noreferrer" className="hover:text-wm-text transition-colors">Discord</a>
@@ -1132,8 +1132,8 @@ const EnterprisePage = () => (
         </div>
         <div className="flex items-center gap-6">
           <a href="/" className="hover:text-wm-text transition-colors">Dashboard</a>
-          <a href="https://www.z-monitor.app/blog/" className="hover:text-wm-text transition-colors">Blog</a>
-          <a href="https://www.z-monitor.app/docs" className="hover:text-wm-text transition-colors">Docs</a>
+          <a href="https://github.com/NettechZak/zworldmonitor/blog/" className="hover:text-wm-text transition-colors">Blog</a>
+          <a href="https://github.com/NettechZak/zworldmonitor/docs" className="hover:text-wm-text transition-colors">Docs</a>
           <a href="https://status.z-monitor.app/" target="_blank" rel="noreferrer" className="hover:text-wm-text transition-colors">Status</a>
           <a href="https://github.com/NettechZak/zmonitor" target="_blank" rel="noreferrer" className="hover:text-wm-text transition-colors">GitHub</a>
           <a href="https://discord.gg/re63kWKxaz" target="_blank" rel="noreferrer" className="hover:text-wm-text transition-colors">Discord</a>

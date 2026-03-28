@@ -239,7 +239,7 @@ The `text` field is JSON-stringified. This is the standard MCP tool response pat
 
 ### Interaction Graph
 
-`api/mcp.ts` → `api/_api-key.js` (validateApiKey) → `process.env.WORLDMONITOR_VALID_KEYS`
+`api/mcp.ts` → `api/_api-key.js` (validateApiKey) → `process.env.ZMONITOR_VALID_KEYS`
 `api/mcp.ts` → `@upstash/ratelimit` → Upstash Redis (`rl:mcp:<key>` namespace)
 `api/mcp.ts` → `api/_upstash-json.js` (readJsonFromUpstash) → Upstash Redis (read-only, existing keys)
 
@@ -307,7 +307,7 @@ Exception: if `jsonResponse()` itself throws (should not happen), Vercel edge ru
 - `@upstash/ratelimit ^2.0.8` — already in `package.json`
 - `@upstash/redis ^1.36.1` — already in `package.json`
 - `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` — already set in Vercel env
-- `WORLDMONITOR_VALID_KEYS` — already set in Vercel env
+- `ZMONITOR_VALID_KEYS` — already set in Vercel env
 
 ## Deferred to Planning (from origin doc)
 

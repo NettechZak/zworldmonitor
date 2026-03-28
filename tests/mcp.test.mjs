@@ -31,7 +31,7 @@ let handler;
 
 describe('api/mcp.ts — PRO MCP Server', () => {
   beforeEach(async () => {
-    process.env.WORLDMONITOR_VALID_KEYS = VALID_KEY;
+    process.env.ZMONITOR_VALID_KEYS = VALID_KEY;
     // No UPSTASH vars — rate limiter gracefully skipped, Redis reads return null
     delete process.env.UPSTASH_REDIS_REST_URL;
     delete process.env.UPSTASH_REDIS_REST_TOKEN;

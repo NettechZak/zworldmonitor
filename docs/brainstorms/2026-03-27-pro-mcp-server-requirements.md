@@ -12,7 +12,7 @@ Z-Monitor accumulates, curates, and caches real-time intelligence across 25+ dom
 ## Requirements
 
 - R1. A new Vercel edge function at `api/mcp.ts` implements the MCP Streamable HTTP transport (protocol version `2025-03-26`), handling `initialize`, `tools/list`, and `tools/call` JSON-RPC methods.
-- R2. All requests require a valid PRO API key via `X-Z-Monitor-Key` header, validated against `WORLDMONITOR_VALID_KEYS` using the existing `validateApiKey()` helper. Unauthenticated requests return a JSON-RPC error (code -32001).
+- R2. All requests require a valid PRO API key via `X-Z-Monitor-Key` header, validated against `ZMONITOR_VALID_KEYS` using the existing `validateApiKey()` helper. Unauthenticated requests return a JSON-RPC error (code -32001).
 - R3. The server exposes one MCP tool per logical domain group. Tools read from the Redis bootstrap cache (Upstash) — no upstream API calls during tool execution.
 - R4. Rate limiting reuses the existing per-key Redis rate limiter (same mechanism as the widget agent), enforced before tool execution. Exceeded limit returns a JSON-RPC error (code -32029).
 - R5. `tools/list` returns all tools regardless of which domains have fresh cache data. Stale or empty cache is a tool-call concern, not a registration concern.
@@ -69,7 +69,7 @@ Z-Monitor accumulates, curates, and caches real-time intelligence across 25+ dom
 ## Dependencies / Assumptions
 
 - All tool domains have active seed scripts or relay loops keeping Redis fresh (true as of 2026-03-27, per health.js BOOTSTRAP_KEYS).
-- `WORLDMONITOR_VALID_KEYS` env var is already set in Vercel production (it is — used by desktop auth).
+- `ZMONITOR_VALID_KEYS` env var is already set in Vercel production (it is — used by desktop auth).
 - The Upstash Redis client (`@upstash/redis`) is already in package.json (it is).
 - MCP Streamable HTTP transport is supported by Claude Desktop as of protocol version 2025-03-26 (confirmed in `api/mcp-proxy.js`).
 

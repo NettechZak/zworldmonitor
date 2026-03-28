@@ -98,7 +98,7 @@ export async function initLiveChannelsWindow(containerEl?: HTMLElement): Promise
   }
 
   if (!containerEl) {
-    document.title = `${t('components.liveNews.manage') ?? 'Channel management'} - Z-Monitor`;
+    document.title = `${t('components.liveNews.manage') ?? 'Channel management'} - ZMonitor`;
   }
 
   channels = loadChannelsFromStorage();

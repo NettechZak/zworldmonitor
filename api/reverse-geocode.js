@@ -4,7 +4,7 @@ import { jsonResponse } from './_json-response.js';
 export const config = { runtime: 'edge' };
 
 const NOMINATIM_BASE = 'https://nominatim.openstreetmap.org/reverse';
-const CHROME_UA = 'Z-Monitor/2.0 (https://zmonitor.app)';
+const CHROME_UA = 'ZMonitor/2.0 (https://zmonitor.app)';
 
 export default async function handler(req, ctx) {
   if (isDisallowedOrigin(req))

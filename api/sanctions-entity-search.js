@@ -63,7 +63,7 @@ export default async function handler(req) {
 
     const resp = await fetch(url.toString(), {
       headers: {
-        'User-Agent': 'Z-Monitor/1.0 sanctions-search',
+        'User-Agent': 'ZMonitor/1.0 sanctions-search',
         Accept: 'application/json',
       },
       signal: AbortSignal.timeout(OPENSANCTIONS_TIMEOUT_MS),

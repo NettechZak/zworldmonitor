@@ -49,7 +49,7 @@ export default async function handler(req) {
   }
 
   try {
-    const release = await fetchLatestRelease('Z-Monitor-Download-Redirect');
+    const release = await fetchLatestRelease('ZMonitor-Download-Redirect');
     if (!release) {
       return Response.redirect(RELEASES_PAGE, 302);
     }

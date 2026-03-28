@@ -285,7 +285,7 @@ export class PanelLayoutManager implements AppModule {
               <span class="variant-label">Good News</span>
             </a>`;
       })()}</div>
-          <span class="logo">Z-MONITOR</span><span class="logo-mobile">Z-Monitor</span><span class="version">v${__APP_VERSION__}</span>${BETA_MODE ? '<span class="beta-badge">BETA</span>' : ''}
+          <span class="logo">Z-MONITOR</span><span class="logo-mobile">ZMonitor</span><span class="version">v${__APP_VERSION__}</span>${BETA_MODE ? '<span class="beta-badge">BETA</span>' : ''}
           <div class="status-indicator">
             <span class="status-dot"></span>
             <span>${t('header.live')}</span>
@@ -427,7 +427,7 @@ export class PanelLayoutManager implements AppModule {
           <a href="https://zmonitor.app/docs" target="_blank" rel="noopener">Docs</a>
           <a href="https://status.zmonitor.app/" target="_blank" rel="noopener">Status</a>
         </nav>
-        <span class="site-footer-copy">&copy; ${new Date().getFullYear()} Z-Monitor</span>
+        <span class="site-footer-copy">&copy; ${new Date().getFullYear()} ZMonitor</span>
       </footer>
     `;
 

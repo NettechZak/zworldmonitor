@@ -3,7 +3,7 @@ import { after, before, beforeEach, describe, it, mock } from 'node:test';
 
 const originalWidgetKey = process.env.WIDGET_AGENT_KEY;
 const originalProKey = process.env.PRO_WIDGET_KEY;
-const originalValidKeys = process.env.WORLDMONITOR_VALID_KEYS;
+const originalValidKeys = process.env.ZMONITOR_VALID_KEYS;
 
 function fakeRelayResponse(
   body = 'data: {"type":"done"}\n\n',
@@ -23,7 +23,7 @@ describe('widget-agent unified tester key auth', () => {
   before(async () => {
     process.env.WIDGET_AGENT_KEY = 'server-widget-key';
     process.env.PRO_WIDGET_KEY = 'server-pro-key';
-    process.env.WORLDMONITOR_VALID_KEYS = 'browser-test-key';
+    process.env.ZMONITOR_VALID_KEYS = 'browser-test-key';
 
     fetchMock = mock.method(globalThis, 'fetch', () => Promise.resolve(fakeRelayResponse()));
     ({ default: handler } = await import('../api/widget-agent.ts'));
@@ -43,8 +43,8 @@ describe('widget-agent unified tester key auth', () => {
     if (originalProKey == null) delete process.env.PRO_WIDGET_KEY;
     else process.env.PRO_WIDGET_KEY = originalProKey;
 
-    if (originalValidKeys == null) delete process.env.WORLDMONITOR_VALID_KEYS;
-    else process.env.WORLDMONITOR_VALID_KEYS = originalValidKeys;
+    if (originalValidKeys == null) delete process.env.ZMONITOR_VALID_KEYS;
+    else process.env.ZMONITOR_VALID_KEYS = originalValidKeys;
   });
 
   it('accepts X-Z-Monitor-Key and upgrades relay request to pro', async () => {

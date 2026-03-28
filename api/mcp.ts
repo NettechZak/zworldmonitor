@@ -64,7 +64,7 @@ type ToolDef = CacheToolDef | RpcToolDef;
 const TOOL_REGISTRY: ToolDef[] = [
   {
     name: 'get_market_data',
-    description: 'Real-time equity quotes, commodity prices, crypto prices, sector performance, ETF flows, and Gulf market quotes from Z-Monitor\'s curated bootstrap cache.',
+    description: 'Real-time equity quotes, commodity prices, crypto prices, sector performance, ETF flows, and Gulf market quotes from ZMonitor\'s curated bootstrap cache.',
     inputSchema: { type: 'object', properties: {}, required: [] },
     _cacheKeys: [
       'market:stocks-bootstrap:v1',
@@ -101,7 +101,7 @@ const TOOL_REGISTRY: ToolDef[] = [
   },
   {
     name: 'get_news_intelligence',
-    description: 'AI-classified geopolitical threat news summaries, GDELT intelligence signals, cross-source signals, and security advisories from Z-Monitor\'s intelligence layer.',
+    description: 'AI-classified geopolitical threat news summaries, GDELT intelligence signals, cross-source signals, and security advisories from ZMonitor\'s intelligence layer.',
     inputSchema: { type: 'object', properties: {}, required: [] },
     _cacheKeys: [
       'news:insights:v1',
@@ -227,7 +227,7 @@ const TOOL_REGISTRY: ToolDef[] = [
   },
   {
     name: 'get_forecast_predictions',
-    description: 'AI-generated geopolitical and economic forecasts from Z-Monitor\'s predictive models. Covers upcoming risk events and probability assessments.',
+    description: 'AI-generated geopolitical and economic forecasts from ZMonitor\'s predictive models. Covers upcoming risk events and probability assessments.',
     inputSchema: { type: 'object', properties: {}, required: [] },
     _cacheKeys: ['forecast:predictions:v2'],
     _seedMetaKey: 'seed-meta:forecast:predictions',
@@ -263,7 +263,7 @@ const TOOL_REGISTRY: ToolDef[] = [
       const UA = 'zmonitor-mcp-edge/1.0';
       // Step 1: fetch current geopolitical headlines (budget: 8 s, leaves ~22 s for LLM)
       const digestRes = await fetch(`${base}/api/news/v1/list-feed-digest?variant=geo&lang=en`, {
-        headers: { 'X-Z-Monitor-Key': apiKey, 'User-Agent': UA },
+        headers: { 'X-ZMonitor-Key': apiKey, 'User-Agent': UA },
         signal: AbortSignal.timeout(8_000),
       });
       if (!digestRes.ok) throw new Error(`feed-digest HTTP ${digestRes.status}`);
@@ -277,7 +277,7 @@ const TOOL_REGISTRY: ToolDef[] = [
       // Step 2: summarize with LLM (budget: 20 s — total <30 s edge ceiling)
       const briefRes = await fetch(`${base}/api/news/v1/summarize-article`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Z-Monitor-Key': apiKey, 'User-Agent': UA },
+        headers: { 'Content-Type': 'application/json', 'X-ZMonitor-Key': apiKey, 'User-Agent': UA },
         body: JSON.stringify({
           provider: 'groq',
           headlines,
@@ -306,7 +306,7 @@ const TOOL_REGISTRY: ToolDef[] = [
     _execute: async (params, base, apiKey) => {
       const res = await fetch(`${base}/api/intelligence/v1/get-country-intel-brief`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Z-Monitor-Key': apiKey, 'User-Agent': 'zmonitor-mcp-edge/1.0' },
+        headers: { 'Content-Type': 'application/json', 'X-ZMonitor-Key': apiKey, 'User-Agent': 'zmonitor-mcp-edge/1.0' },
         body: JSON.stringify({ countryCode: String(params.country_code ?? ''), framework: String(params.framework ?? '') }),
         signal: AbortSignal.timeout(25_000),
       });
@@ -328,7 +328,7 @@ const TOOL_REGISTRY: ToolDef[] = [
     _execute: async (params, base, apiKey) => {
       const res = await fetch(`${base}/api/intelligence/v1/deduct-situation`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Z-Monitor-Key': apiKey, 'User-Agent': 'zmonitor-mcp-edge/1.0' },
+        headers: { 'Content-Type': 'application/json', 'X-ZMonitor-Key': apiKey, 'User-Agent': 'zmonitor-mcp-edge/1.0' },
         body: JSON.stringify({ query: String(params.query ?? ''), geoContext: String(params.context ?? '') }),
         signal: AbortSignal.timeout(25_000),
       });
@@ -351,7 +351,7 @@ const TOOL_REGISTRY: ToolDef[] = [
       // 25 s — stays within Vercel Edge's ~30 s hard ceiling (was 60 s, which exceeded the limit)
       const res = await fetch(`${base}/api/forecast/v1/get-forecasts`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Z-Monitor-Key': apiKey, 'User-Agent': 'zmonitor-mcp-edge/1.0' },
+        headers: { 'Content-Type': 'application/json', 'X-ZMonitor-Key': apiKey, 'User-Agent': 'zmonitor-mcp-edge/1.0' },
         body: JSON.stringify({ domain: String(params.domain ?? ''), region: String(params.region ?? '') }),
         signal: AbortSignal.timeout(25_000),
       });
@@ -432,7 +432,7 @@ export default async function handler(req: Request): Promise<Response> {
     return rpcError(null, -32001, auth.error ?? 'API key required');
   }
 
-  const apiKey = req.headers.get('X-Z-Monitor-Key') ?? '';
+  const apiKey = req.headers.get('X-ZMonitor-Key') ?? '';
 
   // Per-key rate limit
   const rl = getMcpRatelimit();

@@ -4,7 +4,7 @@
  * Auth paths:
  *   1. Clerk JWT (Authorization: Bearer <token>) — validates plan === 'pro',
  *      then injects real server keys and proxies to the Railway relay.
- *   2. Browser tester key (X-Z-Monitor-Key) — validated against
+ *   2. Browser tester key (X-ZMonitor-Key) — validated against
  *      Z-MONITOR_VALID_KEYS so one browser-held key can unlock premium
  *      testing paths across the app.
  *   3. Legacy tester keys (X-Widget-Key / X-Pro-Key) — validated directly here
@@ -31,7 +31,7 @@ const Z-MONITOR_VALID_KEY_SET = new Set(
     .filter(Boolean),
 );
 
-function hasValidZ-MonitorKey(key: string): boolean {
+function hasValidZMonitorKey(key: string): boolean {
   return Boolean(key) && Z-MONITOR_VALID_KEY_SET.has(key);
 }
 
@@ -51,7 +51,7 @@ export default async function handler(req: Request): Promise<Response> {
       headers: {
         ...corsHeaders,
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Z-Monitor-Key, X-Widget-Key, X-Pro-Key',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-ZMonitor-Key, X-Widget-Key, X-Pro-Key',
       },
     });
   }
@@ -59,8 +59,8 @@ export default async function handler(req: Request): Promise<Response> {
   // ── Auth ──────────────────────────────────────────────────────────────────
   let isPro = false;
 
-  const worldMonitorKey = req.headers.get('X-Z-Monitor-Key') ?? '';
-  if (hasValidZ-MonitorKey(worldMonitorKey)) {
+  const worldMonitorKey = req.headers.get('X-ZMonitor-Key') ?? '';
+  if (hasValidZMonitorKey(worldMonitorKey)) {
     isPro = true;
   } else {
     const authHeader = req.headers.get('Authorization');
