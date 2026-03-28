@@ -1,9 +1,9 @@
-export type FontFamily = 'mono' | 'system';
+export type FontFamily = 'mono' | 'system' | 'dyslexic';
 
 const STORAGE_KEY = 'wm-font-family';
 const EVENT_NAME = 'wm-font-changed';
 
-const ALLOWED: FontFamily[] = ['mono', 'system'];
+const ALLOWED: FontFamily[] = ['mono', 'system', 'dyslexic'];
 
 export function getFontFamily(): FontFamily {
   try {
@@ -30,6 +30,8 @@ export function applyFont(font?: FontFamily): void {
   const resolved = font ?? getFontFamily();
   if (resolved === 'system') {
     document.documentElement.dataset.font = 'system';
+  } else if (resolved === 'dyslexic') {
+    document.documentElement.dataset.font = 'dyslexic';
   } else {
     delete document.documentElement.dataset.font;
   }

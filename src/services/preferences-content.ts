@@ -305,6 +305,31 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
 
   html += `</div></details>`;
 
+  // ── ADHD Accessibility group ──
+  const isHighContrast = document.documentElement.dataset.adhdHighContrast === 'true';
+  const isReducedMotion = document.documentElement.dataset.adhdReducedMotion === 'true';
+  const currentFontFamily = getFontFamily();
+
+  html += `<details class="wm-pref-group">`;
+  html += `<summary>\u267f ADHD Accessibility</summary>`;
+  html += `<div class="wm-pref-group-content">`;
+  
+  html += `<div class="ai-flow-toggle-row">
+    <div class="ai-flow-toggle-label-wrap">
+      <div class="ai-flow-toggle-label">Dyslexic-Friendly Font</div>
+      <div class="ai-flow-toggle-desc">Uses Lexend, designed to reduce visual stress and improve readability.</div>
+    </div>
+    <label class="ai-flow-switch">
+      <input type="checkbox" id="us-adhd-dyslexic"${currentFontFamily === 'dyslexic' ? ' checked' : ''}>
+      <span class="ai-flow-slider"></span>
+    </label>
+  </div>`;
+
+  html += toggleRowHtml('us-adhd-high-contrast', 'High Contrast Mode', 'Increase contrast for better focus and readability.', isHighContrast);
+  html += toggleRowHtml('us-adhd-reduced-motion', 'Reduced Motion', 'Disable animations and transitions to reduce overstimulation.', isReducedMotion);
+  
+  html += `</div></details>`;
+
   // ── Panels group ──
   html += `<details class="wm-pref-group">`;
   html += `<summary>${t('preferences.panels')}</summary>`;
@@ -407,6 +432,14 @@ export function renderPreferences(host: PreferencesHost): PreferencesResult {
           setAiFlowSetting('mapNewsFlash', target.checked);
         } else if (target.id === 'us-headline-memory') {
           setAiFlowSetting('headlineMemory', target.checked);
+        } else if (target.id === 'us-adhd-dyslexic') {
+          setFontFamily(target.checked ? 'dyslexic' : 'mono');
+        } else if (target.id === 'us-adhd-high-contrast') {
+          document.documentElement.dataset.adhdHighContrast = String(target.checked);
+          localStorage.setItem('wm-adhd-high-contrast', String(target.checked));
+        } else if (target.id === 'us-adhd-reduced-motion') {
+          document.documentElement.dataset.adhdReducedMotion = String(target.checked);
+          localStorage.setItem('wm-adhd-reduced-motion', String(target.checked));
         } else if (target.id === 'us-badge-anim') {
           setAiFlowSetting('badgeAnimation', target.checked);
         }

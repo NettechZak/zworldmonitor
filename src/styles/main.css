@@ -22022,3 +22022,70 @@ body.has-breaking-alert .panels-grid {
   opacity: 0.5;
   cursor: help;
 }
+
+/* ADHD Accessibility & Z-Monitor Customizations */
+[data-adhd-high-contrast="true"] {
+  --color-bg: #000000;
+  --color-bg-alt: #111111;
+  --color-border: #ffffff;
+  --color-text: #ffffff;
+  --color-text-dim: #cccccc;
+  --panel-bg: #000000;
+  --panel-border: #ffffff;
+}
+
+[data-adhd-reduced-motion="true"] * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+.panel-focus-mode .panel:not(.focused) {
+  display: none !important;
+}
+
+.panel-focus-mode .panel.focused {
+  grid-column: 1 / -1 !important;
+  grid-row: 1 / -1 !important;
+  height: calc(100vh - 100px) !important;
+  z-index: 1000;
+}
+
+.scratchpad {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  height: 200px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  z-index: 2000;
+  transition: transform 0.3s ease;
+}
+
+.scratchpad.minimized {
+  transform: translateY(calc(100% - 32px));
+}
+
+.scratchpad-header {
+  height: 32px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--panel-header-bg);
+  cursor: pointer;
+}
+
+.scratchpad-content {
+  flex: 1;
+  padding: 8px;
+  background: transparent;
+  color: var(--color-text);
+  border: none;
+  resize: none;
+  font-family: var(--font-mono);
+}

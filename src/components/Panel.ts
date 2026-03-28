@@ -275,6 +275,7 @@ export class Panel {
     }
 
     if (options.closable !== false) {
+      this.appendFocusButton();
       this.appendCloseButton();
     }
 
@@ -656,6 +657,31 @@ export class Panel {
     badge.className = 'panel-live-count';
     badge.textContent = `${count}`;
     headerLeft.appendChild(badge);
+  }
+
+  private appendFocusButton(): void {
+    const btn = document.createElement('button');
+    btn.className = 'panel-focus-btn';
+    btn.title = 'Focus Mode (ADHD)';
+    btn.setAttribute('aria-label', 'Toggle Focus Mode');
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`;
+    
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isFocused = this.element.classList.contains('focused');
+      
+      // Clear any existing focus
+      document.querySelectorAll('.panel.focused').forEach(p => p.classList.remove('focused'));
+      
+      if (!isFocused) {
+        this.element.classList.add('focused');
+        document.body.classList.add('panel-focus-mode');
+      } else {
+        document.body.classList.remove('panel-focus-mode');
+      }
+    });
+    
+    this.header.appendChild(btn);
   }
 
   protected appendCloseButton(): void {
